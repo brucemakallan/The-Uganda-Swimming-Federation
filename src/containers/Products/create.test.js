@@ -1,7 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { CreateProduct } from './create';
-import property, { propertyCondition } from '../../__mocks__';
 
 describe('CreateProduct', () => {
   let props;
@@ -21,7 +20,6 @@ describe('CreateProduct', () => {
     props = {
       createProductDispatch: jest.fn(),
       history: { push: jest.fn() },
-      properties: [property, propertyCondition]
     };
     wrapper = mount(
       <CreateProduct {...props} />

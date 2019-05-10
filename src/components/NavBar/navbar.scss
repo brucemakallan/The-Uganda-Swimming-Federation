@@ -1,32 +1,39 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-$logoBlue: #62B4E1;
-$primary400: #42a5f5;
-$primary500: #2196f3;
-$primary800: #1565c0;
+@import '../../index.scss';
 
-.navbar {
+#dashboard-nav {
   position: fixed;
-  -webkit-box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
-  -moz-box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
-  box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
+  width: 100%;
+  z-index: 99;
+}
+.navbar {
+  background-image: url('https://iviidev.info/downloads/usf/images/navbar-background.jpg');
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
 
-  .navbar-brand img {
-    height: 50px;
-    background-color: $logoBlue;
-    // animation: glow 10s forwards 1s linear;
+    img {
+      height: 100px;
+      margin-right: 20px;
+      animation: glow 10s infinite 1s linear;
+    }
+    span {
+      color: white;
+    }
   }
   .custom-nav-link {
-    font-family: 'Roboto', sans-serif;
+    font-family: $latoFontFamily;
     font-size: 14px;
-    color: $logoBlue !important;
+    color: #dddddd !important;
     margin: 0 5px;
   }
   .custom-nav-link:hover {
-    color: $primary800 !important;
+    color: white !important;
   }
   .active {
     .custom-nav-link {
-      color: $primary800 !important;
+      color: white !important;
+      border: 1px solid #cccccc;
     }
   }
   .searchBox {
@@ -38,12 +45,32 @@ $primary800: #1565c0;
   .searchBox:focus {
     box-shadow: 0 1px 0 0 $logoBlue;
   }
-}
-#dashboard-nav {
-  position: fixed;
-  width: 100%;
-  z-index: 99;
-  background-color: white;
+  .nav-item {
+    .dropdown-menu {
+      background-color: $primary700;
+
+      .custom-nav-link {
+        color: white !important;
+      }
+      .custom-nav-link:hover {
+        background: none;
+        border-left: 2px solid white;
+      }
+    }
+  }
+  .nav-sponsors {
+    width: 170px;
+    max-height: 70px;
+    overflow: hidden;
+    margin: 10px 0;
+    text-align: center;
+    color: white;
+
+    .heading {
+      margin-bottom: 5px;
+      font-size: 11px;
+    }
+  }
 }
 
 @media screen and (min-width: 801px) {
@@ -54,10 +81,24 @@ $primary800: #1565c0;
   }
 }
 @media screen and (max-width: 800px) {
-  .navbar {
+  #dashboard-nav {
+    justify-content: space-evenly;
+  }
+
+  .navbar {  
     .searchBox {
       width: 100% !important;
       margin-bottom: 5px;
+    }
+    .navbar-brand {
+      img {
+        animation: glow 2s forwards 1s linear;
+      }
+    }
+    .active {
+      .custom-nav-link {
+        padding-left: 10px;
+      }
     }
   }
 }

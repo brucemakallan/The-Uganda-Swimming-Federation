@@ -1,6 +1,10 @@
+// FONTS
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Raleway:300');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Lato:300');
 
+// COLORS
 $primaryLight: #90caf9;
 $primary: #64b5f6;
 $primary400: #42a5f5;
@@ -13,6 +17,7 @@ $logoBlue: #62B4E1;
 
 $bodyFontFamily: 'Montserrat', sans-serif;
 $headingFontFamily: 'Raleway', sans-serif;
+$latoFontFamily: 'Lato', sans-serif;
 
 .color-primary {
   color: $primary;

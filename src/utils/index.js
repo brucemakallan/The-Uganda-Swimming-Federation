@@ -34,7 +34,7 @@ export const serverResponses = {
 };
 
 export const localFiles = {
-  logo: './logo.png',
+  logo: './usf-logo.jpg',
 };
 
 const carousel = 'Carousel';
@@ -44,7 +44,7 @@ const imageGallery = 'Image Gallery';
 const videoGallery = 'Video Gallery';
 const calendars = 'Calendars';
 const eventResult = 'Event Result';
-const partner = 'Partner';
+const partners = 'Partners';
 const majorSponsors = 'Major Sponsors';
 const applicationProcedures = 'Application Procedures';
 const keyAffiliates = 'Key Affiliates';
@@ -53,12 +53,13 @@ const footer = 'Footer';
 
 export const pageSections = {
   carousel,
+  partners,
   majorSponsors,
   applicationProcedures,
   keyAffiliates,
   CANAZone3,
   footer,
-}
+};
 
 export const entityTypes = [ // articles and other dynamic website sections
   carousel,
@@ -68,12 +69,12 @@ export const entityTypes = [ // articles and other dynamic website sections
   videoGallery,
   calendars,
   eventResult,
-  partner,
+  partners,
   majorSponsors,
   applicationProcedures,
   keyAffiliates,
   CANAZone3,
   footer,
-]
+];
 
 export default paths;
