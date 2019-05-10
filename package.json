@@ -1,0 +1,78 @@
+{
+  "name": "usf",
+  "version": "0.1.0",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.15",
+    "@fortawesome/free-regular-svg-icons": "^5.8.2",
+    "@fortawesome/free-solid-svg-icons": "^5.7.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
+    "concurrently": "^4.1.0",
+    "date-and-time": "^0.6.3",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme-to-json": "^3.3.5",
+    "history": "^4.7.2",
+    "jquery": "^3.3.1",
+    "lodash": "^4.17.11",
+    "node-sass": "^4.11.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-loader-spinner": "^2.3.0",
+    "react-markdown": "^4.0.8",
+    "react-modal": "^3.8.1",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5",
+    "react-table": "^6.9.2",
+    "react-toastify": "^4.5.2",
+    "reactstrap": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0",
+    "serve": "^10.1.2",
+    "typescript": "^3.3.3333"
+  },
+  "scripts": {
+    "start": "concurrently \"react-scripts start\" \"npm run start:dev --prefix api\"",
+    "start:dev": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test -u --coverage",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "build:prod": "npm run build --prefix api && npm run build",
+    "start:prod": "concurrently \"npm run start --prefix api\" \"serve -s build\""
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^22.0.1",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "moxios": "^0.4.0",
+    "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}",
+      "!src/setupTests.js",
+      "!src/index.js",
+      "!src/store.js"
+    ]
+  }
+}

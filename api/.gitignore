@@ -1,0 +1,15 @@
+# OS X
+.DS_Store*
+
+# npm
+node_modules
+package-lock.json
+*.log
+*.gz
+
+# Coveralls
+coverage
+
+.env
+build
+dist
