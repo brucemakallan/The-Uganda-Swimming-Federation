@@ -39,6 +39,8 @@ const postArticle = (req, res) => {
 		article.images = req.body.images;
 		article.parent = req.body.parent;
 		article.category = req.body.category;
+		article.files = req.body.files;
+		article.videos = req.body.videos;
 		article.save((err) => err
 			? res.status(500).send({message: err.message})
 			: res.status(201).send(article));

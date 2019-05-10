@@ -15,6 +15,7 @@ const joiSchema = Joi.object().keys({
 	dateOut: basicString(),
 	images: Joi.array().items(basicString()),
 	files: Joi.array().items(Joi.object()),
+	videos: Joi.array().items(Joi.object()),
 	parent: basicString(),
 	category: requiredJoiString(),
 	dateCreated: basicString(),

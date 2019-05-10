@@ -8,7 +8,7 @@ const requiredString = {
 	required: true,
 };
 
-// headings 1-6, body, images, dates 1-2, parent, category, files
+// headings 1-6, body, images, dates 1-2, parent, category, files, videos
 module.exports = {
 	heading1: { ...trimmedString },
 	heading2: { ...trimmedString },
@@ -21,6 +21,7 @@ module.exports = {
 	dateOut: { ...trimmedString },
 	images: { type: [String] },
 	files: { type: [Object] },
+	videos: { type: [Object] },
 	parent: { ...trimmedString },
 	category: { ...requiredString },
 	dateCreated: {type: String, default: Date.now},
