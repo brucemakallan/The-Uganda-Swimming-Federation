@@ -1,0 +1,86 @@
+$primaryDark: #0d47a1;
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  top: 76px;
+
+  a {
+    display: block;
+    color: #eaeaea;
+    padding: 15px 12px;
+    text-decoration: none;
+
+    span {
+      font-size: 13px;
+    }
+  }
+  a.active {
+    background-color: $primaryDark;
+    color: white;
+    text-decoration: none;
+  }
+  a:hover:not(.active) {
+    background-color: #dddddd33;
+    color: #eaeaea;
+    text-decoration: none;
+  }
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 16px;
+  padding-top: 81px;
+  height: 1000px;
+}
+
+.burger {
+  color: $primaryDark;
+  font-size: 30px;
+  margin: 5px;
+  z-index: 10;
+  top: 81px;
+  position: relative;
+}
+.burgerButton {
+  display: none;
+}
+.burgerButton:focus {
+  outline:0;
+}
+
+@media screen and (max-width: 800px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: none;
+
+    a {float: left;}
+
+    .sidebarLink{
+      width: 100%;
+    }
+  }
+  .sidebar.responsive {
+    display: block;
+    animation: smoothSlideTopDownWithOpacity 0.25s forwards 0s linear;
+  }
+  .burgerButton {
+    display: block;
+  }
+
+  div.content {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    float: none;
+  }
+}

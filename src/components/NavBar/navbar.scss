@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+$logoBlue: #62B4E1;
+$primary400: #42a5f5;
+$primary500: #2196f3;
+$primary800: #1565c0;
+
+.navbar {
+  position: fixed;
+  -webkit-box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
+  -moz-box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
+  box-shadow: 0px 10px 5px 0px rgba(234,234,234,0.5);
+
+  .navbar-brand img {
+    height: 50px;
+    background-color: $logoBlue;
+    // animation: glow 10s forwards 1s linear;
+  }
+  .custom-nav-link {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: $logoBlue !important;
+    margin: 0 5px;
+  }
+  .custom-nav-link:hover {
+    color: $primary800 !important;
+  }
+  .active {
+    .custom-nav-link {
+      color: $primary800 !important;
+    }
+  }
+  .searchBox {
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid $logoBlue;
+    width: 1px !important;
+  }
+  .searchBox:focus {
+    box-shadow: 0 1px 0 0 $logoBlue;
+  }
+}
+#dashboard-nav {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  background-color: white;
+}
+
+@media screen and (min-width: 801px) {
+  .navbar {
+    .searchBox {
+      animation: increaseSize 0.4s forwards 1s linear;
+    }
+  }
+}
+@media screen and (max-width: 800px) {
+  .navbar {
+    .searchBox {
+      width: 100% !important;
+      margin-bottom: 5px;
+    }
+  }
+}

@@ -19,6 +19,6 @@ module.exports = {
 				title: 'sample file',
 				url: 'https://iviidev.info/downloads/files/sample.pdf',
 			},
-		]
+		],
 	},
 };
