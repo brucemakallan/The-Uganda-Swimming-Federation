@@ -55,7 +55,7 @@ class Details extends Component {
     let otherDetails;
     if (product) {
       mainDetails = [
-        { label: 'DuduID', value: product.duduID },
+        { label: 'ID', value: product._id },
         { label: 'Title', value: product.title },
         { label: 'Condition', value: product.condition },
         { label: 'Price (UGX)', value: product.price },

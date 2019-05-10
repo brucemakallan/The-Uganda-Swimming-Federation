@@ -3,26 +3,19 @@ const paths = {
   dashboard: {
     home: '/dashboard',
     products: '/dashboard/products',
-    properties: '/dashboard/properties',
-    users: '/dashboard/users',
-    subscriptions: '/dashboard/subscriptions',
-    orders: '/dashboard/orders',
-    unresolvedSearches: '/dashboard/unresolved-searches',
-    salesStats: '/dashboard/sales-stats',
-    websiteSections: '/dashboard/website-sections',
-    admin: '/dashboard/admin',
-    details: '/dashboard/details',
   },
   create: '/create',
   edit: '/edit',
 };
 
-const API_URL = 'https://thesuperdudu.com/api/';
+const API_URL = 'http://localhost:3001/api/';
 
 export const endpoints = {
-  properties: `${API_URL}properties`,
-  products: `${API_URL}products`,
-  websiteSections: `${API_URL}sections`,
+  productsGetAll: `${API_URL}articles`,
+  productsPost: `${API_URL}/protected/articles`,
+  productsGetOne: id => `${API_URL}articles/${id}`,
+  productsPut: id => `${API_URL}/protected/articles/${id}`,
+  productsDelete: id => `${API_URL}/protected/articles/${id}`,
 };
 
 export const propertyTypes = [
@@ -44,32 +37,43 @@ export const localFiles = {
   logo: './logo.png',
 };
 
+const carousel = 'Carousel';
+const article = 'Article';
+const event = 'Event';
+const imageGallery = 'Image Gallery';
+const videoGallery = 'Video Gallery';
+const calendars = 'Calendars';
+const eventResult = 'Event Result';
+const partner = 'Partner';
+const majorSponsors = 'Major Sponsors';
+const applicationProcedures = 'Application Procedures';
+const keyAffiliates = 'Key Affiliates';
+const CANAZone3 = 'CANA Zone 3';
+const footer = 'Footer';
+
 export const pageSections = {
-  carousel: 'carousel',
-  services: 'services',
-  categories: 'categories',
-  offers: 'offers',
-  featured: 'featured',
-  popular: 'popular',
-  newsletter: 'newsletter',
-  order: 'order',
-  footer: 'footer',
-};
+  carousel,
+  majorSponsors,
+  applicationProcedures,
+  keyAffiliates,
+  CANAZone3,
+  footer,
+}
 
 export const entityTypes = [ // articles and other dynamic website sections
-  'Carousel',
-  'Article',
-  'Event',
-  'Image Gallery',
-  'Video Gallery',
-  'Calendar',
-  'Event Result',
-  'Partner',
-  'Major Sponsor',
-  'Application Procedures',
-  'Key Affiliates',
-  'CANA Zone 3',
-  'Footer',
+  carousel,
+  article,
+  event,
+  imageGallery,
+  videoGallery,
+  calendars,
+  eventResult,
+  partner,
+  majorSponsors,
+  applicationProcedures,
+  keyAffiliates,
+  CANAZone3,
+  footer,
 ]
 
 export default paths;

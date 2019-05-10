@@ -3,24 +3,25 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import HomeComponent from '../../components/Home';
 import { pageSections, endpoints } from '../../utils';
-import getAllWebsiteSections from '../../actions/websiteSectionsActions';
+import getAllProducts from '../../actions/productsActions';
 
 export class Home extends Component {
   componentWillMount() {
-    const { getAllWebsiteSectionsDispatch } = this.props;
-    getAllWebsiteSectionsDispatch(endpoints.websiteSections);
+    const { getAllProductsDispatch } = this.props;
+    getAllProductsDispatch(endpoints.productsGetAll);
   }
 
   render() {
     let carousel = { imageUrls: [], captions: [] };
-    const { websiteSections } = this.props;
-    const carouselSection = websiteSections.find(
-      section => section.heading1.trim().toLowerCase().match(pageSections.carousel)
+    const { products } = this.props;
+    const carouselSection = products.find(
+      section => section.category.trim().toLowerCase().match(pageSections.carousel)
     );
     if (carouselSection) {
       carousel = {
         imageUrls: carouselSection.images,
         captions: [
+          carouselSection.heading1,
           carouselSection.heading2,
           carouselSection.heading3,
           carouselSection.heading4,
@@ -34,14 +35,14 @@ export class Home extends Component {
 }
 
 Home.propTypes = {
-  getAllWebsiteSectionsDispatch: PropTypes.func.isRequired,
-  websiteSections: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  getAllProductsDispatch: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = ({ websiteSectionsReducer }) => ({
-  websiteSections: websiteSectionsReducer.websiteSections,
+const mapStateToProps = ({ productsReducer }) => ({
+  products: productsReducer.products,
 });
 const mapDispatchToProps = {
-  getAllWebsiteSectionsDispatch: getAllWebsiteSections,
+  getAllProductsDispatch: getAllProducts,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

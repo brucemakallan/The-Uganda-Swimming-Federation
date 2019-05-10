@@ -50,7 +50,7 @@ export class CreateProduct extends Component {
     e.preventDefault();
     const { product } = this.state;
     const { createProductDispatch, history } = this.props;
-    createProductDispatch(endpoints.products, product, history, createAnother);
+    createProductDispatch(endpoints.productsPost, product, history, createAnother);
   }
 
   handleOnChange = (e) => {

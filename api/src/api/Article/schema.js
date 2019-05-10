@@ -6,7 +6,7 @@ const requiredString = {
 	type: String,
 	trim: true,
 	required: true,
-}
+};
 
 // headings 1-6, body, images, dates 1-2, parent, category, files
 module.exports = {
@@ -22,6 +22,6 @@ module.exports = {
 	images: { type: [String] },
 	files: { type: [Object] },
 	parent: { ...trimmedString },
-	category: { ...trimmedString },
+	category: { ...requiredString },
 	dateCreated: {type: String, default: Date.now},
 };

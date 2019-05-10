@@ -17,7 +17,7 @@ export class EditProduct extends Component {
       match, products, properties, history,
     } = this.props;
     const selectedEntity = products.find(entity => entity._id === match.params.id);
-    const unsupportedProperties = ['_id', 'duduID', 'dateCreated', '__v'];
+    const unsupportedProperties = ['_id', 'dateCreated', '__v'];
     if (selectedEntity && properties) {
       unsupportedProperties.map(property => delete selectedEntity[property]);
       this.setState({ product: { ...product, ...selectedEntity } });
@@ -28,7 +28,7 @@ export class EditProduct extends Component {
     e.preventDefault();
     const { product } = this.state;
     const { editProductDispatch, match, history } = this.props;
-    editProductDispatch(`${endpoints.products}/${match.params.id}`, product, history);
+    editProductDispatch(endpoints.productsPut(match.params.id), product, history);
   }
 
   handleOnChange = (e) => {

@@ -3,35 +3,25 @@ import './sidebar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faShoppingBag, faCogs, faUsers, faMailBulk, faCartArrowDown,
-  faSearchPlus, faChartPie, faTh, faUserNinja, faHome, faBars, faArrowUp,
+  faShoppingBag, faHome, faBars, faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import paths from '../../utils';
 
 library.add(
-  faShoppingBag, faCogs, faUsers, faMailBulk, faCartArrowDown,
-  faSearchPlus, faChartPie, faTh, faUserNinja, faHome, faBars, faArrowUp,
+  faShoppingBag, faHome, faBars, faArrowUp,
 );
 
 const {
   dashboard: {
-    home, products, properties, users, subscriptions, orders, unresolvedSearches, salesStats, websiteSections, admin,
+    home, products,
   }
 } = paths;
 
 const navLinks = [
   { path: home, icon: 'home', name: 'Dashboard Home' },
   { path: products, icon: 'shopping-bag', name: 'Products' },
-  { path: properties, icon: 'cogs', name: 'Properties' },
-  { path: users, icon: 'users', name: 'Users' },
-  { path: subscriptions, icon: 'mail-bulk', name: 'Subscriptions' },
-  { path: orders, icon: 'cart-arrow-down', name: 'Orders' },
-  { path: unresolvedSearches, icon: 'search-plus', name: 'Unresolved Searches' },
-  { path: salesStats, icon: 'chart-pie', name: 'Sales stats' },
-  { path: websiteSections, icon: 'th', name: 'Website Sections' },
-  { path: admin, icon: 'user-ninja', name: 'Admin' },
 ];
 
 class Sidebar extends Component {

@@ -16,7 +16,7 @@ const joiSchema = Joi.object().keys({
 	images: Joi.array().items(basicString()),
 	files: Joi.array().items(Joi.object()),
 	parent: basicString(),
-	category: basicString(),
+	category: requiredJoiString(),
 	dateCreated: basicString(),
 });
 

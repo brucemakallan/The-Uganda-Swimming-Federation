@@ -13,13 +13,13 @@ export class Products extends Component {
 
   componentDidMount() {
     const { getAllProductsDispatch } = this.props;
-    getAllProductsDispatch(endpoints.products);
+    getAllProductsDispatch(endpoints.productsGetAll);
   }
 
   handleDelete = (id) => {
     if (id) {
       const { deleteProductDispatch } = this.props;
-      deleteProductDispatch(`${endpoints.products}/${id}`);
+      deleteProductDispatch(endpoints.productsDelete(id));
     }
     this.handleHideModal();
   }
