@@ -30,18 +30,6 @@ describe('CreateProduct', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should redirect if required entity is not found', () => {
-    const propsWithoutProperties = {
-      ...props,
-      properties: [],
-    };
-    wrapper = mount(
-      <CreateProduct {...propsWithoutProperties} />
-    );
-    expect(wrapper).toMatchSnapshot();
-    expect(props.history.push).toHaveBeenCalled();
-  });
-
   it('should handle an onChange', () => {
     const event = {
       preventDefault: jest.fn(),

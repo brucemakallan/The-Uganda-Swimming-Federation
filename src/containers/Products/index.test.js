@@ -12,7 +12,6 @@ describe('Products', () => {
     props = {
       getAllProductsDispatch: jest.fn(),
       deleteProductDispatch: jest.fn(),
-      getAllPropertiesDispatch: jest.fn(),
       products: [product],
     };
     wrapper = mount(

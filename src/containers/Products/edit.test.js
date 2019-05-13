@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { EditProduct } from './edit';
-import property, { product } from '../../__mocks__';
+import { product } from '../../__mocks__';
 
 describe('EditProduct', () => {
   let props;
@@ -23,7 +23,6 @@ describe('EditProduct', () => {
       match: { params: { id: product._id } },
       history: { push: jest.fn() },
       products: [product],
-      properties: [property]
     };
     wrapper = mount(
       <EditProduct {...props} />

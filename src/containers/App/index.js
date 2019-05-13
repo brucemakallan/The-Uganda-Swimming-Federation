@@ -21,8 +21,6 @@ class App extends Component {
     const partners = products.find(
       section => section.category.trim().match(pageSections.partners)
     );
-    console.log(products);
-    console.log(partners);
 
     return (
       <Router>

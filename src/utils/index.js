@@ -18,11 +18,6 @@ export const endpoints = {
   productsDelete: id => `${API_URL}/protected/articles/${id}`,
 };
 
-export const propertyTypes = [
-  'Category',
-  'Condition',
-];
-
 export const messages = {
   NETWORK_ERROR: 'Network Error!',
   SUCCESS: 'All Good',
