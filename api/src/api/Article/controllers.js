@@ -37,6 +37,7 @@ const postArticle = (req, res) => {
 		article.dateIn = req.body.dateIn;
 		article.dateOut = req.body.dateOut;
 		article.images = req.body.images;
+		article.tags = req.body.tags;
 		article.parent = req.body.parent;
 		article.category = req.body.category;
 		article.files = req.body.files;
