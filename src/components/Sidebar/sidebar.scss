@@ -1,5 +1,13 @@
 @import '../../index.scss';
 
+$main-content-padding-top: 81px;
+$navbar-height: 126px;
+$burger-button-top: calc(#{$navbar-height} + 95px);
+$main-content-top-desktop: calc(#{$navbar-height} - #{$main-content-padding-top});
+
+$sidebar-top-mobile: 216px;
+$main-content-top: calc(#{$sidebar-top-mobile} - 43px);
+
 .sidebar {
   margin: 0;
   padding: 0;
@@ -7,7 +15,7 @@
   position: fixed;
   height: 100%;
   overflow: auto;
-  top: 76px;
+  top: $navbar-height; // height of navbar in desktop view
 
   a {
     display: block;
@@ -32,22 +40,25 @@
 }
 
 div.content {
+  position: relative;
+  top: $main-content-top-desktop;
   margin-left: 200px;
   padding: 16px;
-  padding-top: 81px;
+  padding-top: $main-content-padding-top;
   height: 1000px;
 }
 
-.burger {
-  color: $primaryDark;
-  font-size: 30px;
-  margin: 5px;
-  z-index: 10;
-  top: 81px;
-  position: relative;
-}
 .burgerButton {
   display: none;
+  top: $burger-button-top;
+  position: relative;
+  z-index: 10;
+    
+  .burger {
+    color: $primaryDark;
+    font-size: 30px;
+    margin: 5px;
+  }
 }
 .burgerButton:focus {
   outline:0;
@@ -76,11 +87,16 @@ div.content {
 
   div.content {
     margin-left: 0;
+    top: $main-content-top;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .sidebar a {
-    float: none;
+  .sidebar {
+    top: $sidebar-top-mobile; // height of nav in mobile view
+    
+    a {
+      float: none;
+    }
   }
 }
