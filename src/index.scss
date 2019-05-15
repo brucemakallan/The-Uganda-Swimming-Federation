@@ -68,6 +68,11 @@ h1, h2, h3, h4, h5, h6 {
 .icon {
   margin: 0 10px;
 }
+.file-icon {
+  margin-right: 5px;
+  font-size: 22px;
+  color: $primary800;
+}
 .flex-container {
   display: flex;
   justify-content: space-between;
@@ -89,6 +94,9 @@ h1, h2, h3, h4, h5, h6 {
     width: 25%;
   }
 }
+.flex-normal {
+  align-items: flex-start;
+}
 .iconButton {
   border: none;
   background: transparent;
@@ -102,6 +110,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .noOutline:focus {
   outline: 0;
+}
+.noBulletList {
+  list-style-type: none;
+  padding-left: 20px;
 }
 
 .effect-button {
@@ -169,6 +181,9 @@ h1, h2, h3, h4, h5, h6 {
     .responsive-flex-child {
       width: 100%;
     }
+  }
+  .noBulletList {
+    padding-left: 10px;
   }
 }
 

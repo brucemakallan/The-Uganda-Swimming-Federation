@@ -3,7 +3,7 @@
 $main-content-padding-top: 81px;
 $navbar-height: 126px;
 $burger-button-top: calc(#{$navbar-height} + 95px);
-$main-content-top-desktop: calc(#{$navbar-height} - #{$main-content-padding-top});
+$main-content-top-desktop: calc(#{$navbar-height} + 20px - #{$main-content-padding-top});
 
 $sidebar-top-mobile: 216px;
 $main-content-top: calc(#{$sidebar-top-mobile} - 43px);

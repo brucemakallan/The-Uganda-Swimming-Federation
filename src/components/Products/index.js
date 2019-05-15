@@ -25,6 +25,7 @@ const Products = ({ data, saveID }) => (
       }
       columns={[
         { Header: 'ID', accessor: '_id' },
+        { Header: 'Category', accessor: 'category' },
         { Header: 'Heading1', accessor: 'heading1' },
         { Header: 'Heading2', accessor: 'heading2' },
         { Header: 'Heading3', accessor: 'heading3' },

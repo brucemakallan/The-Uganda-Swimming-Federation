@@ -6,7 +6,8 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import date from 'date-and-time';
-import paths from '../../utils';
+import YouTube from 'react-youtube';
+import paths, { selectFileIcon } from '../../utils';
 import './products.scss';
 import Carousel from '../../components/Carousel';
 
@@ -18,12 +19,75 @@ class Details extends Component {
     history.goBack();
   }
 
-  renderValue = (label, value) => {
+  renderYoutubeVideo = (height, width, youtubeId) => {
+    const options = {
+      height: String(height),
+      width: String(width),
+      playerVars: { // https://developers.google.com/youtube/player_parameters
+        autoplay: 0,
+      },
+    };
+    return (
+      <YouTube
+        videoId={youtubeId}
+        opts={options}
+        onReady={this._onReady}
+      />
+    );
+  };
+
+  renderListOfVideos = (label, list) => (
+    <div className="productProperty" key={label}>
+      <div className="headingLabel">{label}</div>
+      <div className="responsive-flex flex-normal">
+        {list.map((obj, index) => (
+          <div key={index} className="responsive-flex-child third">
+            <div className="video-box">
+              {Object.keys(obj).map(objKey => (
+                <React.Fragment key={objKey}>
+                  <div className="video-attribute">{`${objKey.toUpperCase()}: ${obj[objKey]}`}</div>
+                  {(obj.youtubeId === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.youtubeId)}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  renderArrayOfObjects = (label, list) => (
+    <div className="productProperty" key={label}>
+      <div className="headingLabel">{label}</div>
+      {list.map((obj, index) => (
+        <ul key={index} className="noBulletList">
+          {Object.keys(obj).map(objKey => (
+            (objKey === 'url' || objKey === 'link')
+              ? (
+                <li key={objKey}>
+                  {selectFileIcon(obj[objKey])}
+                  <a href={obj[objKey]} target="_blank" rel="noopener noreferrer">{obj[objKey]}</a>
+                </li>
+              )
+              : <li key={objKey}>{`${objKey.toUpperCase()}: ${obj[objKey]}`}</li>))}
+          <hr />
+        </ul>
+      ))}
+    </div>
+  );
+
+  renderValue = (label, value, isArrayOfObjects, isVideos) => {
     if (value) {
+      if (isVideos) {
+        return this.renderListOfVideos(label, value);
+      }
+      if (isArrayOfObjects) {
+        return this.renderArrayOfObjects(label, value);
+      }
       if (Array.isArray(value)) {
         return (
-          <div className="mb-2 productProperty" key={label}>
-            <span className="headingLabel">{label}</span>
+          <div className="productProperty" key={label}>
+            <div className="headingLabel">{label}</div>
             <ul>
               {value.map(element => <li key={element}>{element}</li>)}
             </ul>
@@ -31,8 +95,8 @@ class Details extends Component {
         );
       }
       return (
-        <div className="mb-2 productProperty" key={label}>
-          <span className="headingLabel">{label}</span>
+        <div className="productProperty" key={label}>
+          <div className="headingLabel">{label}</div>
           <span>{value}</span>
         </div>
       );
@@ -40,8 +104,8 @@ class Details extends Component {
   };
 
   renderDateTime = (label, dateTimeEpoc) => (
-    <div className="mb-2 productProperty" key={label}>
-      <span className="headingLabel">{label}</span>
+    <div className="productProperty" key={label}>
+      <div className="headingLabel">{label}</div>
       <span>
         {date.format(new Date(Number(dateTimeEpoc)), 'ddd DD MMM YYYY HH:mm:ss Z')}
       </span>
@@ -53,32 +117,33 @@ class Details extends Component {
     const product = products.find(p => p._id === match.params.id);
     let mainDetails;
     let otherDetails;
+    let dates;
     if (product) {
       mainDetails = [
         { label: 'ID', value: product._id },
-        { label: 'Title', value: product.title },
-        { label: 'Condition', value: product.condition },
-        { label: 'Price (UGX)', value: product.price },
-        { label: 'Brand', value: product.brand },
-        { label: 'Model', value: product.model },
-        { label: 'Size', value: product.size },
-        { label: 'Capacity', value: product.capacity },
-        { label: 'Year', value: product.year },
-        { label: 'Manufacturer', value: product.manufacturer },
-        { label: 'Shipping', value: product.shipping },
-        { label: 'Quantity', value: product.quantity },
+        { label: 'Parent', value: product.parent },
+        { label: 'Category', value: product.category.toUpperCase() },
       ];
       otherDetails = [
-        { label: 'Category', value: product.category },
-        { label: 'Seller', value: product.seller },
-        { label: 'Style', value: product.style },
-        { label: 'Delivery', value: product.delivery },
-        { label: 'Shape', value: product.shape },
-        { label: 'Weight', value: product.weight },
-        { label: 'Material', value: product.material },
-        { label: 'Colours', value: product.colours },
-        { label: 'Features', value: product.features },
-        { label: 'Description', value: product.description },
+        { label: 'Heading1', value: product.heading1 },
+        { label: 'Heading2', value: product.heading2 },
+        { label: 'Heading3', value: product.heading3 },
+        { label: 'Heading4', value: product.heading4 },
+        { label: 'Heading5', value: product.heading5 },
+        { label: 'Heading6', value: product.heading6 },
+        { label: 'Body', value: product.body },
+        { label: 'Tags', value: product.tags },
+        {
+          label: 'Files', value: product.files, isArrayOfObjects: true,
+        },
+        {
+          label: 'Videos', value: product.videos, isArrayOfObjects: true, isVideos: true,
+        },
+      ];
+      dates = [
+        { label: 'Date Created', value: product.dateCreated },
+        { label: 'Date-In', value: product.dateIn },
+        { label: 'Date-Out', value: product.dateOut },
       ];
     }
 
@@ -90,7 +155,7 @@ class Details extends Component {
               <button type="button" className="iconButton" onClick={this.goBack}>
                 <FontAwesomeIcon icon="arrow-left" className="icon" />
               </button>
-              <h1>{product.title}</h1>
+              {product.heading1 ? <h1>{product.heading1}</h1> : ''}
               <Link
                 className="btn btn-primary btn-sm button-link"
                 to={`${paths.dashboard.products}/edit/${product._id}`}
@@ -103,8 +168,12 @@ class Details extends Component {
                 <Carousel imageUrls={product.images} />
               </div>
               <div className="details">
-                {mainDetails.map(detail => this.renderValue(detail.label, detail.value))}
-                {this.renderDateTime('Date Created', product.dateCreated)}
+                {mainDetails.map(
+                  detail => this.renderValue(
+                    detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
+                  )
+                )}
+                {dates.map(date => this.renderDateTime(date.label, date.value))}
               </div>
             </div>
             <div className="otherDetails">
@@ -112,7 +181,11 @@ class Details extends Component {
                 <span>MORE</span>
                 <strong>DETAILS</strong>
               </div>
-              {otherDetails.map(detail => this.renderValue(detail.label, detail.value))}
+              {otherDetails.map(
+                detail => this.renderValue(
+                  detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
+                )
+              )}
             </div>
           </React.Fragment>
         ) : this.goBack()}

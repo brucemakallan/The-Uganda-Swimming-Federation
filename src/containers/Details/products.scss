@@ -1,9 +1,13 @@
 @import '../../index.scss';
 
-.headingLabel {
-  font-size: 14px;
-  color: $primary500;
-  margin-right: 10px;
+.productProperty {
+  margin-bottom: 20px;
+  
+  .headingLabel {
+    font-size: 20px;
+    color: $primary800;
+    margin-right: 10px;
+  }
 }
 .mainDetails {
   display: flex;
@@ -38,6 +42,17 @@
     }
     strong {
       color: white;
+    }
+  }
+  .video-box {
+    width: 99%;
+    padding: 20px;
+    margin: 10px 0;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+
+    .video-attribute {
+      margin-bottom: 5px;
     }
   }
 }
@@ -81,11 +96,6 @@
     .images, .details {
       width: 100%;
       padding: 20px 0;
-    }
-
-    .productProperty {
-      display: flex;
-      flex-direction: column;
     }
   }
   .imageHolder {

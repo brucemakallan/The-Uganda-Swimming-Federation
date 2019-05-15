@@ -28,6 +28,7 @@
     "react-scripts": "2.1.5",
     "react-table": "^6.9.2",
     "react-toastify": "^4.5.2",
+    "react-youtube": "^7.9.0",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",

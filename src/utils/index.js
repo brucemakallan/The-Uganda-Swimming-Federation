@@ -1,8 +1,18 @@
+import React from 'react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFilePdf, faFileWord, faFileArchive, faFile,
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faFilePdf, faFileWord, faFileArchive, faFile);
+
 const paths = {
   home: '/',
   dashboard: {
     home: '/dashboard',
     products: '/dashboard/products',
+    details: '/dashboard/details'
   },
   create: '/create',
   edit: '/edit',
@@ -71,5 +81,46 @@ export const entityTypes = [ // articles and other dynamic website sections
   CANAZone3,
   footer,
 ];
+
+const fileIcons = {
+  default: {
+    type: 'default',
+    icon: <FontAwesomeIcon icon="file" className="file-icon" title="file" />,
+  },
+  pdf: {
+    type: 'pdf',
+    icon: <FontAwesomeIcon icon="file-pdf" className="file-icon" title="file" />,
+  },
+  word: {
+    type: 'doc',
+    icon: <FontAwesomeIcon icon="file-word" className="file-icon" title="file" />,
+  },
+  wordOther: {
+    type: 'docx',
+    icon: <FontAwesomeIcon icon="file-word" className="file-icon" title="file" />,
+  },
+  archive: {
+    type: 'zip',
+    icon: <FontAwesomeIcon icon="file-archive" className="file-icon" title="file" />,
+  },
+  archiveOther: {
+    type: 'rar',
+    icon: <FontAwesomeIcon icon="file-archive" className="file-icon" title="file" />,
+  },
+};
+
+export const selectFileIcon = (filePath) => {
+  let icon;
+  Object.keys(fileIcons).map((key) => {
+    if (filePath.toLowerCase().endsWith(fileIcons[key].type)) {
+      icon = fileIcons[key].icon;
+    }
+    return icon;
+  });
+  if (icon) {
+    return icon;
+  }
+  return fileIcons.default.icon;
+};
 
 export default paths;

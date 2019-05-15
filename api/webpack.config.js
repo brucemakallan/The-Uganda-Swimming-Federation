@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
+
 const mode = process.env.NODE_ENV;
 
 module.exports = {
