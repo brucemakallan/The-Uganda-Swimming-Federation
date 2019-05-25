@@ -5,10 +5,16 @@ const app = require('../src');
 const expect = chai.expect;
 
 describe('Test Validation Methods for Articles', () => {
-	it('should return 400 for a request without a title', (done) => {
+	const token = process.env.TOKEN;
+
+	it('should return 400 for a request without a body', (done) => {
 		req(app)
-			.post('/api/articles')
-			.set('Accept', 'application/json')
+			.post('/api/protected/articles')
+			.set({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
+			})
 			.send({})
 			.expect('Content-Type', /json/)
 			.end((err, res) => {

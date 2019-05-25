@@ -2,17 +2,23 @@ const req = require('supertest');
 const mongoose = require('mongoose');
 const chai = require('chai');
 const app = require('../src');
+const { UNAUTHORIZED_ERROR_MESSAGE } = require('../src/api/utils');
 
 const expect = chai.expect;
 const { article } = require('./mocks');
 
 describe('Test API endpoints for Articles', () => {
 	let id;
+	const token = process.env.TOKEN;
 
-	before('post a new Article', (done) => {
+	before('login and post a new Article', (done) => {
 		req(app)
-			.post('/api/articles')
-			.set('Accept', 'application/json')
+			.post('/api/protected/articles')
+			.set({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
+			})
 			.send(article)
 			.expect('Content-Type', /json/)
 			.end((err, res) => {
@@ -28,6 +34,20 @@ describe('Test API endpoints for Articles', () => {
 
 	after('drop the database', (done) => {
 		mongoose.connection.db.dropDatabase(done);
+	});
+
+	it('should throw a 401 Error if Unauthorized', (done) => {
+		req(app)
+			.post('/api/protected/articles')
+			.set('Accept', 'application/json')
+			.send(article)
+			.expect('Content-Type', /json/)
+			.end((err, res) => {
+				if(err) return done(err);
+				expect(res.status).to.equal(401);
+				expect(res.body.message).to.equal(UNAUTHORIZED_ERROR_MESSAGE);
+				done();
+			});
 	});
 
 	it('should get all Articles', (done) => {
@@ -69,25 +89,33 @@ describe('Test API endpoints for Articles', () => {
 			});
 	});	
 
-	it('should update a Article', (done) => {
-		const updatedTitle = 'Nokia 3310';
+	it('should update an Article', (done) => {
+		const updatedHeading1 = 'Nokia 3310';
 		req(app)
-			.put(`/api/articles/${id}`)
-			.set('Accept', 'application/json')
-			.send({ ...article, title: updatedTitle })
+			.put(`/api/protected/articles/${id}`)
+			.set({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
+			})
+			.send({ ...article, heading1: updatedHeading1 })
 			.expect('Content-Type', /json/)
 			.end((err, res) => {
 				if(err) return done(err);
 				expect(res.status).to.equal(200);
-				expect(res.body.heading1).to.equal(updatedTitle);
+				expect(res.body.heading1).to.equal(updatedHeading1);
 				done();
 			});
 	});
 
 	it('should delete a specific Article', (done) => {
 		req(app)
-			.delete(`/api/articles/${id}`)
-			.set('Accept', 'application/json')
+			.delete(`/api/protected/articles/${id}`)
+			.set({
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
+			})
 			.expect('Content-Type', /json/)
 			.end((err, res) => {
 				if(err) return done(err);

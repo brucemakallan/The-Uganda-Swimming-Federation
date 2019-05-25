@@ -21,4 +21,8 @@ module.exports = {
 			},
 		],
 	},
+	admin: {
+		email: 'johndoe@example.com',
+		password: 'password123'
+	}
 };
