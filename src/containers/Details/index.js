@@ -168,24 +168,27 @@ class Details extends Component {
                 <Carousel imageUrls={product.images} />
               </div>
               <div className="details">
-                {mainDetails.map(
+                <div className="material-card">
+                  {mainDetails.map(
+                    detail => this.renderValue(
+                      detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
+                    )
+                  )}
+                  {dates.map(date => this.renderDateTime(date.label, date.value))}
+                </div>
+              </div>
+            </div>
+            <div className="otherDetails">
+              <div className="material-card mb-3">
+                <div className="card-heading">
+                  MORE DETAILS
+                </div>
+                {otherDetails.map(
                   detail => this.renderValue(
                     detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
                   )
                 )}
-                {dates.map(date => this.renderDateTime(date.label, date.value))}
               </div>
-            </div>
-            <div className="otherDetails">
-              <div className="headingBanner">
-                <span>MORE</span>
-                <strong>DETAILS</strong>
-              </div>
-              {otherDetails.map(
-                detail => this.renderValue(
-                  detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
-                )
-              )}
             </div>
           </React.Fragment>
         ) : this.goBack()}
