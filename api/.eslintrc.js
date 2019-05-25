@@ -22,5 +22,6 @@ module.exports = {
       "no-console": "warn",
       "comma-dangle": ["error", "only-multiline"],
       "no-underscore-dangle": "warn",
+      "no-var": "error",
   }
 };

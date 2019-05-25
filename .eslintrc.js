@@ -29,5 +29,6 @@ module.exports = {
       "comma-dangle": ["error", "only-multiline"],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "no-underscore-dangle": "warn",
+      "no-var": "error",
   }
 };

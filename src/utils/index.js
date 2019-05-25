@@ -22,10 +22,10 @@ const API_URL = 'http://localhost:3001/api/';
 
 export const endpoints = {
   productsGetAll: `${API_URL}articles`,
-  productsPost: `${API_URL}/protected/articles`,
+  productsPost: `${API_URL}protected/articles`,
   productsGetOne: id => `${API_URL}articles/${id}`,
-  productsPut: id => `${API_URL}/protected/articles/${id}`,
-  productsDelete: id => `${API_URL}/protected/articles/${id}`,
+  productsPut: id => `${API_URL}protected/articles/${id}`,
+  productsDelete: id => `${API_URL}protected/articles/${id}`,
 };
 
 export const messages = {
