@@ -9,9 +9,12 @@ import PageLoader from '../../containers/PageLoader';
 import Details from '../../containers/Details';
 import ProductEdit from '../../containers/Products/edit';
 import ProductCreate from '../../containers/Products/create';
+import AdminPage from '../../containers/Admin';
 
 const {
-  dashboard: { home, products, details },
+  dashboard: {
+    home, products, details, admin,
+  },
   create, edit,
 } = paths;
 
@@ -27,6 +30,7 @@ const Dashboard = () => (
           <Route path={`${products}${create}`} exact component={ProductCreate} />
           <Route path={`${products}${edit}/:id`} component={ProductEdit} />
           <Route path={`${details}/:id`} component={Details} />
+          <Route path={admin} exact component={AdminPage} />
         </Switch>
       </div>
     </div>

@@ -3,25 +3,26 @@ import './sidebar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faShoppingBag, faHome, faBars, faArrowUp,
+  faNewspaper, faHome, faBars, faArrowUp, faUserLock,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import paths from '../../utils';
 
 library.add(
-  faShoppingBag, faHome, faBars, faArrowUp,
+  faNewspaper, faHome, faBars, faArrowUp, faUserLock,
 );
 
 const {
   dashboard: {
-    home, products,
+    home, products, admin,
   }
 } = paths;
 
 const navLinks = [
   { path: home, icon: 'home', name: 'Dashboard Home' },
-  { path: products, icon: 'shopping-bag', name: 'Products' },
+  { path: products, icon: 'newspaper', name: 'Articles' },
+  { path: admin, icon: 'user-lock', name: 'Admin' },
 ];
 
 class Sidebar extends Component {

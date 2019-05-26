@@ -1,0 +1,15 @@
+.login-container {
+  
+  #adminLoginForm {
+    width: 470px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .login-container {
+    
+    #adminLoginForm {
+      width: 100%;
+    }
+  }
+}

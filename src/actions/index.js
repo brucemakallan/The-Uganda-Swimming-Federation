@@ -7,6 +7,7 @@ const types = {
   GET_ALL_PRODUCTS: 'GET_ALL_PRODUCTS',
   POST_NEW_PRODUCT: 'POST_NEW_PRODUCT',
   DELETE_PRODUCT: 'DELETE_PRODUCT',
+  LOGIN: 'LOGIN',
 };
 
 export const showError = payload => ({

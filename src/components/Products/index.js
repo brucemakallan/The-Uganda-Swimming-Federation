@@ -14,7 +14,7 @@ library.add(faTrash, faPencilAlt, faEye);
 const Products = ({ data, saveID }) => (
   <div>
     <div className="flex-container page-header mb-3">
-      <h1>Products</h1>
+      <h1>Articles</h1>
       <Link className="btn btn-primary btn-sm button-link" to={`${paths.dashboard.products}/create`}>Create</Link>
     </div>
     <ReactTable

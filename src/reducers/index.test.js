@@ -1,5 +1,6 @@
 import { initialState as loaderState } from './loaderReducer';
 import { initialState as productsState } from './productsReducer';
+import { initialState as adminState } from './adminReducer';
 
 import combinedReducers from '.';
 
@@ -9,6 +10,7 @@ describe('Loader Reducers', () => {
       .toEqual({
         loaderReducer: loaderState,
         productsReducer: productsState,
+        adminReducer: adminState,
       });
   });
 });

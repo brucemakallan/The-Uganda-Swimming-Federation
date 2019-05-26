@@ -12,7 +12,8 @@ const paths = {
   dashboard: {
     home: '/dashboard',
     products: '/dashboard/products',
-    details: '/dashboard/details'
+    details: '/dashboard/details',
+    admin: '/dashboard/admin',
   },
   create: '/create',
   edit: '/edit',
@@ -26,6 +27,7 @@ export const endpoints = {
   productsGetOne: id => `${API_URL}articles/${id}`,
   productsPut: id => `${API_URL}protected/articles/${id}`,
   productsDelete: id => `${API_URL}protected/articles/${id}`,
+  adminLogin: `${API_URL}admin`,
 };
 
 export const messages = {
