@@ -132,7 +132,7 @@ class Details extends Component {
         { label: 'Heading5', value: product.heading5 },
         { label: 'Heading6', value: product.heading6 },
         { label: 'Body', value: product.body },
-        { label: 'Tags', value: product.tags },
+        { label: 'Tags', value: product.tags, isArrayOfObjects: true },
         {
           label: 'Files', value: product.files, isArrayOfObjects: true,
         },
