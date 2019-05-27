@@ -1,4 +1,5 @@
 import React from 'react';
+import date from 'date-and-time';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -124,5 +125,12 @@ export const selectFileIcon = (filePath) => {
   }
   return fileIcons.default.icon;
 };
+
+export const LONG_DATE_FORMAT = 'ddd DD MMM YYYY HH:mm:ss Z';
+export const SHORT_DATE_FORMAT = 'yyyy-MM-dd';
+
+export const dateToEpoc = dateValue => new Date(dateValue).valueOf();
+
+export const epocToDate = (epocTime, format) => date.format(new Date(Number(epocTime)), format);
 
 export default paths;

@@ -14,6 +14,12 @@ export const removeProductFromState = payload => ({
   payload,
 });
 
+const headers = {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  }
+};
+
 const handlePostAndEditResponse = (response, dispatch) => {
   dispatch(addOneProductToState(response.data));
   dispatch(showSuccess());
@@ -36,7 +42,7 @@ export const postProduct = (url, body, history, createAnother) => async (dispatc
   dispatch(showPageLoader(true));
   const productBody = body;
   delete productBody.array;
-  return axios.post(url, productBody)
+  return axios.post(url, productBody, headers)
     .then((response) => {
       handlePostAndEditResponse(response, dispatch);
       dispatch(showPageLoader(false));
@@ -52,7 +58,7 @@ export const editProduct = (url, body, history) => async (dispatch) => {
   dispatch(showPageLoader(true));
   const productBody = body;
   delete productBody.array;
-  return axios.put(url, productBody)
+  return axios.put(url, productBody, headers)
     .then((response) => {
       handlePostAndEditResponse(response, dispatch);
       dispatch(showPageLoader(false));
@@ -64,7 +70,7 @@ export const editProduct = (url, body, history) => async (dispatch) => {
     });
 };
 
-export const deleteProduct = url => async dispatch => axios.delete(url)
+export const deleteProduct = url => async dispatch => axios.delete(url, headers)
   .then(response => dispatch(removeProductFromState(response.data)))
   .catch(error => handleException(error, dispatch));
 

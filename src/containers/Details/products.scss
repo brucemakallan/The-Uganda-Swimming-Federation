@@ -89,6 +89,35 @@
   } 
 }
 
+.tags {
+  span {
+    cursor: pointer !important;
+    background-color: $primary400;
+    font-weight: bold;
+    border-radius: 10px;
+    font-size: 13px;
+    padding: 2px 5px;
+    color: white;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 50px;
+    text-align: center;
+  }
+
+  .ReactTags__selected {
+    display: flex;
+    flex-flow: row wrap;
+
+    .ReactTags__tagInput {
+      width: 100%;
+
+      .ReactTags__tagInputField {
+        width: 100%;
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 800px) {
   .mainDetails {
     flex-direction: column;

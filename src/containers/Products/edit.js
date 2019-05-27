@@ -14,11 +14,11 @@ export class EditProduct extends Component {
   componentDidMount() {
     const { product } = this.state;
     const {
-      match, products, properties, history,
+      match, products, history,
     } = this.props;
     const selectedEntity = products.find(entity => entity._id === match.params.id);
     const unsupportedProperties = ['_id', 'dateCreated', '__v'];
-    if (selectedEntity && properties) {
+    if (selectedEntity) {
       unsupportedProperties.map(property => delete selectedEntity[property]);
       this.setState({ product: { ...product, ...selectedEntity } });
     } else history.push(paths.dashboard.products);
@@ -92,7 +92,6 @@ export class EditProduct extends Component {
 
   render() {
     const { product } = this.state;
-    const { properties } = this.props;
 
     return (
       <ProductForm
@@ -104,7 +103,6 @@ export class EditProduct extends Component {
         addCloudinaryImage={this.addCloudinaryImage}
         onSubmit={this.handleSubmit}
         entity={product}
-        properties={properties}
       />
     );
   }
@@ -115,12 +113,10 @@ EditProduct.propTypes = {
   match: PropTypes.shape({}).isRequired,
   history: PropTypes.shape({}).isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  properties: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = ({ productsReducer, propertiesReducer }) => ({
+const mapStateToProps = ({ productsReducer }) => ({
   products: productsReducer.products,
-  properties: propertiesReducer.properties,
 });
 const mapDispatchToProps = {
   editProductDispatch: editProduct,

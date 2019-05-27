@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import ProductForm from '../../components/Products/productForm';
 import { postProduct } from '../../actions/productsActions';
-import paths, { endpoints } from '../../utils';
+import { endpoints } from '../../utils';
 import cloudinaryWidgetOptions from '../../utils/cloudinary';
 
 export class CreateProduct extends Component {
@@ -19,32 +18,10 @@ export class CreateProduct extends Component {
       features: [],
       colours: [],
       images: [],
+      videos: [], // {title: '', description: '', youtubeId: ''}
+      tags: [], // {id: 'lorem', text: 'lorem'}
     },
   }
-
-  componentDidMount() {
-    const { product } = this.state;
-    const {
-      properties, history,
-    } = this.props;
-    if (!properties || properties.length === 0) {
-      history.push(paths.dashboard.products);
-    } else {
-      this.setState({
-        product: {
-          ...product,
-          category: this.getPropertiesOfType('category')[0].name || '',
-          condition: this.getPropertiesOfType('condition')[0].name || '',
-        }
-      });
-    }
-  }
-
- getPropertiesOfType = (propertyType) => {
-   const { properties } = this.props;
-   const allEntitiesOfOneType = properties.filter(property => property.family.trim().toLowerCase() === propertyType);
-   return _.sortBy(allEntitiesOfOneType, type => type.name);
- };
 
   handleSubmit = (e, createAnother = false) => {
     e.preventDefault();
@@ -53,16 +30,25 @@ export class CreateProduct extends Component {
     createProductDispatch(endpoints.productsPost, product, history, createAnother);
   }
 
-  handleOnChange = (e) => {
+  handleOnChange = (e, passedValue) => {
     e.preventDefault();
     const { name, value } = e.target;
     const { product } = this.state;
-    this.setState({
-      product: {
-        ...product,
-        [name]: value,
-      },
-    });
+    if (passedValue) {
+      this.setState({
+        product: {
+          ...product,
+          [name]: passedValue,
+        },
+      });
+    } else {
+      this.setState({
+        product: {
+          ...product,
+          [name]: value,
+        },
+      });
+    }
   }
 
   handleOnArrayChange = (e, propertyArray) => {
@@ -112,9 +98,40 @@ export class CreateProduct extends Component {
     cloudinaryWidget.open();
   }
 
+  handleTagDelete = (i) => {
+    const { product } = this.state;
+    this.setState({
+      product: {
+        ...product,
+        tags: product.tags.filter((tag, index) => index !== i),
+      }
+    });
+  }
+
+  handleTagAddition = (tag) => {
+    this.setState(state => ({
+      product: {
+        ...state.product,
+        tags: [...state.product.tags, tag],
+      }
+    }));
+  }
+
+  handleTagDrag = () => {}
+  // handleTagDrag = (tag, currPos, newPos) => {
+  //   const { product: { tags }, product } = this.state;
+  //   tags.splice(currPos, 1);
+  //   tags.splice(newPos, 0, tag);
+  //   this.setState({
+  //     product: {
+  //       ...product,
+  //       tags,
+  //     }
+  //   });
+  // }
+
   render() {
     const { product } = this.state;
-    const { properties } = this.props;
 
     return (
       <ProductForm
@@ -127,7 +144,9 @@ export class CreateProduct extends Component {
         addCloudinaryImage={this.addCloudinaryImage}
         onSubmit={this.handleSubmit}
         entity={product}
-        properties={properties}
+        onTagDelete={this.handleTagDelete}
+        onTagAdd={this.handleTagAddition}
+        onTagDrag={this.handleTagDrag}
       />
     );
   }
@@ -136,12 +155,9 @@ export class CreateProduct extends Component {
 CreateProduct.propTypes = {
   createProductDispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired,
-  properties: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = ({ propertiesReducer }) => ({
-  properties: propertiesReducer.properties,
-});
+const mapStateToProps = () => ({});
 const mapDispatchToProps = {
   createProductDispatch: postProduct,
 };
