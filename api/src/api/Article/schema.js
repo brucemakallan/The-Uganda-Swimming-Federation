@@ -22,7 +22,7 @@ module.exports = {
 	images: { type: [String] },
 	files: { type: [Object] },
 	videos: { type: [Object] },
-	tags: { type: [String] },
+	tags: { type: [Object] },
 	parent: { ...trimmedString },
 	category: { ...requiredString },
 	dateCreated: {type: String, default: Date.now},
