@@ -1,7 +1,6 @@
 @import '../../index.scss';
 
 $main-content-padding-top: 81px;
-$navbar-height: 126px;
 $burger-button-top: calc(#{$navbar-height} + 95px);
 $main-content-top-desktop: calc(#{$navbar-height} + 20px - #{$main-content-padding-top});
 

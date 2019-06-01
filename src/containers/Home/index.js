@@ -15,7 +15,7 @@ export class Home extends Component {
     let carousel = { imageUrls: [], captions: [] };
     const { products } = this.props;
     const carouselSection = products.find(
-      section => section.category.trim().toLowerCase().match(pageSections.carousel)
+      section => section.category.match(pageSections.carousel)
     );
     if (carouselSection) {
       carousel = {
