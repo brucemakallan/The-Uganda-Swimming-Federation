@@ -48,13 +48,13 @@ describe('EditProduct', () => {
   it('should handle an onChange', () => {
     const event = {
       preventDefault: jest.fn(),
-      target: { name: 'title', value: 'test' }
+      target: { name: 'heading1', value: 'test' }
     };
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance, 'handleOnChange');
     instance.forceUpdate();
     wrapper.update();
-    wrapper.find('input#title').simulate('change', event);
+    wrapper.find('input#heading1').simulate('change', event);
     expect(spy).toHaveBeenCalled();
   });
 
@@ -73,13 +73,13 @@ describe('EditProduct', () => {
   it('should handle an handleOnArrayChange', () => {
     const event = {
       preventDefault: jest.fn(),
-      target: { name: '0', value: 'test' }
+      target: { name: 'title', value: 'test' }
     };
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance, 'handleOnArrayChange');
     instance.forceUpdate();
     wrapper.update();
-    wrapper.find('input.features').at(0).simulate('change', event);
+    wrapper.find('input.files').at(0).simulate('change', event);
     expect(spy).toHaveBeenCalled();
   });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { CreateProduct } from './create';
+import { product } from '../../__mocks__';
 
 describe('CreateProduct', () => {
   let props;
@@ -20,6 +21,7 @@ describe('CreateProduct', () => {
     props = {
       createProductDispatch: jest.fn(),
       history: { push: jest.fn() },
+      products: [product],
     };
     wrapper = mount(
       <CreateProduct {...props} />
@@ -33,13 +35,13 @@ describe('CreateProduct', () => {
   it('should handle an onChange', () => {
     const event = {
       preventDefault: jest.fn(),
-      target: { name: 'title', value: 'test' }
+      target: { name: 'heading1', value: 'test' }
     };
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance, 'handleOnChange');
     instance.forceUpdate();
     wrapper.update();
-    wrapper.find('input#title').simulate('change', event);
+    wrapper.find('input#heading1').simulate('change', event);
     expect(spy).toHaveBeenCalled();
   });
 
@@ -55,17 +57,17 @@ describe('CreateProduct', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should handle an handleOnArrayChange', () => {
+  it('should handle handleOnArrayChange', () => {
     const event = {
       preventDefault: jest.fn(),
-      target: { name: '0', value: 'test' }
+      target: { name: 'title', value: 'test' }
     };
     const instance = wrapper.instance();
     const spy = jest.spyOn(instance, 'handleOnArrayChange');
     instance.forceUpdate();
     wrapper.update();
-    wrapper.find('button#addRowBt').at(2).simulate('click');
-    wrapper.find('input.features').at(0).simulate('change', event);
+    wrapper.find('button#addRowBt').at(1).simulate('click');
+    wrapper.find('input.files').at(0).simulate('change', event);
     expect(spy).toHaveBeenCalled();
   });
 

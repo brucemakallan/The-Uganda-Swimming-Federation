@@ -29,4 +29,13 @@ export const product = {
   __v: 0,
 };
 
+export const mockState = {
+  loaderReducer: { showLoader: false },
+  adminReducer: { admin: {} },
+  productsReducer: {
+    products: [product],
+    product,
+  },
+};
+
 export default product;

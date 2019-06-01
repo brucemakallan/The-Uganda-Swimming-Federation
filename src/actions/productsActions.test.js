@@ -24,11 +24,13 @@ describe('Actions', () => {
   });
 
   it('should return a list products', () => {
-    moxios.stubRequest(
-      mockUrl,
-      { status: 200, responseText: [product] },
-    );
-    store.clearActions();
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: [product],
+      });
+    });
     store.dispatch(getAllProducts(mockUrl)).then(() => {
       expect(store.getActions()).toEqual([
         { type: types.SHOW_PAGE_LOADER, payload: true },
@@ -38,14 +40,13 @@ describe('Actions', () => {
     });
   });
   it('should handle exceptions when fetching products', () => {
-    moxios.stubRequest(
-      mockUrl,
-      {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
         status: 400,
-        responseText: error.response.data,
-      },
-    );
-    store.clearActions();
+        response: error.response.data,
+      });
+    });
     store.dispatch(getAllProducts(mockUrl)).then(() => {
       expect(store.getActions()).toEqual([
         { type: types.SHOW_PAGE_LOADER, payload: true },
@@ -56,11 +57,13 @@ describe('Actions', () => {
   });
 
   it('should post a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      { status: 200, responseText: product },
-    );
-    store.clearActions();
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: product,
+      });
+    });
     const history = {
       goBack: jest.fn(),
     };
@@ -76,11 +79,13 @@ describe('Actions', () => {
       });
   });
   it('should post a product with the "Create Another" option', () => {
-    moxios.stubRequest(
-      mockUrl,
-      { status: 200, responseText: product },
-    );
-    store.clearActions();
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: product,
+      });
+    });
     const history = {
       goBack: jest.fn(),
     };
@@ -96,14 +101,13 @@ describe('Actions', () => {
       });
   });
   it('should handle exceptions when posting a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
         status: 400,
-        responseText: error.response.data,
-      },
-    );
-    store.clearActions();
+        response: error.response.data,
+      });
+    });
     const history = {
       goBack: jest.fn(),
     };
@@ -119,11 +123,13 @@ describe('Actions', () => {
   });
 
   it('should edit a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      { status: 200, responseText: product },
-    );
-    store.clearActions();
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: product,
+      });
+    });
     const history = {
       goBack: jest.fn(),
     };
@@ -137,14 +143,13 @@ describe('Actions', () => {
     });
   });
   it('should handle exceptions when editing a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
         status: 400,
-        responseText: error.response.data,
-      },
-    );
-    store.clearActions();
+        response: error.response.data,
+      });
+    });
     const history = {
       goBack: jest.fn(),
     };
@@ -159,11 +164,13 @@ describe('Actions', () => {
   });
 
   it('should delete a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      { status: 200, responseText: product },
-    );
-    store.clearActions();
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: product,
+      });
+    });
     store.dispatch(deleteProduct(mockUrl)).then(() => {
       expect(store.getActions()).toEqual([
         { type: types.DELETE_PRODUCT, payload: product },
@@ -171,14 +178,13 @@ describe('Actions', () => {
     });
   });
   it('should handle exceptions when deleting a product', () => {
-    moxios.stubRequest(
-      mockUrl,
-      {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
         status: 404,
-        responseText: error.response.data,
-      },
-    );
-    store.clearActions();
+        response: error.response.data,
+      });
+    });
     store.dispatch(deleteProduct(mockUrl)).then(() => {
       expect(store.getActions()).toEqual([
         { type: types.ERROR, payload: error.response.data.message },

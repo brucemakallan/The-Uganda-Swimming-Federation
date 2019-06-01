@@ -15,6 +15,11 @@ describe('ProductForm', () => {
       addCloudinaryImage: jest.fn(),
       onSubmit: jest.fn(),
       entity: product,
+      addCloudinaryRawFile: jest.fn(),
+      allEntities: [product],
+      onTagAdd: jest.fn(),
+      onTagDelete: jest.fn(),
+      onTagDrag: jest.fn(),
     };
   });
 
