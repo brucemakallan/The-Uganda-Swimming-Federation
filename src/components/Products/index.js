@@ -24,7 +24,6 @@ const Products = ({ data, saveID }) => (
         (filter, row) => String(row[filter.id]).toLowerCase().includes(String(filter.value).toLowerCase())
       }
       columns={[
-        { Header: 'ID', accessor: '_id' },
         { Header: 'Category', accessor: 'category' },
         { Header: 'Heading1', accessor: 'heading1' },
         { Header: 'Heading2', accessor: 'heading2' },
@@ -70,7 +69,7 @@ const Products = ({ data, saveID }) => (
           ),
         },
       ]}
-      defaultPageSize={50}
+      defaultPageSize={10}
       className="-striped -highlight"
     />
   </div>
