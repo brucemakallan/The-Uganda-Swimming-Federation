@@ -47,6 +47,8 @@ export const localFiles = {
 
 const carousel = 'Carousel';
 const article = 'Article';
+const results = 'Latest Results';
+const about = 'About';
 const event = 'Event';
 const imageGallery = 'Image Gallery';
 const videoGallery = 'Video Gallery';
@@ -61,6 +63,8 @@ const footer = 'Footer';
 
 export const pageSections = {
   carousel,
+  results,
+  about,
   partners,
   majorSponsors,
   applicationProcedures,
@@ -72,6 +76,8 @@ export const pageSections = {
 export const entityTypes = [ // articles and other dynamic website sections
   article,
   event,
+  results,
+  about,
   carousel,
   imageGallery,
   videoGallery,

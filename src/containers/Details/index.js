@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import date from 'date-and-time';
 import YouTube from 'react-youtube';
+import ReactMarkdown from 'react-markdown';
 import paths, { selectFileIcon } from '../../utils';
 import './products.scss';
 import Carousel from '../../components/Carousel';
@@ -97,7 +98,7 @@ class Details extends Component {
       return (
         <div className="productProperty" key={label}>
           <div className="headingLabel">{label}</div>
-          <span>{value}</span>
+          <ReactMarkdown source={value} />
         </div>
       );
     } return '';

@@ -11,9 +11,14 @@ export class Home extends Component {
     getAllProductsDispatch(endpoints.productsGetAll);
   }
 
+  getPageSectionElements = (allSections, sectionType) => (
+    allSections.filter(section => section.category === sectionType)
+  );
+
   render() {
     let carousel = { imageUrls: [], captions: [] };
     const { products } = this.props;
+    const about = this.getPageSectionElements(products, pageSections.about);
     const carouselSection = products.find(
       section => section.category.match(pageSections.carousel)
     );
@@ -30,7 +35,7 @@ export class Home extends Component {
         ]
       };
     }
-    return (<HomeComponent carousel={carousel} />);
+    return (<HomeComponent carousel={carousel} about={about} />);
   }
 }
 
