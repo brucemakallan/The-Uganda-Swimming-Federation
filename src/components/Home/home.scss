@@ -4,7 +4,10 @@
   padding-top: $navbar-height;
 
   .section-padding {
-    padding: 30px;
+    padding: 20px;
+  }
+  .inner-padding {
+    padding: 0 20px;
   }
 
   #banner {
@@ -40,13 +43,26 @@
       }
     }
   }
+
+  .articles {
+    $left-width: 70%;
+    .left {
+      width: $left-width;
+    }
+    .right {
+      width: calc(100% - #{$left-width});
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
   .mainContent {
     
-    .section-padding {
-      padding: 20px;
+    // .section-padding {
+    //   padding: 20px;
+    // }
+    .inner-padding {
+      padding: 20px 0;
     }
 
     #banner {

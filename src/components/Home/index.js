@@ -8,28 +8,27 @@ const Home = ({ carousel }) => (
     <section id="banner">
       <Carousel imageUrls={carousel.imageUrls} captions={carousel.captions} />
     </section>
-    <section id="services" className="section-padding">
-      services
+    <section className="articles section-padding responsive-flex">
+      <div className="left bg-primary-light responsive-flex-child inner-padding">paginated articles</div>
+      <div className="right bg-primary responsive-flex-child inner-padding">
+        <div>Sidebar Content here</div>
+        <ul>
+          <li>Results</li>
+          <li>Events</li>
+          <li>Social Feed</li>
+        </ul>
+      </div>
     </section>
-    <section id="categories" className="section-padding">
-      categories
+    <section className="about section-padding bg-primary-dark">
+      about
     </section>
-    <section id="offers" className="section-padding">
-      offers
+    <section className="photos section-padding bg-primary">
+      photos
     </section>
-    <section id="featured" className="section-padding">
-      featured
+    <section className="videos section-padding bg-primary-light">
+      videos
     </section>
-    <section id="popular" className="section-padding">
-      popular
-    </section>
-    <section id="newsletter" className="section-padding">
-      newsletter
-    </section>
-    <section id="order" className="section-padding">
-      order
-    </section>
-    <section id="footer" className="dark">
+    <section className="footer dark">
       <div className="responsive-flex">
         <div className="responsive-flex-child third section-padding">
           footer1

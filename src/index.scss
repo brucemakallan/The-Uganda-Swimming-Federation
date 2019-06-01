@@ -13,6 +13,7 @@ $primary600: #1e88e5;
 $primary700: #1976d2;
 $primary800: #1565c0;
 $primaryDark: #0d47a1;
+$accentColor: #FFFF00;
 $logoBlue: #62B4E1;
 
 $bodyFontFamily: 'Montserrat', sans-serif;
@@ -193,7 +194,7 @@ h1, h2, h3, h4, h5, h6 {
       width: 100%;
     }
     .responsive-flex-child {
-      width: 100%;
+      width: 100% !important;
     }
   }
   .noBulletList {

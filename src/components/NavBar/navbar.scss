@@ -28,12 +28,12 @@
     margin: 0 5px;
   }
   .custom-nav-link:hover {
-    color: white !important;
+    color: $accentColor !important;
   }
   .active {
     .custom-nav-link {
-      color: white !important;
-      border: 1px solid #cccccc;
+      color: $accentColor !important;
+      border: 1px solid $accentColor;
     }
   }
   .searchBox {
@@ -54,7 +54,8 @@
       }
       .custom-nav-link:hover {
         background: none;
-        border-left: 2px solid white;
+        border-left: 2px solid $accentColor;
+        color: $accentColor !important;
       }
     }
   }
