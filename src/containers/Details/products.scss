@@ -61,10 +61,22 @@
   border: 1px solid #eaeaea;
   background-color: #fafafa;
   border-radius: 5px;
-  padding: 5px;
 
-  input {
-    margin: 5px 0;
+  .single-element {
+    padding: 10px;
+
+    input {
+      margin: 5px 0;
+    }
+    .inputFields {
+      width: 90%;
+      margin: 10px 0;
+    }
+  }
+  .single-element:nth-child(even) {
+    background-color: white;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
   }
 }
 
@@ -110,6 +122,7 @@
 
     .ReactTags__tagInput {
       width: 100%;
+      border: 1px solid #dddddd;
 
       .ReactTags__tagInputField {
         width: 100%;

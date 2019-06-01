@@ -3,22 +3,16 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ProductForm from '../../components/Products/productForm';
 import { postProduct } from '../../actions/productsActions';
-import { endpoints } from '../../utils';
+import { endpoints, entityTypes } from '../../utils';
 import cloudinaryWidgetOptions from '../../utils/cloudinary';
 
 export class CreateProduct extends Component {
   state = {
     product: {
-      title: '',
-      category: '',
-      description: '',
-      condition: '',
-      quantity: 0,
-      price: 0,
-      features: [],
-      colours: [],
+      category: entityTypes[0],
       images: [],
-      videos: [], // {title: '', description: '', youtubeId: ''}
+      videos: [], // {title: '', description: '', source: ''}
+      files: [], // {title: '', description: '', source: ''}
       tags: [], // {id: 'lorem', text: 'lorem'}
     },
   }
@@ -51,12 +45,12 @@ export class CreateProduct extends Component {
     }
   }
 
-  handleOnArrayChange = (e, propertyArray) => {
+  handleOnArrayChange = (e, propertyArray, index) => { // array with objects
     e.preventDefault();
     const { name, value } = e.target;
     const { product } = this.state;
     const array = propertyArray;
-    array[Number([name])] = value;
+    array[index][name] = value;
     this.setState({
       product: {
         ...product,
@@ -98,6 +92,25 @@ export class CreateProduct extends Component {
     cloudinaryWidget.open();
   }
 
+  addCloudinaryRawFile = (index) => {
+    const { product, product: { files } } = this.state;
+    const cloudinaryWidget = window.cloudinary.createUploadWidget(cloudinaryWidgetOptions,
+      (error, result) => {
+        if (!error && result && result.info && result.event === 'success') {
+          const { secure_url } = result.info;
+          const updatedFiles = files;
+          updatedFiles[index].source = secure_url;
+          this.setState({
+            product: {
+              ...product,
+              files: updatedFiles,
+            },
+          });
+        }
+      });
+    cloudinaryWidget.open();
+  }
+
   handleTagDelete = (i) => {
     const { product } = this.state;
     this.setState({
@@ -132,6 +145,7 @@ export class CreateProduct extends Component {
 
   render() {
     const { product } = this.state;
+    const { products } = this.props;
 
     return (
       <ProductForm
@@ -142,8 +156,10 @@ export class CreateProduct extends Component {
         removeRow={this.removeRow}
         addRow={this.addRow}
         addCloudinaryImage={this.addCloudinaryImage}
+        addCloudinaryRawFile={this.addCloudinaryRawFile}
         onSubmit={this.handleSubmit}
         entity={product}
+        allEntities={products}
         onTagDelete={this.handleTagDelete}
         onTagAdd={this.handleTagAddition}
         onTagDrag={this.handleTagDrag}
@@ -155,9 +171,12 @@ export class CreateProduct extends Component {
 CreateProduct.propTypes = {
   createProductDispatch: PropTypes.func.isRequired,
   history: PropTypes.shape({}).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = ({ productsReducer }) => ({
+  products: productsReducer.products,
+});
 const mapDispatchToProps = {
   createProductDispatch: postProduct,
 };

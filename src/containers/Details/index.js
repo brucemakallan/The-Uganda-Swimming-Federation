@@ -46,7 +46,7 @@ class Details extends Component {
               {Object.keys(obj).map(objKey => (
                 <React.Fragment key={objKey}>
                   <div className="video-attribute">{`${objKey.toUpperCase()}: ${obj[objKey]}`}</div>
-                  {(obj.youtubeId === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.youtubeId)}
+                  {(obj.source === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.source)}
                 </React.Fragment>
               ))}
             </div>
@@ -62,7 +62,7 @@ class Details extends Component {
       {list.map((obj, index) => (
         <ul key={index} className="noBulletList">
           {Object.keys(obj).map(objKey => (
-            (objKey === 'url' || objKey === 'link')
+            (objKey === 'url' || objKey === 'link' || objKey === 'source')
               ? (
                 <li key={objKey}>
                   {selectFileIcon(obj[objKey])}
@@ -151,7 +151,7 @@ class Details extends Component {
       <React.Fragment>
         {product ? (
           <React.Fragment>
-            <div className="flex-container page-header mb-3">
+            <div className="flex-container page-header mb-3 mr-3">
               <button type="button" className="iconButton" onClick={this.goBack}>
                 <FontAwesomeIcon icon="arrow-left" className="icon" />
               </button>

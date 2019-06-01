@@ -70,9 +70,9 @@ export const pageSections = {
 };
 
 export const entityTypes = [ // articles and other dynamic website sections
-  carousel,
   article,
   event,
+  carousel,
   imageGallery,
   videoGallery,
   calendars,
@@ -127,10 +127,16 @@ export const selectFileIcon = (filePath) => {
 };
 
 export const LONG_DATE_FORMAT = 'ddd DD MMM YYYY HH:mm:ss Z';
-export const SHORT_DATE_FORMAT = 'yyyy-MM-dd';
+export const SHORT_DATE_FORMAT = 'YYYY-MM-DD';
 
-export const dateToEpoc = dateValue => new Date(dateValue).valueOf();
+export const dateToEpoc = dateValue => String(new Date(dateValue).valueOf());
 
 export const epocToDate = (epocTime, format) => date.format(new Date(Number(epocTime)), format);
+
+export const removeUnsupportedProperties = (passedEntity, unsupportedProperties) => {
+  const entity = passedEntity;
+  unsupportedProperties.map(property => delete entity[property]);
+  return entity;
+};
 
 export default paths;

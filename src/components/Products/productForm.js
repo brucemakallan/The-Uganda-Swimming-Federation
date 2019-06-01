@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { WithContext as ReactTags } from 'react-tag-input';
-import { dateToEpoc, epocToDate, SHORT_DATE_FORMAT } from '../../utils';
+import {
+  dateToEpoc,
+  epocToDate,
+  SHORT_DATE_FORMAT,
+  entityTypes,
+} from '../../utils';
 
 library.add(faTrash);
 
@@ -65,7 +69,7 @@ class ProductForm extends Component {
           name={fieldName}
           required={required}
           onChange={e => onChange(e, dateToEpoc(e.target.value))}
-          // defaultValue={(entity && value && epocToDate(value, SHORT_DATE_FORMAT)) || ''}
+          defaultValue={(entity && value && epocToDate(value, SHORT_DATE_FORMAT)) || ''}
         />
       )}
     </React.Fragment>
@@ -99,29 +103,73 @@ class ProductForm extends Component {
             onChange={onChange}
             value={entity && value}
           >
-            {list.map(
-              element => <option value={element.name} key={element.name}>{_.startCase(element.name)}</option>
-            )}
+            {(list[0]._id && list[0].category && list[0].heading1)
+              ? (
+                <React.Fragment>
+                  <option value="">N/A</option>
+                  {list.map(
+                    (p, index) => (
+                      <option value={p._id} key={index}>
+                        {`${p.category.toUpperCase()}: ${p._id} ${p.heading1}`}
+                      </option>
+                    )
+                  )}
+                </React.Fragment>
+              )
+              : list.map(p => <option value={p} key={p}>{p}</option>)
+            }
           </select>
         )}
     </React.Fragment>
   );
 
-  renderMultipleStringInput = (many, value, fieldName, onArrayChange, removeRow, addRow) => (
+  renderMultipleStringInput = (
+    many, value, fieldName, onArrayChange, removeRow, addRow, addCloudinaryRawFile, isFileInput,
+  ) => (
     <React.Fragment>
       {many && value && Array.isArray(value)
         && (
           <div>
             <div className="groupedValues">
               {value.map((element, index) => (
-                <div key={String(index)} className="flex-container">
-                  <input
-                    type="text"
-                    className={`form-control ${fieldName}`}
-                    name={`${index}`}
-                    onChange={e => onArrayChange(e, value)}
-                    value={(element && element) || ''}
-                  />
+                <div key={String(index)} className="flex-container single-element">
+                  <div className="inputFields">
+                    <input
+                      type="text"
+                      className={`form-control ${fieldName}`}
+                      name="title"
+                      placeholder="Title"
+                      onChange={e => onArrayChange(e, value, index)}
+                      value={(element && element.title) || ''}
+                    />
+                    <input
+                      type="text"
+                      className={`form-control ${fieldName}`}
+                      name="description"
+                      placeholder="Description"
+                      onChange={e => onArrayChange(e, value, index)}
+                      value={(element && element.description) || ''}
+                    />
+                    <input
+                      type="text"
+                      className={`form-control ${fieldName}`}
+                      name="source"
+                      placeholder="Source"
+                      onChange={e => onArrayChange(e, value, index)}
+                      value={(element && element.source) || ''}
+                      required
+                    />
+                    {isFileInput && (
+                      <button
+                        type="button"
+                        id="addRowBt"
+                        className="btn btn-sm m-2 btn-outline-primary"
+                        onClick={() => addCloudinaryRawFile(index)}
+                      >
+                      Upload File
+                      </button>
+                    )}
+                  </div>
                   <button
                     type="button"
                     id="removeRowBt"
@@ -142,7 +190,7 @@ class ProductForm extends Component {
           type="button"
           id="addRowBt"
           className="btn btn-sm m-2 btn-outline-primary"
-          onClick={() => addRow(value)}
+          onClick={() => addRow(value, { title: '', description: '', source: '' })}
         >
           Add Another
         </button>
@@ -195,6 +243,7 @@ class ProductForm extends Component {
     removeRow,
     addRow,
     addCloudinaryImage,
+    addCloudinaryRawFile,
     entity,
     required,
     list,
@@ -216,7 +265,9 @@ class ProductForm extends Component {
       {this.renderImagesInput(images, value, removeRow, addCloudinaryImage)}
       {this.renderTagInput(isTagInput, value, tagSuggestions, onTagAdd, onTagDelete, onTagDrag)}
       {this.renderTextArea(isTextArea, fieldName, required, onChange, entity, value)}
-      {this.renderMultipleStringInput(many, value, fieldName, onArrayChange, removeRow, addRow)}
+      {this.renderMultipleStringInput(
+        many, value, fieldName, onArrayChange, removeRow, addRow, addCloudinaryRawFile, isFileInput
+      )}
       {this.renderDropdownList(list, fieldName, required, onChange, entity, value)}
       {this.renderTextInput(isTextInput, isNumber, fieldName, required, onChange, entity, value)}
       {this.renderDateInput(isDateInput, fieldName, required, onChange, entity, value)}
@@ -231,8 +282,10 @@ class ProductForm extends Component {
       removeRow,
       addRow,
       addCloudinaryImage,
+      addCloudinaryRawFile,
       onSubmit,
       entity,
+      allEntities,
       isNew,
       tagSuggestions,
       onTagAdd,
@@ -255,11 +308,17 @@ class ProductForm extends Component {
         isTagInput: true,
       },
       {
+        label: 'Parent',
+        fieldName: 'parent',
+        value: entity && entity.parent,
+        list: allEntities,
+      },
+      {
         label: 'Category',
         fieldName: 'category',
         value: entity && entity.category,
         required: true,
-        isTextInput: true,
+        list: entityTypes,
       },
       {
         label: 'Heading1',
@@ -321,18 +380,13 @@ class ProductForm extends Component {
         fieldName: 'files',
         value: entity && entity.files,
         isFileInput: true,
-      },
-      {
-        label: 'Youtube Video IDs',
-        fieldName: 'videos',
-        value: entity && entity.videos,
         many: true,
       },
       {
-        label: 'Parent ID',
-        fieldName: 'parent',
-        value: entity && entity.parent,
-        isTextInput: true,
+        label: 'Youtube Videos',
+        fieldName: 'videos',
+        value: entity && entity.videos,
+        many: true,
       },
     ];
 
@@ -350,6 +404,7 @@ class ProductForm extends Component {
               removeRow,
               addRow,
               addCloudinaryImage,
+              addCloudinaryRawFile,
               entity,
               v.required,
               v.list,
@@ -390,8 +445,10 @@ ProductForm.propTypes = {
   removeRow: PropTypes.func.isRequired,
   addRow: PropTypes.func.isRequired,
   addCloudinaryImage: PropTypes.func.isRequired,
+  addCloudinaryRawFile: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   entity: PropTypes.shape({}),
+  allEntities: PropTypes.arrayOf(PropTypes.shape({})),
   isNew: PropTypes.bool,
   tagSuggestions: PropTypes.arrayOf(PropTypes.shape({})),
   onTagAdd: PropTypes.func.isRequired,
@@ -401,6 +458,7 @@ ProductForm.propTypes = {
 ProductForm.defaultProps = {
   title: 'Create new',
   entity: {},
+  allEntities: [],
   isNew: false,
   tagSuggestions: [],
 };

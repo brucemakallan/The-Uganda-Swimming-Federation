@@ -1,5 +1,6 @@
 import axios from 'axios';
 import types, { handleException, showSuccess, showPageLoader } from '.';
+import paths from '../utils';
 
 export const addProductsToState = payload => ({
   type: types.GET_ALL_PRODUCTS,
@@ -62,7 +63,7 @@ export const editProduct = (url, body, history) => async (dispatch) => {
     .then((response) => {
       handlePostAndEditResponse(response, dispatch);
       dispatch(showPageLoader(false));
-      history.goBack();
+      history.push(paths.dashboard.products);
     })
     .catch((error) => {
       dispatch(showPageLoader(false));
