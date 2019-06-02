@@ -92,6 +92,9 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   flex-flow: row wrap;
 
+  .full {
+    width: 100%;
+  }
   .half {
     width: 50%;
   }

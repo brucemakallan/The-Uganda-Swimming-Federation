@@ -10,11 +10,20 @@
       width: 100%;
     }
   }
+
+  .article-videos {
+    
+    .article-video-item {
+      padding: 20px 20px 0 20px;
+    }
+  }
+
   .article-details {
     padding: 40px;
 
     .article-date {
       color: #666666;
+      padding-top: 20px;
     }
     .article-event-times {
       display: flex;
@@ -101,12 +110,21 @@
     }
     .article-location {
       font-size: 20px;
+      color: $primaryDark;
     }
   }
 }
 
 @media screen and (max-width: 800px) {
   .article-card {
+    .article-videos {
+      .article-video-item {
+        iframe {
+          height: 200px;
+        }
+      }
+    }
+
     .article-details {
       padding: 20px;
 
