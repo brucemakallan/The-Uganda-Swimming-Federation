@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
+import FeaturedVideos from '../FeaturedVideos';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
@@ -47,9 +48,14 @@ const Home = ({ carousel, about, articles }) => (
     <section className="photos section-padding">
       photos
     </section>
+
     <section className="videos section-padding">
-      videos
+      <div className="inner-padding">
+        <h3>Latest Videos</h3>
+        <FeaturedVideos articles={articles} />
+      </div>
     </section>
+
     <section className="footer dark">
       <div className="responsive-flex">
         <div className="responsive-flex-child third section-padding">
