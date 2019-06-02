@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
+import FeaturedPhotos from '../FeaturedPhotos';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
@@ -46,7 +47,10 @@ const Home = ({ carousel, about, articles }) => (
     )}
 
     <section className="photos section-padding">
-      photos
+      <div className="inner-padding">
+        <h3>Latest Photos</h3>
+        <FeaturedPhotos articles={articles} />
+      </div>
     </section>
 
     <section className="videos section-padding">

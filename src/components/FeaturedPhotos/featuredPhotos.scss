@@ -1,0 +1,66 @@
+@import '../../index.scss';
+
+$grid-height: 600px;
+
+.featured-photos {
+  .photo-grid {
+    display: flex;
+    align-items: stretch;
+    flex-flow: row wrap;
+    height: $grid-height;
+
+    .thirds {
+      .top {
+        height: calc(0.6666 * #{$grid-height});
+      }
+      .bottom {
+        height: calc(0.3333 * #{$grid-height});
+      }
+    }
+    .halves {
+      .top {
+        height: calc(0.5 * #{$grid-height});
+      }
+      .bottom {
+        height: calc(0.5 * #{$grid-height});
+      }
+    }
+    .thirds, .halves {
+      width: 25%;
+
+      .top, .bottom {
+        overflow: hidden;
+        border: 1px solid white;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  // .featured-photos {
+  //   .photo-grid {
+  //     .thirds {
+  //       .top {
+
+  //       }
+  //       .bottom {
+
+  //       }
+  //     }
+  //     .halves {
+  //       .top {
+
+  //       }
+  //       .bottom {
+          
+  //       }
+  //     }
+  //   }
+  // }
+}
