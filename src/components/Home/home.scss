@@ -9,6 +9,9 @@
   .inner-padding {
     padding: 0 20px;
   }
+  .large-padding {
+    padding: 20px 100px;
+  }
 
   #banner {
 
@@ -46,6 +49,9 @@
 
   .articles {
     $left-width: 70%;
+    display: flex;
+    align-items: stretch !important;
+
     .left {
       width: $left-width;
     }
@@ -74,9 +80,9 @@
 @media screen and (max-width: 800px) {
   .mainContent {
     
-    // .section-padding {
-    //   padding: 20px;
-    // }
+    .large-padding {
+      padding: 20px;
+    }
     .inner-padding {
       padding: 20px 0;
     }
@@ -90,5 +96,9 @@
         }
       }
     }
+
+    // .articles {
+      
+    // }
   }
 }

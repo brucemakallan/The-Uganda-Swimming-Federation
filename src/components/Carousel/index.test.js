@@ -5,7 +5,7 @@ import { product } from '../../__mocks__';
 
 describe('Carousel', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<Carousel imageUrls={product.images} />);
+    const wrapper = mount(<Carousel id="sample-id" imageUrls={product.images} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

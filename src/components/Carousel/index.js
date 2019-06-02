@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Carousel = ({ imageUrls, captions }) => (
-  <div id="imageCarousel" className="carousel slide" data-ride="carousel">
+const carouselId = id => `imageCarousel-${id}`;
+
+const Carousel = ({ id, imageUrls, captions }) => (
+  <div id={carouselId(id)} className="carousel slide" data-ride="carousel">
     <ol className="carousel-indicators">
       {imageUrls.map((url, index) => (
         <li
-          data-target="#imageCarousel"
+          data-target={`#${carouselId(id)}`}
           data-slide-to={index.toString()}
           className={index === 0 ? 'active' : ''}
           key={url}
@@ -27,11 +29,11 @@ const Carousel = ({ imageUrls, captions }) => (
       ))}
     </div>
 
-    <a className="carousel-control-prev nextPrevIcon" href="#imageCarousel" role="button" data-slide="prev">
+    <a className="carousel-control-prev nextPrevIcon" href={`#${carouselId(id)}`} role="button" data-slide="prev">
       <span className="carousel-control-prev-icon" aria-hidden="true" />
       <span className="sr-only">Previous</span>
     </a>
-    <a className="carousel-control-next nextPrevIcon" href="#imageCarousel" role="button" data-slide="next">
+    <a className="carousel-control-next nextPrevIcon" href={`#${carouselId(id)}`} role="button" data-slide="next">
       <span className="carousel-control-next-icon" aria-hidden="true" />
       <span className="sr-only">Next</span>
     </a>
@@ -39,6 +41,7 @@ const Carousel = ({ imageUrls, captions }) => (
 );
 
 Carousel.propTypes = {
+  id: PropTypes.string.isRequired,
   imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
   captions: PropTypes.arrayOf(PropTypes.string),
 };

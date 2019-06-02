@@ -62,6 +62,7 @@ const CANAZone3 = 'CANA Zone 3';
 const footer = 'Footer';
 
 export const pageSections = {
+  article,
   carousel,
   results,
   about,
@@ -133,7 +134,12 @@ export const selectFileIcon = (filePath) => {
 };
 
 export const LONG_DATE_FORMAT = 'ddd DD MMM YYYY HH:mm:ss Z';
+export const NORMAL_DATE = 'ddd DD MMM YYYY';
 export const SHORT_DATE_FORMAT = 'YYYY-MM-DD';
+export const DATE = 'DD';
+export const DAY = 'dddd';
+export const MONTH = 'MMM';
+export const YEAR = 'YYYY';
 
 export const dateToEpoc = dateValue => String(new Date(dateValue).valueOf());
 

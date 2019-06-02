@@ -166,7 +166,7 @@ class Details extends Component {
             </div>
             <div className="mainDetails">
               <div className="images">
-                <Carousel imageUrls={product.images} />
+                <Carousel id={product._id} imageUrls={product.images} />
               </div>
               <div className="details">
                 <div className="material-card">

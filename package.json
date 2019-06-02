@@ -37,7 +37,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "serve": "^10.1.2",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.3333",
+    "uuid": "^3.3.2"
   },
   "scripts": {
     "start": "concurrently \"react-scripts start\" \"npm run start:dev --prefix api\"",

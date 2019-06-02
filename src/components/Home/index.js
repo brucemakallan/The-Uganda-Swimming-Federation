@@ -3,19 +3,27 @@ import './home.scss';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import Carousel from '../Carousel';
+import ArticleCard from '../ArticleCard';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
 });
 
-const Home = ({ carousel, about }) => (
+const Home = ({ carousel, about, articles }) => (
   <div className="mainContent">
     <section id="banner">
-      <Carousel imageUrls={carousel.imageUrls} captions={carousel.captions} />
+      <Carousel id="main" imageUrls={carousel.imageUrls} captions={carousel.captions} />
     </section>
-    <section className="articles section-padding responsive-flex">
-      <div className="left bg-primary-light responsive-flex-child inner-padding">paginated articles</div>
-      <div className="right bg-primary responsive-flex-child inner-padding">
+
+    <section className="articles large-padding responsive-flex">
+      {articles && articles.length > 0
+      && (
+        <div className="left responsive-flex-child inner-padding">
+          {articles.map(article => <ArticleCard key={article._id} article={article} />)}
+        </div>
+      )}
+
+      <div className="right responsive-flex-child inner-padding">
         <div>Sidebar Content here</div>
         <ul>
           <li>Results</li>
@@ -36,10 +44,10 @@ const Home = ({ carousel, about }) => (
       </section>
     )}
 
-    <section className="photos section-padding bg-primary">
+    <section className="photos section-padding">
       photos
     </section>
-    <section className="videos section-padding bg-primary-light">
+    <section className="videos section-padding">
       videos
     </section>
     <section className="footer dark">
@@ -47,7 +55,7 @@ const Home = ({ carousel, about }) => (
         <div className="responsive-flex-child third section-padding">
           footer1
         </div>
-        <div className="responsive-flex-child third bg-black section-padding">
+        <div className="responsive-flex-child third section-padding">
           footer2
         </div>
         <div className="responsive-flex-child third section-padding">
@@ -61,6 +69,7 @@ const Home = ({ carousel, about }) => (
 Home.propTypes = {
   carousel: PropTypes.shape({}).isRequired,
   about: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  articles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;

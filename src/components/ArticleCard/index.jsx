@@ -1,0 +1,117 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import './articleCard.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCalendarAlt, faCalendarTimes, faCalendarCheck, faMapMarkerAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import ReactMarkdown from 'react-markdown';
+import Carousel from '../Carousel';
+import {
+  epocToDate, LONG_DATE_FORMAT, DATE, DAY, MONTH, YEAR,
+  selectFileIcon,
+} from '../../utils';
+
+library.add(
+  faCalendarAlt,
+  faCalendarTimes,
+  faCalendarCheck,
+  faMapMarkerAlt
+);
+
+const renderEventDate = (date, heading) => (
+  date && date.length > 0 && (
+    <div className="calendar">
+      <div className="calendar-left">
+        <div className="heading">{heading}</div>
+        <div className="date">{epocToDate(date, DATE)}</div>
+        <div className="day">{epocToDate(date, DAY)}</div>
+      </div>
+      <div className="calendar-right">
+        <div className="month">{epocToDate(date, MONTH)}</div>
+        <div className="year">{epocToDate(date, YEAR)}</div>
+      </div>
+    </div>
+  )
+);
+
+const ArticleCard = ({ article }) => (
+  <div className="article-card material-card">
+    <div className="article-image">
+      {article.images && article.images.length === 1
+        && <img src={article.images[0]} alt="article" />}
+      {article.images && article.images.length > 1
+        && <Carousel id={article._id} imageUrls={article.images} />}
+    </div>
+
+    <div className="article-videos">
+        videos
+    </div>
+
+    <div className="article-details">
+      {article.heading1 && <div className="article-heading"><h2>{article.heading1}</h2></div>}
+
+      {article.dateCreated && (
+        <div className="article-date">
+          <div className="mt-2">
+            <FontAwesomeIcon icon="calendar-alt" className="mr-2" />
+            <span>Created: </span>
+            {epocToDate(article.dateCreated, LONG_DATE_FORMAT)}
+          </div>
+        </div>
+      )}
+
+      {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
+      && (
+        <div className="article-event-times">
+          {renderEventDate(article.dateIn, 'starts')}
+          {renderEventDate(article.dateOut, 'ends')}
+        </div>
+      )}
+
+      {article.tags && article.tags.length > 0 && (
+        <div className="article-tags">
+          {article.tags.map(tag => <span key={tag.id}>{tag.text}</span>)}
+        </div>
+      )}
+
+      <div className="article-location">
+        {article.heading2 && (
+          <div className="mt-2">
+            <FontAwesomeIcon icon="map-marker-alt" className="mr-2" title="Location" />
+            {article.heading2}
+          </div>
+        )}
+      </div>
+
+      {article.body && article.body.length > 1 && (
+        <div className="article-body">
+          <ReactMarkdown source={article.body} />
+        </div>
+      )}
+
+      {article.files && article.files.length > 0 && (
+        <div className="article-files">
+          <div className="heading">Attachments / Downloads</div>
+          {article.files.map(file => (
+            <div key={file.source}>
+              <a href={file.source} target="_blank" rel="noopener noreferrer">
+                <span className="mr-2">{selectFileIcon(file.source)}</span>
+                {file.title}
+                {` - ${file.description}`}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+
+  </div>
+);
+
+ArticleCard.propTypes = {
+  article: PropTypes.shape({}).isRequired,
+};
+
+export default ArticleCard;

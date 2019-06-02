@@ -32,6 +32,9 @@ $navbar-height: 126px;
 .color-primary-dark {
   color: $primaryDark;
 }
+.color-black {
+  color: black;
+}
 .bg-white {
   background-color: white;
 }
@@ -64,6 +67,7 @@ $navbar-height: 126px;
 body {
   font-family: $bodyFontFamily !important;
   font-size: 15px;
+  background-color: #eeeeee;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $headingFontFamily !important;
@@ -125,6 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
   -moz-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
   box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
+  background-color: white;
 
   .card-heading {
     margin-bottom: 20px;

@@ -18,6 +18,7 @@ export class Home extends Component {
   render() {
     let carousel = { imageUrls: [], captions: [] };
     const { products } = this.props;
+    const articles = this.getPageSectionElements(products, pageSections.article);
     const about = this.getPageSectionElements(products, pageSections.about);
     const carouselSection = products.find(
       section => section.category.match(pageSections.carousel)
@@ -35,7 +36,13 @@ export class Home extends Component {
         ]
       };
     }
-    return (<HomeComponent carousel={carousel} about={about} />);
+    return (
+      <HomeComponent
+        carousel={carousel}
+        articles={articles}
+        about={about}
+      />
+    );
   }
 }
 
