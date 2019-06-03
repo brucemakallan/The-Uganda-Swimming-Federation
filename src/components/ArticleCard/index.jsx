@@ -126,7 +126,7 @@ class ArticleCard extends Component {
                 <div key={file.source}>
                   <a href={file.source} target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">{selectFileIcon(file.source)}</span>
-                    {file.title}
+                    {file.title.trim()}
                     {(file.description && file.description.length > 0) && ` - ${file.description}`}
                   </a>
                 </div>
