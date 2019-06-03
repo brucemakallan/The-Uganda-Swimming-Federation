@@ -84,7 +84,11 @@ class ArticleCard extends Component {
         )}
 
         <div className="article-details">
-          {article.heading1 && <div className="article-heading"><h2>{article.heading1}</h2></div>}
+          {article.heading1 && (
+            <div className="article-heading">
+              <h1>{article.heading1}</h1>
+            </div>
+          )}
 
           {article.heading2 && (
             <div className="article-location">
@@ -123,7 +127,7 @@ class ArticleCard extends Component {
                   <a href={file.source} target="_blank" rel="noopener noreferrer">
                     <span className="mr-2">{selectFileIcon(file.source)}</span>
                     {file.title}
-                    {` - ${file.description}`}
+                    {(file.description && file.description.length > 0) && ` - ${file.description}`}
                   </a>
                 </div>
               ))}
