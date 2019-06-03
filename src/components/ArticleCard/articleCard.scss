@@ -6,6 +6,12 @@
   background-color: white;
 
   .article-image {
+    .carousel-item {
+      height: auto;
+      max-height: 600px;
+      overflow: hidden;
+    }
+
     img {
       width: 100%;
     }
