@@ -26,7 +26,7 @@ class ArticleCard extends Component {
     date && date.length > 0 && (
       <div className="calendar">
         <div className="calendar-left">
-          <div className="heading">{heading}</div>
+          {heading && <div className="heading">{heading}</div>}
           <div className="date">{epocToDate(date, DATE)}</div>
           <div className="day">{epocToDate(date, DAY)}</div>
         </div>
@@ -102,7 +102,7 @@ class ArticleCard extends Component {
           {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
           && (
             <div className="article-event-times">
-              {this.renderEventDate(article.dateIn, 'FROM')}
+              {this.renderEventDate(article.dateIn, article.dateOut ? 'FROM' : null)}
               {this.renderEventDate(article.dateOut, 'TO')}
             </div>
           )}
