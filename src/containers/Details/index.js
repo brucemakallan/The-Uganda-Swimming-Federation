@@ -42,7 +42,7 @@ class Details extends Component {
       <div className="headingLabel">{label}</div>
       <div className="responsive-flex flex-normal">
         {list.map((obj, index) => (
-          <div key={index} className="responsive-flex-child third">
+          <div key={String(index)} className="responsive-flex-child third">
             <div className="video-box">
               {Object.keys(obj).map(objKey => (
                 <React.Fragment key={objKey}>
@@ -61,7 +61,7 @@ class Details extends Component {
     <div className="productProperty" key={label}>
       <div className="headingLabel">{label}</div>
       {list.map((obj, index) => (
-        <ul key={index} className="noBulletList">
+        <ul key={String(index)} className="noBulletList">
           {Object.keys(obj).map(objKey => (
             (objKey === 'url' || objKey === 'link' || objKey === 'source')
               ? (

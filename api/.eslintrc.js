@@ -23,5 +23,6 @@ module.exports = {
       "comma-dangle": ["error", "only-multiline"],
       "no-underscore-dangle": "warn",
       "no-var": "error",
+      "camelcase": ["warn", {"properties": "always"}],
   }
 };

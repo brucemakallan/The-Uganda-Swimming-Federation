@@ -103,20 +103,20 @@ class ProductForm extends Component {
             onChange={onChange}
             value={entity && value}
           >
-            {(list[0]._id && list[0].category && list[0].heading1)
+            {(list[0]._id && list[0].category)
               ? (
                 <React.Fragment>
                   <option value="">N/A</option>
                   {list.map(
                     (p, index) => (
-                      <option value={p._id} key={index}>
-                        {`${p.category.toUpperCase()}: ${p._id} ${p.heading1}`}
+                      <option value={p._id} key={String(index)}>
+                        {`${p.category.toUpperCase()}: ${p._id} ${p.heading1 ? p.heading1 : ''}`}
                       </option>
                     )
                   )}
                 </React.Fragment>
               )
-              : list.map(p => <option value={p} key={p}>{p}</option>)
+              : list.map((p, index) => <option value={p} key={String(index)}>{p}</option>)
             }
           </select>
         )}
@@ -204,7 +204,7 @@ class ProductForm extends Component {
         <div>
           <div className="productImages responsive-flex">
             {value.map((imageUrl, index) => (
-              <div key={imageUrl} className="text-center">
+              <div key={String(index)} className="text-center">
                 <div className="imageHolder"><img src={imageUrl} alt="product" /></div>
                 <button
                   type="button"
@@ -235,6 +235,7 @@ class ProductForm extends Component {
   );
 
   renderAllFormFields = (
+    index,
     label,
     fieldName,
     value,
@@ -260,7 +261,7 @@ class ProductForm extends Component {
     isDateInput,
     isFileInput,
   ) => (
-    <div className="form-group" key={fieldName}>
+    <div className="form-group" key={String(index)}>
       {this.renderLabel(label, required)}
       {this.renderImagesInput(images, value, removeRow, addCloudinaryImage)}
       {this.renderTagInput(isTagInput, value, tagSuggestions, onTagAdd, onTagDelete, onTagDrag)}
@@ -394,34 +395,33 @@ class ProductForm extends Component {
       <div>
         <h1>{title}</h1>
         <form className="inputForm" id="productForm" onSubmit={onSubmit}>
-          {formFields.map(
-            v => this.renderAllFormFields(
-              v.label,
-              v.fieldName,
-              v.value,
-              onChange,
-              onArrayChange,
-              removeRow,
-              addRow,
-              addCloudinaryImage,
-              addCloudinaryRawFile,
-              entity,
-              v.required,
-              v.list,
-              v.many,
-              v.isTextArea,
-              v.images,
-              v.isNumber,
-              v.isTextInput,
-              v.isTagInput,
-              tagSuggestions,
-              onTagAdd,
-              onTagDelete,
-              onTagDrag,
-              v.isDateInput,
-              v.isFileInput,
-            )
-          )}
+          {formFields.map((v, index) => this.renderAllFormFields(
+            index,
+            v.label,
+            v.fieldName,
+            v.value,
+            onChange,
+            onArrayChange,
+            removeRow,
+            addRow,
+            addCloudinaryImage,
+            addCloudinaryRawFile,
+            entity,
+            v.required,
+            v.list,
+            v.many,
+            v.isTextArea,
+            v.images,
+            v.isNumber,
+            v.isTextInput,
+            v.isTagInput,
+            tagSuggestions,
+            onTagAdd,
+            onTagDelete,
+            onTagDrag,
+            v.isDateInput,
+            v.isFileInput,
+          ))}
           <div className="mb-2">
             <span className="red" title="Required"> * </span>
             <span>Required Fields</span>
