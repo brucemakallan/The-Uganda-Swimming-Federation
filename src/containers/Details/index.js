@@ -38,43 +38,49 @@ class Details extends Component {
   };
 
   renderListOfVideos = (label, list) => (
-    <div className="productProperty" key={label}>
-      <div className="headingLabel">{label}</div>
-      <div className="responsive-flex flex-normal">
-        {list.map((obj, index) => (
-          <div key={String(index)} className="responsive-flex-child third">
-            <div className="video-box">
-              {Object.keys(obj).map(objKey => (
-                <React.Fragment key={objKey}>
-                  <div className="video-attribute">{`${objKey.toUpperCase()}: ${obj[objKey]}`}</div>
-                  {(obj.source === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.source)}
-                </React.Fragment>
-              ))}
+    list && list.length > 0 && (
+      <div className="productProperty" key={label}>
+        <div className="headingLabel">{label}</div>
+        <div className="responsive-flex flex-normal">
+          {list.map((obj, index) => (
+            <div key={String(index)} className="responsive-flex-child third">
+              <div className="video-box">
+                {Object.keys(obj).map(objKey => (
+                  <React.Fragment key={objKey}>
+                    <div className="video-attribute">{`${objKey.toUpperCase()}: ${obj[objKey]}`}</div>
+                    {(obj.source === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.source)}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    )
   );
 
   renderArrayOfObjects = (label, list) => (
-    <div className="productProperty" key={label}>
-      <div className="headingLabel">{label}</div>
-      {list.map((obj, index) => (
-        <ul key={String(index)} className="noBulletList">
-          {Object.keys(obj).map(objKey => (
-            (objKey === 'url' || objKey === 'link' || objKey === 'source')
-              ? (
-                <li key={objKey}>
-                  {selectFileIcon(obj[objKey])}
-                  <a href={obj[objKey]} target="_blank" rel="noopener noreferrer">{obj[objKey]}</a>
-                </li>
-              )
-              : <li key={objKey}>{`${objKey.toUpperCase()}: ${obj[objKey]}`}</li>))}
-          <hr />
-        </ul>
-      ))}
-    </div>
+    list && list.length > 0 && (
+      <div className="productProperty" key={label}>
+        <div className="headingLabel">{label}</div>
+        {list.map((obj, index) => (
+          <ul key={String(index)} className="noBulletList">
+            {Object.keys(obj).map(objKey => (
+              (objKey === 'url' || objKey === 'link' || objKey === 'source')
+                ? (
+                  <li key={objKey}>
+                    {selectFileIcon(obj[objKey])}
+                    <a href={obj[objKey]} target="_blank" rel="noopener noreferrer" title={obj[objKey]}>
+                      {`File ${index + 1}`}
+                    </a>
+                  </li>
+                )
+                : <li key={objKey}>{`${objKey.toUpperCase()}: ${obj[objKey]}`}</li>))}
+            <hr />
+          </ul>
+        ))}
+      </div>
+    )
   );
 
   renderValue = (label, value, isArrayOfObjects, isVideos) => {
@@ -105,12 +111,14 @@ class Details extends Component {
   };
 
   renderDateTime = (label, dateTimeEpoc) => (
-    <div className="productProperty" key={label}>
-      <div className="headingLabel">{label}</div>
-      <span>
-        {date.format(new Date(Number(dateTimeEpoc)), 'ddd DD MMM YYYY HH:mm:ss Z')}
-      </span>
-    </div>
+    dateTimeEpoc && dateTimeEpoc.length > 0 && (
+      <div className="productProperty" key={label}>
+        <div className="headingLabel">{label}</div>
+        <span>
+          {date.format(new Date(Number(dateTimeEpoc)), 'ddd DD MMM YYYY HH:mm:ss Z')}
+        </span>
+      </div>
+    )
   );
 
   render() {
@@ -165,10 +173,14 @@ class Details extends Component {
               </Link>
             </div>
             <div className="mainDetails">
-              <div className="images">
-                <Carousel id={product._id} imageUrls={product.images} />
-              </div>
-              <div className="details">
+              {product.images && product.images.length > 0 && (
+                <div className="images">
+                  <Carousel id={product._id} imageUrls={product.images} />
+                </div>
+              )}
+              <div
+                className={`details ${(!product.images || (product.images && product.images.length === 0)) ? 'w-100' : ''}`}
+              >
                 <div className="material-card">
                   {mainDetails.map(
                     detail => this.renderValue(
