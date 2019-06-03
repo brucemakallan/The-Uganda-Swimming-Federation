@@ -43,24 +43,15 @@ $grid-height: 600px;
 }
 
 @media screen and (max-width: 800px) {
-  // .featured-photos {
-  //   .photo-grid {
-  //     .thirds {
-  //       .top {
+  .featured-photos {
+    $grid-height: 1200px;
 
-  //       }
-  //       .bottom {
-
-  //       }
-  //     }
-  //     .halves {
-  //       .top {
-
-  //       }
-  //       .bottom {
-          
-  //       }
-  //     }
-  //   }
-  // }
+    .photo-grid {
+      height: $grid-height;
+      
+      .thirds, .halves {
+        width: 50%;
+      }
+    }
+  }
 }
