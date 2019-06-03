@@ -102,8 +102,8 @@ class ArticleCard extends Component {
           {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
           && (
             <div className="article-event-times">
-              {this.renderEventDate(article.dateIn, 'starts')}
-              {this.renderEventDate(article.dateOut, 'ends')}
+              {this.renderEventDate(article.dateIn, 'FROM')}
+              {this.renderEventDate(article.dateOut, 'TO')}
             </div>
           )}
 
