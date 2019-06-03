@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { WithContext as ReactTags } from 'react-tag-input';
 import {
   dateToEpoc,
@@ -11,7 +11,7 @@ import {
   entityTypes,
 } from '../../utils';
 
-library.add(faTrash);
+library.add(faTrash, faCloudUploadAlt);
 
 class ProductForm extends Component {
   renderTagInput = (isTagInput, tags, suggestions, onTagAdd, onTagDelete, onTagDrag) => {
@@ -79,7 +79,7 @@ class ProductForm extends Component {
     <React.Fragment>
       {isTextArea && (
         <textarea
-          rows="5"
+          rows="10"
           className="form-control"
           id={fieldName}
           name={fieldName}
@@ -163,10 +163,12 @@ class ProductForm extends Component {
                       <button
                         type="button"
                         id="addRowBt"
-                        className="btn btn-sm m-2 btn-outline-primary"
+                        className="iconBorderedButton m-2"
+                        title="Upload file"
                         onClick={() => addCloudinaryRawFile(index)}
                       >
-                      Upload File
+                        <FontAwesomeIcon icon="cloud-upload-alt" className="icon green" />
+                        Upload File
                       </button>
                     )}
                   </div>
