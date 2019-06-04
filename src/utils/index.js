@@ -67,6 +67,7 @@ export const pageSections = {
   event,
   about,
   partners,
+  calendars,
 };
 
 export const entityTypes = [ // articles and other dynamic website sections
@@ -117,7 +118,7 @@ const fileIcons = {
 export const selectFileIcon = (filePath) => {
   let icon;
   Object.keys(fileIcons).map((key) => {
-    if (filePath.toLowerCase().endsWith(fileIcons[key].type)) {
+    if (filePath && filePath.toLowerCase().endsWith(fileIcons[key].type)) {
       icon = fileIcons[key].icon;
     }
     return icon;

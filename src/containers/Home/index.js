@@ -27,12 +27,16 @@ export class Home extends Component {
   }
 
   render() {
-    let carousel = { imageUrls: [], captions: [] };
     const { products } = this.props;
+
     const articles = this.getPageSectionElements(products, pageSections.article);
     const about = this.getPageSectionElements(products, pageSections.about);
+    const calendars = this.getPageSectionElements(products, pageSections.calendars);
+
     const allEvents = this.getPageSectionElements(products, pageSections.event);
     const events = this.getCurrentEvents(allEvents);
+
+    let carousel = { imageUrls: [], captions: [] };
     const carouselSection = products.find(
       section => section.category.match(pageSections.carousel)
     );
@@ -55,6 +59,7 @@ export class Home extends Component {
         articles={articles}
         about={about}
         events={events}
+        calendars={calendars}
       />
     );
   }

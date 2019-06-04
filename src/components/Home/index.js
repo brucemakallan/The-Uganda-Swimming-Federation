@@ -8,7 +8,8 @@ import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
-import EventCard from '../EventCard';
+import RecentEventCards from '../EventCard';
+import { selectFileIcon } from '../../utils';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
@@ -37,7 +38,7 @@ class Home extends Component {
 
   render() {
     const {
-      carousel, about, articles, events,
+      carousel, about, articles, events, calendars,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -80,7 +81,23 @@ class Home extends Component {
             <div className="right responsive-flex-child inner-padding">
               <div className="material-card">
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
-                <EventCard events={events} />
+                <RecentEventCards events={events} />
+                {calendars && calendars[0] && calendars[0].files && calendars[0].files.length > 0
+                  && calendars[0].files.map(
+                    file => (
+                      <a
+                        key={file.source}
+                        href={file.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="calendar-link"
+                      >
+                        {selectFileIcon(file.source)}
+                        {file.title}
+                      </a>
+                    )
+                  )
+                }
               </div>
             </div>
           )}
@@ -137,6 +154,7 @@ Home.propTypes = {
   about: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   events: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  calendars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;
