@@ -1,11 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import App from './containers/App';
-import store from './store';
-import 'bootstrap/dist/css/bootstrap.css';
-import './index.scss';
+if (process.env.NODE_ENV !== 'production') {
+	require('dotenv').load();
+}
+const app = require('./api/routes');
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
+const port = process.env.PORT || 8261;
+if(!module.parent){
+	app.listen(port, () => console.log(`Listening on port ${port} ...`));
+}
+module.exports = app;

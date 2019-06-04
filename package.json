@@ -1,86 +1,52 @@
 {
-  "name": "usf",
-  "version": "0.1.0",
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.15",
-    "@fortawesome/free-regular-svg-icons": "^5.8.2",
-    "@fortawesome/free-solid-svg-icons": "^5.7.2",
-    "@fortawesome/react-fontawesome": "^0.1.4",
-    "axios": "^0.18.0",
-    "bootstrap": "^4.3.1",
-    "concurrently": "^4.1.0",
-    "date-and-time": "^0.6.3",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0",
-    "enzyme-to-json": "^3.3.5",
-    "history": "^4.7.2",
-    "jquery": "^3.3.1",
-    "lodash": "^4.17.11",
-    "node-sass": "^4.11.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.8.3",
-    "react-dnd": "^5.0.0",
-    "react-dnd-html5-backend": "^3.0.2",
-    "react-dom": "^16.8.3",
-    "react-loader-spinner": "^2.3.0",
-    "react-markdown": "^4.0.8",
-    "react-modal": "^3.8.1",
-    "react-paginate": "^6.3.0",
-    "react-redux": "^6.0.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.5",
-    "react-table": "^6.9.2",
-    "react-tag-input": "^6.4.0",
-    "react-toastify": "^4.5.2",
-    "react-twitter-widgets": "^1.7.1",
-    "react-youtube": "^7.9.0",
-    "reactstrap": "^7.1.0",
-    "redux": "^4.0.1",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
-    "serve": "^10.1.2",
-    "typescript": "^3.3.3333",
-    "uuid": "^3.3.2"
+  "name": "usf-api",
+  "version": "1.0.0",
+  "description": "The Uganda Swimming Federation (Express API)",
+  "main": "index.js",
+  "engines": {
+    "node": "8.12.0"
   },
   "scripts": {
-    "start:both": "concurrently \"react-scripts start\" \"npm run start:dev --prefix api\"",
-    "start:dev": "react-scripts start",
-    "build:dev": "react-scripts build",
-    "test": "react-scripts test -u --coverage",
-    "eject": "react-scripts eject",
+    "start:dev": "NODE_ENV=development nodemon ./src",
+    "start": "node ./build",
+    "build": "NODE_ENV=production webpack",
     "lint": "eslint src",
-    "build": "npm run build --prefix api && npm run build:dev",
-    "heroku-postbuild": "npm run build",
-    "start": "concurrently \"npm run start --prefix api\" \"serve -s build\""
+    "test": "NODE_ENV=testing nyc mocha --exit",
+    "test:dev": "concurrently \"mongod\" \"npm run test\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brucemakallan/The-Uganda-Swimming-Federation.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "author": "Bruce Allan Makaaru",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "md5": "^2.2.1",
+    "mongoose": "^5.4.12",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  },
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^22.0.1",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.11.1",
-    "moxios": "^0.4.0",
-    "redux-mock-store": "^1.5.3"
+    "chai": "^4.2.0",
+    "concurrently": "^4.1.0",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.13.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.10",
+    "nyc": "^13.3.0",
+    "supertest": "^3.4.2"
   },
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}",
-      "!src/setupTests.js",
-      "!src/index.js",
-      "!src/store.js"
+  "nyc": {
+    "include": [
+      "src/api"
     ]
   }
 }
