@@ -20,7 +20,8 @@ const paths = {
   edit: '/edit',
 };
 
-const API_URL = 'http://localhost:3001/api/';
+// const API_URL = 'http://localhost:3001/api/';
+const API_URL = 'https://ugandaswimming-api.herokuapp.com/api/';
 
 export const endpoints = {
   productsGetAll: `${API_URL}articles`,
