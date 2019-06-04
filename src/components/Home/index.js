@@ -6,13 +6,18 @@ import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
+import PageLoader from '../../containers/PageLoader';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
 });
 
-const Home = ({ carousel, about, articles }) => (
+const Home = ({
+  carousel, about, articles, events,
+}) => (
   <div className="mainContent">
+    <PageLoader />
+
     <section id="banner">
       <Carousel id="main" imageUrls={carousel.imageUrls} captions={carousel.captions} />
     </section>
@@ -25,14 +30,16 @@ const Home = ({ carousel, about, articles }) => (
         </div>
       )}
 
-      <div className="right responsive-flex-child inner-padding">
-        <div>Sidebar Content here</div>
-        <ul>
-          <li>Results</li>
-          <li>Events</li>
-          <li>Social Feed</li>
-        </ul>
-      </div>
+      {events && events.length > 0 && (
+        <div className="right responsive-flex-child inner-padding">
+          <div>Sidebar Content here</div>
+          <ul>
+            <li>Results</li>
+            <li>Events</li>
+            <li>Social Feed</li>
+          </ul>
+        </div>
+      )}
     </section>
 
     {about && about.length > 0
@@ -46,19 +53,22 @@ const Home = ({ carousel, about, articles }) => (
       </section>
     )}
 
-    <section className="photos section-padding">
-      <div className="inner-padding">
-        <h3>Latest Photos</h3>
-        <FeaturedPhotos articles={articles} />
-      </div>
-    </section>
-
-    <section className="videos section-padding">
-      <div className="inner-padding">
-        <h3>Latest Videos</h3>
-        <FeaturedVideos articles={articles} />
-      </div>
-    </section>
+    {articles && articles.length > 0 && (
+      <React.Fragment>
+        <section className="photos section-padding">
+          <div className="inner-padding">
+            <h3>Featured Photos</h3>
+            <FeaturedPhotos articles={articles} />
+          </div>
+        </section>
+        <section className="videos section-padding">
+          <div className="inner-padding">
+            <h3>Featured Videos</h3>
+            <FeaturedVideos articles={articles} />
+          </div>
+        </section>
+      </React.Fragment>
+    )}
 
     <section className="footer dark">
       <div className="responsive-flex">
@@ -80,6 +90,7 @@ Home.propTypes = {
   carousel: PropTypes.shape({}).isRequired,
   about: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  events: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;

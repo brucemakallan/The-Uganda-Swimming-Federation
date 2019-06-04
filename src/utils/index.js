@@ -64,14 +64,9 @@ const footer = 'Footer';
 export const pageSections = {
   article,
   carousel,
-  results,
+  event,
   about,
   partners,
-  majorSponsors,
-  applicationProcedures,
-  keyAffiliates,
-  CANAZone3,
-  footer,
 };
 
 export const entityTypes = [ // articles and other dynamic website sections
