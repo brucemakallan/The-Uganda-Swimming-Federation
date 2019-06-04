@@ -58,6 +58,9 @@
     }
     .right {
       width: calc(100% - #{$left-width});
+      display: flex;
+      flex-flow: row wrap;
+      align-content: stretch;
       
       h6 {
         font-weight: bold;
@@ -65,6 +68,14 @@
       .calendar-link {
         display: block;
         padding-top: 10px;
+      }
+      .twitter-widget {
+        margin-top: 50px;
+        width: 100%;
+
+        div:first-child {
+          height: 100%;
+        }
       }
     }
 

@@ -3,6 +3,7 @@ import './home.scss';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import ReactPaginate from 'react-paginate';
+import { Timeline } from 'react-twitter-widgets';
 import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
@@ -99,6 +100,19 @@ class Home extends Component {
                   )
                 }
               </div>
+              <div className="twitter-widget">
+                <Timeline
+                  dataSource={{
+                    sourceType: 'profile',
+                    screenName: 'UgandaSwimming'
+                  }}
+                  options={{
+                    username: 'UgandaSwimming',
+                    height: '100%'
+                  }}
+                  onLoad={() => {}}
+                />
+              </div>
             </div>
           )}
         </section>
@@ -132,16 +146,8 @@ class Home extends Component {
         )}
 
         <section className="footer dark">
-          <div className="responsive-flex">
-            <div className="responsive-flex-child third section-padding">
-              footer1
-            </div>
-            <div className="responsive-flex-child third section-padding">
-              footer2
-            </div>
-            <div className="responsive-flex-child third section-padding">
-              footer3
-            </div>
+          <div className="section-padding text-center">
+            Currently Undergoing Upgrades
           </div>
         </section>
       </div>

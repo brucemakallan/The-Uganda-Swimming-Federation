@@ -32,6 +32,7 @@
     "react-table": "^6.9.2",
     "react-tag-input": "^6.4.0",
     "react-toastify": "^4.5.2",
+    "react-twitter-widgets": "^1.7.1",
     "react-youtube": "^7.9.0",
     "reactstrap": "^7.1.0",
     "redux": "^4.0.1",
