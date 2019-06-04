@@ -144,6 +144,45 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.pagination {
+  display: flex;
+  justify-content: space-between;
+
+  .active {
+    a {
+      border: 1px solid black;
+      background: black;
+      color: white;
+    }
+  }
+  .disabled {
+    a {
+      border: 1px solid #666666;
+      color: #666666;
+      cursor: not-allowed;
+      outline: none;
+    }
+  }
+  li {
+    margin: 0;
+    padding: 0;
+
+    a {
+      border: 1px solid black;
+      cursor: pointer;
+      padding: 7px 15px;
+      color: black;
+      font-weight: bold;
+      -webkit-user-select: none; /* Safari */        
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* IE10+/Edge */
+      user-select: none; /* Standard */
+    }
+    a:hover {
+      text-decoration: none;
+    }
+  }
+}
 
 .effect-button {
   //start click effect
@@ -213,6 +252,14 @@ h1, h2, h3, h4, h5, h6 {
   }
   .noBulletList {
     padding-left: 10px;
+  }
+  .pagination {
+    li {
+      display: none;
+    }
+    .previous, .next, .active {
+      display: list-item;
+    }
   }
 }
 
