@@ -76,14 +76,14 @@ class Home extends Component {
               </span>
             )}
 
-          {/* {events && events.length > 0 && ( */}
-          <div className="right responsive-flex-child inner-padding">
-            <div className="material-card">
-              <h6>RECENT &amp; UPCOMING EVENTS</h6>
-              <EventCard />
+          {events && events.length > 0 && (
+            <div className="right responsive-flex-child inner-padding">
+              <div className="material-card">
+                <h6>RECENT &amp; UPCOMING EVENTS</h6>
+                <EventCard events={events} />
+              </div>
             </div>
-          </div>
-          {/* )} */}
+          )}
         </section>
 
         {about && about.length > 0

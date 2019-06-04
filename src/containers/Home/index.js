@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import HomeComponent from '../../components/Home';
 import { pageSections, endpoints } from '../../utils';
 import getAllProducts from '../../actions/productsActions';
@@ -15,12 +16,23 @@ export class Home extends Component {
     allSections.filter(section => section.category === sectionType)
   );
 
+  getCurrentEvents = (allEvents) => {
+    const PAST_EVENTS = 2;
+    const NEXT_EVENTS = 3;
+    const today = new Date().valueOf();
+    let eventsList = [...allEvents, { dateIn: today }];
+    eventsList = _.orderBy(eventsList, ['dateIn'], ['desc']);
+    const todayIndex = eventsList.map(e => e.dateIn).indexOf(today);
+    return eventsList.slice(todayIndex - PAST_EVENTS, todayIndex + NEXT_EVENTS + 1);
+  }
+
   render() {
     let carousel = { imageUrls: [], captions: [] };
     const { products } = this.props;
     const articles = this.getPageSectionElements(products, pageSections.article);
-    const events = this.getPageSectionElements(products, pageSections.event);
     const about = this.getPageSectionElements(products, pageSections.about);
+    const allEvents = this.getPageSectionElements(products, pageSections.event);
+    const events = this.getCurrentEvents(allEvents);
     const carouselSection = products.find(
       section => section.category.match(pageSections.carousel)
     );
