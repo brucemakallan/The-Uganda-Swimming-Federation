@@ -8,6 +8,7 @@ import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
+import EventCard from '../EventCard';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
@@ -36,7 +37,7 @@ class Home extends Component {
 
   render() {
     const {
-      carousel, about, articles, events
+      carousel, about, articles, events,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -75,16 +76,14 @@ class Home extends Component {
               </span>
             )}
 
-          {events && events.length > 0 && (
-            <div className="right responsive-flex-child inner-padding">
-              <div>Sidebar Content here</div>
-              <ul>
-                <li>Results</li>
-                <li>Events</li>
-                <li>Social Feed</li>
-              </ul>
+          {/* {events && events.length > 0 && ( */}
+          <div className="right responsive-flex-child inner-padding">
+            <div className="material-card">
+              <h6>RECENT &amp; UPCOMING EVENTS</h6>
+              <EventCard />
             </div>
-          )}
+          </div>
+          {/* )} */}
         </section>
 
         {about && about.length > 0

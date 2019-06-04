@@ -1,0 +1,33 @@
+.event-card {
+  background-color: #efefef;
+  border-radius: 5px;
+  padding: 20px;
+  padding-top: 0;
+  margin: 20px 0;
+
+  .event-times { // override event calendar
+    .calendar {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+
+  .details {
+    .title {
+      font-weight: bold;
+      padding: 10px 0;
+    }
+    .location {
+      font-size: 14px;
+      padding: 5px 0;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  // .event-card {
+  //   .details {
+  //     .title, .location {}
+  //   }
+  // }
+}
