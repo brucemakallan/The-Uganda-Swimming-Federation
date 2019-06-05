@@ -10,13 +10,16 @@ import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
 import RecentEventCards from '../EventCard';
-import { selectFileIcon } from '../../utils';
+import { selectFileIcon, localFiles } from '../../utils';
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
 });
 
 const ARTICLES_PER_PAGE = 3;
+const concreteSubtleBackground = {
+  backgroundImage: `url(${localFiles.concrete})`,
+};
 
 class Home extends Component {
   state = {
@@ -52,7 +55,7 @@ class Home extends Component {
           <Carousel id="main" imageUrls={carousel.imageUrls} captions={carousel.captions} />
         </section>
 
-        <section className="articles large-padding responsive-flex">
+        <section className="articles large-padding responsive-flex" style={concreteSubtleBackground}>
           {(paginatedArticles && paginatedArticles.length > 0)
             ? (
               <div className="left responsive-flex-child inner-padding">

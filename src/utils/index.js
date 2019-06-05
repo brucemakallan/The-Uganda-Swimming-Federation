@@ -44,6 +44,7 @@ export const serverResponses = {
 
 export const localFiles = {
   logo: './usf-logo.jpg',
+  concrete: './concrete.png'
 };
 
 const carousel = 'Carousel';
