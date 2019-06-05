@@ -22,7 +22,7 @@ class FeaturedVideos extends Component {
     const { articles } = this.props;
     const videos = [];
     articles.map(article => videos.push(...article.videos));
-    const numFeaturedVideos = 6;
+    const numFeaturedVideos = 3;
     const featuredVideos = videos.length > numFeaturedVideos ? videos.slice(-numFeaturedVideos) : videos;
 
     return (

@@ -73,12 +73,12 @@ class Home extends Component {
               </div>
             ) : (
               <span>
-                <span role="img" aria-label="sad">😢</span>
-                No Articles
+                <span role="img" aria-label="emogi">🤓</span>
+                Loading Articles ...
               </span>
             )}
 
-          {events && events.length > 0 && (
+          {events && events.length > 1 && (
             <div className="right responsive-flex-child inner-padding">
               <div className="material-card">
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
