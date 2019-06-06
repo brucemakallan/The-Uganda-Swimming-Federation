@@ -45,6 +45,7 @@ div.content {
   padding: 16px;
   padding-top: $main-content-padding-top;
   background-color: white;
+  min-height: 100vh;
 }
 
 .burgerButton {

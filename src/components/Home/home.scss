@@ -61,20 +61,27 @@
     .right {
       width: calc(100% - #{$left-width});
       display: flex;
-      flex-flow: row wrap;
-      align-content: stretch;
+      flex-direction: column;
+      padding-bottom: 80px;
       
-      h6 {
-        font-weight: bold;
-        text-align: center;
+      .material-card {
+        width: 100%;
+        margin-bottom: 50px;
+        height: fit-content;
+
+        h6 {
+          font-weight: bold;
+          text-align: center;
+          text-transform: uppercase;
+        }
       }
       .calendar-link {
         display: block;
         padding-top: 10px;
       }
       .twitter-widget {
-        margin-top: 50px;
         width: 100%;
+        flex-grow: 1;
 
         div:first-child {
           height: 100%;
@@ -176,6 +183,9 @@
     }
 
     .articles {
+      .right {
+        padding-bottom: 80px;
+      }
       .event-times { 
         .calendar {
           width: 100%;

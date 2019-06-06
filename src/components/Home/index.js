@@ -86,6 +86,9 @@ class Home extends Component {
               <div className="material-card">
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
                 <RecentEventCards events={events} />
+              </div>
+              <div className="material-card">
+                <h6>USF CALENDARS</h6>
                 {calendars && calendars[0] && calendars[0].files && calendars[0].files.length > 0
                   && calendars[0].files.map(
                     file => (
@@ -102,6 +105,15 @@ class Home extends Component {
                     )
                   )
                 }
+              </div>
+              <div className="material-card">
+                <h6>Application Procedures</h6>
+              </div>
+              <div className="material-card">
+                <h6>Key Affiliates</h6>
+              </div>
+              <div className="material-card">
+                <h6>CANA Zone 3</h6>
               </div>
               <div className="twitter-widget">
                 <Timeline

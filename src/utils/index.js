@@ -70,6 +70,7 @@ export const pageSections = {
   about,
   partners,
   calendars,
+  applicationProcedures,
 };
 
 export const entityTypes = [ // articles and other dynamic website sections
