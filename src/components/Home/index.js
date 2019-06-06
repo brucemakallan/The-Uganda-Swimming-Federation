@@ -21,6 +21,29 @@ const concreteSubtleBackground = {
   backgroundImage: `url(${localFiles.concrete})`,
 };
 
+const renderCardWithLinks = list => (
+  list && list[0] && list[0].files && list[0].files.length > 0 && list[0].heading1
+    && (
+      <div className="material-card">
+        <h6>{list[0].heading1}</h6>
+        {list[0].files.map(
+          file => (
+            <a
+              key={file.source}
+              href={file.source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="calendar-link"
+            >
+              {selectFileIcon(file.source)}
+              {file.title}
+            </a>
+          )
+        )}
+      </div>
+    )
+);
+
 class Home extends Component {
   state = {
     pagination: {
@@ -42,7 +65,12 @@ class Home extends Component {
 
   render() {
     const {
-      carousel, about, articles, events, calendars,
+      carousel,
+      about,
+      articles,
+      events,
+      calendars,
+      applicationProcedures,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -87,28 +115,8 @@ class Home extends Component {
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
                 <RecentEventCards events={events} />
               </div>
-              <div className="material-card">
-                <h6>USF CALENDARS</h6>
-                {calendars && calendars[0] && calendars[0].files && calendars[0].files.length > 0
-                  && calendars[0].files.map(
-                    file => (
-                      <a
-                        key={file.source}
-                        href={file.source}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="calendar-link"
-                      >
-                        {selectFileIcon(file.source)}
-                        {file.title}
-                      </a>
-                    )
-                  )
-                }
-              </div>
-              <div className="material-card">
-                <h6>Application Procedures</h6>
-              </div>
+              {renderCardWithLinks(calendars)}
+              {renderCardWithLinks(applicationProcedures)}
               <div className="material-card">
                 <h6>Key Affiliates</h6>
               </div>
@@ -176,6 +184,7 @@ Home.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   events: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   calendars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  applicationProcedures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;

@@ -18,7 +18,7 @@ export class Home extends Component {
 
   getCurrentEvents = (allEvents) => {
     const PAST_EVENTS = 2;
-    const NEXT_EVENTS = 3;
+    const NEXT_EVENTS = 2;
     const today = new Date().valueOf();
     let eventsList = [...allEvents, { dateIn: today }];
     eventsList = _.orderBy(eventsList, ['dateIn'], ['desc']);
@@ -32,6 +32,7 @@ export class Home extends Component {
     const articles = this.getPageSectionElements(products, pageSections.article);
     const about = this.getPageSectionElements(products, pageSections.about);
     const calendars = this.getPageSectionElements(products, pageSections.calendars);
+    const applicationProcedures = this.getPageSectionElements(products, pageSections.applicationProcedures);
 
     const allEvents = this.getPageSectionElements(products, pageSections.event);
     const events = this.getCurrentEvents(allEvents);
@@ -60,6 +61,7 @@ export class Home extends Component {
         about={about}
         events={events}
         calendars={calendars}
+        applicationProcedures={applicationProcedures}
       />
     );
   }

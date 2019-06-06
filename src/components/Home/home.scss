@@ -185,6 +185,10 @@
     .articles {
       .right {
         padding-bottom: 80px;
+
+        .twitter-widget {
+          height: 70vh;
+        }
       }
       .event-times { 
         .calendar {
