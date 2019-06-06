@@ -72,6 +72,7 @@ export const pageSections = {
   calendars,
   applicationProcedures,
   keyAffiliates,
+  CANAZone3,
 };
 
 export const entityTypes = [ // articles and other dynamic website sections

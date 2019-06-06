@@ -34,6 +34,7 @@ export class Home extends Component {
     const calendars = this.getPageSectionElements(products, pageSections.calendars);
     const applicationProcedures = this.getPageSectionElements(products, pageSections.applicationProcedures);
     const affiliates = this.getPageSectionElements(products, pageSections.keyAffiliates);
+    const canaZone3 = this.getPageSectionElements(products, pageSections.CANAZone3);
 
     const allEvents = this.getPageSectionElements(products, pageSections.event);
     const events = this.getCurrentEvents(allEvents);
@@ -64,6 +65,7 @@ export class Home extends Component {
         calendars={calendars}
         applicationProcedures={applicationProcedures}
         affiliates={affiliates}
+        canaZone3={canaZone3}
       />
     );
   }

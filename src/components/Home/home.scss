@@ -73,6 +73,7 @@
           font-weight: bold;
           text-align: center;
           text-transform: uppercase;
+          margin-bottom: 10px;
         }
       }
       .calendar-link {
@@ -83,6 +84,16 @@
         img {
           height: 50px;
         }
+      }
+      .cana-zone-img {
+        height: 70px;
+        float: left;
+        margin: 0 10px 5px 0;
+      }
+      .cana-zone-body {
+        font-size: 13px;
+        color: #333333;
+        margin-bottom: 5px;
       }
       .twitter-widget {
         width: 100%;
@@ -191,6 +202,12 @@
       .right {
         padding-bottom: 80px;
 
+        .affiliate-logo img, .cana-zone-img {
+          width: auto !important;
+        }
+        .affiliate-logo img {
+          margin: 10px 5px;
+        }
         .twitter-widget {
           height: 70vh;
         }

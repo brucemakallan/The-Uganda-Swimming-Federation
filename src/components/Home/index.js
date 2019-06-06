@@ -49,7 +49,7 @@ const renderCardWithImages = list => (
     && (
       <div className="material-card">
         <h6>{list[0].heading1}</h6>
-        <div className="responsive-flex pt-2">
+        <div className="responsive-flex">
           {list[0].files.map(
             file => (
               <a
@@ -96,6 +96,7 @@ class Home extends Component {
       calendars,
       applicationProcedures,
       affiliates,
+      canaZone3,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -143,9 +144,16 @@ class Home extends Component {
               {renderCardWithLinks(calendars)}
               {renderCardWithLinks(applicationProcedures)}
               {renderCardWithImages(affiliates)}
-              <div className="material-card">
-                <h6>CANA Zone 3</h6>
-              </div>
+              {canaZone3 && canaZone3[0] && (
+                <div className="material-card">
+                  <h6>{canaZone3[0].heading1}</h6>
+                  <img src={canaZone3[0].images[0]} alt="CANA logo" className="cana-zone-img" />
+                  <div className="cana-zone-body">{canaZone3[0].body}</div>
+                  <div className="cana-zone-link">
+                    <a href={canaZone3[0].heading2} target="_blank" rel="noopener noreferrer">Visit Website</a>
+                  </div>
+                </div>
+              )}
               <div className="twitter-widget">
                 <Timeline
                   dataSource={{
@@ -209,6 +217,7 @@ Home.propTypes = {
   calendars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   applicationProcedures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   affiliates: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  canaZone3: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;
