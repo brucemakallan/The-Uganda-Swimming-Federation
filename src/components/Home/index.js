@@ -44,6 +44,30 @@ const renderCardWithLinks = list => (
     )
 );
 
+const renderCardWithImages = list => (
+  list && list[0] && list[0].files && list[0].files.length > 0 && list[0].heading1
+    && (
+      <div className="material-card">
+        <h6>{list[0].heading1}</h6>
+        <div className="responsive-flex pt-2">
+          {list[0].files.map(
+            file => (
+              <a
+                key={file.source}
+                href={file.description}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="affiliate-logo"
+              >
+                <img src={file.source} title={file.title} alt="logo" />
+              </a>
+            )
+          )}
+        </div>
+      </div>
+    )
+);
+
 class Home extends Component {
   state = {
     pagination: {
@@ -71,6 +95,7 @@ class Home extends Component {
       events,
       calendars,
       applicationProcedures,
+      affiliates,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -117,9 +142,7 @@ class Home extends Component {
               </div>
               {renderCardWithLinks(calendars)}
               {renderCardWithLinks(applicationProcedures)}
-              <div className="material-card">
-                <h6>Key Affiliates</h6>
-              </div>
+              {renderCardWithImages(affiliates)}
               <div className="material-card">
                 <h6>CANA Zone 3</h6>
               </div>
@@ -185,6 +208,7 @@ Home.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   calendars: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   applicationProcedures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  affiliates: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;
