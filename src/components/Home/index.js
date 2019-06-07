@@ -34,10 +34,12 @@ const renderCardWithLinks = list => (
               href={file.source}
               target="_blank"
               rel="noopener noreferrer"
-              className="calendar-link"
+              className="calendar-link border-animation"
             >
-              {selectFileIcon(file.source)}
-              {file.title}
+              <div className="border-animation__inner">
+                {selectFileIcon(file.source)}
+                {file.title}
+              </div>
             </a>
           )
         )}

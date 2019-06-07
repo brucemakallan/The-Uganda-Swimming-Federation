@@ -122,15 +122,19 @@ class ArticleCard extends Component {
           {article.files && article.files.length > 0 && (
             <div className="article-files">
               <div className="heading">Attachments / Downloads</div>
-              {article.files.map(file => (
-                <div key={file.source}>
-                  <a href={file.source} target="_blank" rel="noopener noreferrer">
-                    <span className="mr-2">{selectFileIcon(file.source)}</span>
-                    {file.title.trim()}
-                    {(file.description && file.description.length > 0) && ` - ${file.description}`}
-                  </a>
-                </div>
-              ))}
+              <div className="article-files-links">
+                {article.files.map(file => (
+                  <div key={file.source}>
+                    <a href={file.source} target="_blank" rel="noopener noreferrer" className="border-animation">
+                      <div className="border-animation__inner">
+                        <span className="mr-2">{selectFileIcon(file.source)}</span>
+                        {file.title.trim()}
+                        {(file.description && file.description.length > 0) && ` - ${file.description}`}
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
 

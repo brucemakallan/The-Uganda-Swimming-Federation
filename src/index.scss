@@ -5,16 +5,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:300');
 
 // COLORS
-$primaryLight: #90caf9;
-$primary: #64b5f6;
-$primary400: #42a5f5;
-$primary500: #2196f3;
-$primary600: #1e88e5;
-$primary700: #1976d2;
-$primary800: #1565c0;
-$primaryDark: #0d47a1;
-$accentColor: #FFFF00;
-$logoBlue: #62B4E1;
+@import './utils/colors.scss';
 
 $bodyFontFamily: 'Montserrat', sans-serif;
 $headingFontFamily: 'Raleway', sans-serif;
