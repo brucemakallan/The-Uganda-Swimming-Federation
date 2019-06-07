@@ -1,13 +1,15 @@
-$color-main: #eee;
-$color-main-2: #baff00;
+@import './colors.scss';
+
+$color-main: $primary;
+$color-main-2: $accentColor;
 
 .has-animation {
   position: relative;
-  p, img {
+  div {
       opacity: 0;
   }
   &.animate-in {
-    p, img {
+    div {
       animation: textHidden 0.1s 1.1s forwards;
     }
     &:before, &:after {

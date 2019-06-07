@@ -8,6 +8,7 @@ import {
   faCalendarAlt, faCalendarTimes, faCalendarCheck, faMapMarkerAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import ReactMarkdown from 'react-markdown';
+import ScrollAnimation from 'react-animate-on-scroll';
 import Carousel from '../Carousel';
 import {
   epocToDate, LONG_DATE_FORMAT, DATE, DAY, MONTH, YEAR,
@@ -22,39 +23,6 @@ library.add(
 );
 
 class ArticleCard extends Component {
-  constructor(props) {
-    super(props);
-    this.animationRef = React.createRef();
-    this.animationRef2 = React.createRef();
-  }
-
-  componentDidMount() {
-    console.log(this.animationRef);
-    console.log(this.animationRef2);
-    console.log(window);
-    const elements = [this.animationRef];
-
-    if (elements && elements.length > 0) {
-      elements.forEach((element) => {
-        if (window.scrollTop() + window.height() > element.offset().top + element.outerHeight()) {
-          element.delay(element.data('delay')).queue(() => {
-            element.addClass('animate-in');
-          });
-        }
-      });
-
-      window.scroll(() => {
-        elements.forEach((element) => {
-          if (window.scrollTop() + window.height() > element.offset().top) {
-            element.delay(element.data('delay')).queue(() => {
-              element.addClass('animate-in');
-            });
-          }
-        });
-      });
-    }
-  }
-
   renderEventDate = (date, heading) => (
     date && date.length > 0 && (
       <div className="calendar">
@@ -117,24 +85,27 @@ class ArticleCard extends Component {
         )}
 
         <div className="article-details">
-          <div className="article-details-top has-animation animation-ltr" data-delay="50" ref={this.animationRef}>
-            {article.heading1 && (
-              <div className="article-heading">
-                <h1>{article.heading1}</h1>
-              </div>
-            )}
-            {article.heading2 && (
-              <div className="article-location">
-                <div className="mt-2">
-                  <FontAwesomeIcon icon="map-marker-alt" className="mr-2" title="Location" />
-                  {article.heading2}
+          <ScrollAnimation animateIn="has-animation animation-ltr animate-in" animateOnce>
+            <div className="article-details-top">
+              {article.heading1 && (
+                <div className="article-heading">
+                  <h1>{article.heading1}</h1>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+              {article.heading2 && (
+                <div className="article-location">
+                  <div className="mt-2">
+                    <FontAwesomeIcon icon="map-marker-alt" className="mr-2" title="Location" />
+                    {article.heading2}
+                  </div>
+                </div>
+              )}
+            </div>
+          </ScrollAnimation>
 
-          <div className="article-details-bottom has-animation animation-rtl" data-delay="500" ref={this.animationRef2}>
-            {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
+          <ScrollAnimation animateIn="has-animation animation-rtl animate-in" animateOnce>
+            <div className="article-details-bottom">
+              {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
             && (
               <div className="event-times">
                 {this.renderEventDate(article.dateIn, article.dateOut ? 'FROM' : null)}
@@ -142,47 +113,48 @@ class ArticleCard extends Component {
               </div>
             )}
 
-            {/* {article.tags && article.tags.length > 0 && (
+              {/* {article.tags && article.tags.length > 0 && (
               <div className="article-tags">
                 {article.tags.map(tag => <span key={tag.id}>{tag.text}</span>)}
               </div>
             )} */}
 
-            {article.body && article.body.length > 1 && (
-              <div className="article-body">
-                <ReactMarkdown source={article.body} />
-              </div>
-            )}
-
-            {article.files && article.files.length > 0 && (
-              <div className="article-files">
-                <div className="heading">Attachments / Downloads</div>
-                <div className="article-files-links">
-                  {article.files.map(file => (
-                    <div key={file.source}>
-                      <a href={file.source} target="_blank" rel="noopener noreferrer" className="border-animation">
-                        <div className="border-animation__inner">
-                          <span className="mr-2">{selectFileIcon(file.source)}</span>
-                          {file.title.trim()}
-                          {(file.description && file.description.length > 0) && ` - ${file.description}`}
-                        </div>
-                      </a>
-                    </div>
-                  ))}
+              {article.body && article.body.length > 1 && (
+                <div className="article-body">
+                  <ReactMarkdown source={article.body} />
                 </div>
-              </div>
-            )}
+              )}
 
-            {article.dateCreated && (
-              <div className="article-date">
-                <div className="mt-2">
-                  <FontAwesomeIcon icon="calendar-alt" className="mr-2" />
-                  <span>Created: </span>
-                  {epocToDate(article.dateCreated, LONG_DATE_FORMAT)}
+              {article.files && article.files.length > 0 && (
+                <div className="article-files">
+                  <div className="heading">Attachments / Downloads</div>
+                  <div className="article-files-links">
+                    {article.files.map(file => (
+                      <div key={file.source}>
+                        <a href={file.source} target="_blank" rel="noopener noreferrer" className="border-animation">
+                          <div className="border-animation__inner">
+                            <span className="mr-2">{selectFileIcon(file.source)}</span>
+                            {file.title.trim()}
+                            {(file.description && file.description.length > 0) && ` - ${file.description}`}
+                          </div>
+                        </a>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+
+              {article.dateCreated && (
+                <div className="article-date">
+                  <div className="mt-2">
+                    <FontAwesomeIcon icon="calendar-alt" className="mr-2" />
+                    <span>Created: </span>
+                    {epocToDate(article.dateCreated, LONG_DATE_FORMAT)}
+                  </div>
+                </div>
+              )}
+            </div>
+          </ScrollAnimation>
         </div>
       </div>
     );
