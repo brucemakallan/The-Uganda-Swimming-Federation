@@ -1,0 +1,58 @@
+@mixin afterBg {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+}
+
+.btn--shockwave {
+  &:focus {
+    animation: shockwaveJump 1s ease-out forwards;
+
+    &:after {
+      @include afterBg;
+      animation: shockwave 1s .65s ease-out forwards;
+    }
+    &:before {
+      @include afterBg;
+      animation: shockwave 1s .5s ease-out forwards;
+    }
+  }
+}
+
+@keyframes shockwaveJump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  50% {
+     transform: scale(0.98);
+  }
+  55% {
+    transform: scale(1.02);
+  }
+  60% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shockwave {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 2px rgba(254, 242, 0, 0.15), inset 0 0 1px rgba(254, 242, 0, 0.15);
+  }
+  95% {
+    box-shadow: 0 0 50px rgba(254, 242, 0, 0), inset 0 0 30px rgba(254, 242, 0, 0);
+  }
+  100% {
+    transform: scale(2.25);
+  }
+}

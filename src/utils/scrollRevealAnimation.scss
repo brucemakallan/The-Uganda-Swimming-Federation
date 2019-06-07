@@ -5,11 +5,11 @@ $color-main-2: $accentColor;
 
 .has-animation {
   position: relative;
-  div {
+  .animated-child {
       opacity: 0;
   }
   &.animate-in {
-    div {
+    .animated-child {
       animation: textHidden 0.1s 1.1s forwards;
     }
     &:before, &:after {

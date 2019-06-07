@@ -1,4 +1,5 @@
 @import '../../index.scss';
+@import '../../utils/shockWaveAnimation.scss';
 
 #dashboard-nav {
   position: fixed;
@@ -30,12 +31,6 @@
   .custom-nav-link:hover {
     color: $accentColor !important;
   }
-  .active {
-    .custom-nav-link {
-      color: $accentColor !important;
-      border: 1px solid $accentColor;
-    }
-  }
   .searchBox {
     border: none;
     border-radius: 0px;
@@ -57,6 +52,13 @@
         border-left: 2px solid $accentColor;
         color: $accentColor !important;
       }
+    }
+    .custom-nav-link {
+      border: 1px solid transparent;
+    }
+    .custom-nav-link:focus {
+      color: $accentColor !important;
+      border: 1px solid $accentColor;
     }
   }
   .nav-sponsors {
@@ -96,7 +98,7 @@
         animation: glow 2s forwards 1s linear;
       }
     }
-    .active {
+    .nav-item {
       .custom-nav-link {
         padding-left: 10px;
       }

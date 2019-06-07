@@ -86,7 +86,7 @@ class ArticleCard extends Component {
 
         <div className="article-details">
           <ScrollAnimation animateIn="has-animation animation-ltr animate-in" animateOnce>
-            <div className="article-details-top">
+            <div className="article-details-top animated-child">
               {article.heading1 && (
                 <div className="article-heading">
                   <h1>{article.heading1}</h1>
@@ -104,7 +104,7 @@ class ArticleCard extends Component {
           </ScrollAnimation>
 
           <ScrollAnimation animateIn="has-animation animation-rtl animate-in" animateOnce>
-            <div className="article-details-bottom">
+            <div className="article-details-bottom animated-child">
               {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
             && (
               <div className="event-times">
