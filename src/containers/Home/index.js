@@ -5,6 +5,8 @@ import _ from 'lodash';
 import HomeComponent from '../../components/Home';
 import { pageSections, endpoints } from '../../utils';
 import getAllProducts from '../../actions/productsActions';
+import '../../utils/scrollRevealAnimation';
+
 
 export class Home extends Component {
   componentWillMount() {
