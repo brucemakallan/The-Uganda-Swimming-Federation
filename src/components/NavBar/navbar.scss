@@ -26,7 +26,7 @@
     font-family: $latoFontFamily;
     font-size: 14px;
     color: #dddddd !important;
-    margin: 0 5px;
+    margin: 0 15px;
   }
   .custom-nav-link:hover {
     color: $accentColor !important;
@@ -56,7 +56,7 @@
     .custom-nav-link {
       border: 1px solid transparent;
     }
-    .custom-nav-link:focus {
+    .active {
       color: $accentColor !important;
       border: 1px solid $accentColor;
     }

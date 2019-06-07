@@ -8,6 +8,7 @@ import Homepage from '../Home';
 import Dashboard from '../../components/Dasboard';
 import paths, { pageSections, endpoints } from '../../utils';
 import getAllProducts from '../../actions/productsActions';
+import history from '../../utils/history';
 
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
     return (
       <Router>
         <React.Fragment>
-          <NavBar partners={partners} />
+          <NavBar partners={partners} history={history} />
           <ToastContainer />
           <Switch>
             <Route path={paths.home} exact component={Homepage} />
