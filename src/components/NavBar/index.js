@@ -122,7 +122,7 @@ const NavBar = ({ partners }) => (
           <div className="carousel-inner">
             {partners.images.map((imageUrl, index) => (
               <div key={imageUrl} className={`carousel-item${index === 0 ? ' active' : ''}`}>
-                <img src={imageUrl} className="d-block w-100" alt="carousel-item" />
+                <img src={imageUrl} className="d-block" alt="carousel-item" />
               </div>
             ))}
           </div>

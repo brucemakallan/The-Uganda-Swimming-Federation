@@ -62,6 +62,7 @@ const applicationProcedures = 'Application Procedures';
 const keyAffiliates = 'Key Affiliates';
 const CANAZone3 = 'CANA Zone 3';
 const footer = 'Footer';
+const paraSwimming = 'Para-swimming';
 
 export const pageSections = {
   article,
@@ -91,6 +92,7 @@ export const entityTypes = [ // articles and other dynamic website sections
   keyAffiliates,
   CANAZone3,
   footer,
+  paraSwimming,
 ];
 
 const fileIcons = {

@@ -62,8 +62,7 @@
     }
   }
   .nav-sponsors {
-    width: 170px;
-    max-height: 70px;
+    width: 250px;
     overflow: hidden;
     margin: 10px 0;
     text-align: center;
@@ -72,6 +71,14 @@
     .heading {
       margin-bottom: 5px;
       font-size: 11px;
+    }
+    #nav-carousel {
+      img {
+        height: 65px;
+        background-color: white;
+        margin: 0 auto;
+        border: 3px solid white;
+      }
     }
   }
 }
@@ -102,6 +109,10 @@
       .custom-nav-link {
         padding-left: 10px;
       }
+    }
+    .nav-sponsors {
+      display: none;
+      width: 100vh;
     }
   }
 }
