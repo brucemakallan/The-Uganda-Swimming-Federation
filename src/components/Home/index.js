@@ -12,11 +12,12 @@ import PageLoader from '../../containers/PageLoader';
 import RecentEventCards from '../EventCard';
 import { selectFileIcon, localFiles } from '../../utils';
 
+const ARTICLES_PER_PAGE = 4;
+
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
 });
 
-const ARTICLES_PER_PAGE = 3;
 const concreteSubtleBackground = {
   backgroundImage: `url(${localFiles.concrete})`,
 };
