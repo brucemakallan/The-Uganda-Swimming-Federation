@@ -13,14 +13,18 @@ const startYear = 2014;
 const currentYear = new Date().getFullYear();
 
 class NavBar extends Component {
-  setActive = (pathname, path) => ((pathname === path) ? 'active' : '');
+  setActive = (path) => {
+    const { history: { location: { pathname } } } = this.props;
+    if (pathname === path) return 'active';
+    return '';
+  }
 
   render() {
-    const { partners, history: { location: { pathname } } } = this.props;
+    const { partners } = this.props;
 
     return (
       <nav className="navbar navbar-expand-lg navbar-dark" id="dashboard-nav">
-        <Link className="navbar-brand" to={paths.home}>
+        <a className="navbar-brand" href={paths.home}>
           <img src={localFiles.logo} alt="logo" />
           <span>
             UGANDA
@@ -29,7 +33,7 @@ class NavBar extends Component {
             <br />
             FEDERATION
           </span>
-        </Link>
+        </a>
 
         <button
           className="navbar-toggler"
@@ -46,18 +50,18 @@ class NavBar extends Component {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mr-auto ml-auto">
             <li className="nav-item">
-              <Link
-                to={paths.home}
-                className={`nav-link custom-nav-link btn--shockwave ${this.setActive(pathname, paths.home)}`}
+              <a
+                href={paths.home}
+                className={`nav-link custom-nav-link btn--shockwave ${this.setActive(paths.home)}`}
               >
                 Home
                 <span className="sr-only">(current)</span>
-              </Link>
+              </a>
             </li>
             <li className="nav-item dropdown">
               <Link
                 to="/"
-                className="nav-link custom-nav-link dropdown-toggle"
+                className={`nav-link custom-nav-link dropdown-toggle ${this.setActive(paths.discipline)}`}
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -67,17 +71,21 @@ class NavBar extends Component {
               Disciplines
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Swimming</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Water Polo</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Masters</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Para-swimming</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Open-water Swimming</Link>
+                <a href={`${paths.discipline}#swimming`} className="dropdown-item custom-nav-link">Swimming</a>
+                <a href={`${paths.discipline}#water-polo`} className="dropdown-item custom-nav-link">Water Polo</a>
+                <a href={`${paths.discipline}#masters`} className="dropdown-item custom-nav-link">Masters</a>
+                <a href={`${paths.discipline}#para-swimming`} className="dropdown-item custom-nav-link">
+                  Para-swimming
+                </a>
+                <a href={`${paths.discipline}#open-water`} className="dropdown-item custom-nav-link">
+                  Open-water Swimming
+                </a>
               </div>
             </li>
             <li className="nav-item dropdown">
               <Link
                 to="/"
-                className="nav-link custom-nav-link dropdown-toggle"
+                className={`nav-link custom-nav-link dropdown-toggle ${this.setActive(paths.results)}`}
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
@@ -88,38 +96,48 @@ class NavBar extends Component {
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 {_.range(startYear, currentYear + 1).reverse().map(year => (
-                  <Link key={year} to={`/results/${year}`} className="dropdown-item custom-nav-link">{year}</Link>
+                  <a key={year} href={`/results#${year}`} className="dropdown-item custom-nav-link">{year}</a>
                 ))}
               </div>
             </li>
             <li className="nav-item">
-              <Link to={paths.home} className="nav-link custom-nav-link btn--shockwave">Members</Link>
+              <a
+                href={paths.members}
+                className={`nav-link custom-nav-link btn--shockwave ${this.setActive(paths.members)}`}
+              >
+                Members
+              </a>
             </li>
             <li className="nav-item dropdown">
               <Link
                 to="/"
-                className="nav-link custom-nav-link dropdown-toggle"
+                className={`nav-link custom-nav-link dropdown-toggle ${this.setActive(paths.about)}`}
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-              About
+                About
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to={paths.home} className="dropdown-item custom-nav-link">About USF</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">History of USF</Link>
+                <a href={paths.about} className={`dropdown-item custom-nav-link ${paths.about}`}>About USF</a>
+                <a href={`${paths.about}#history`} className="dropdown-item custom-nav-link">History of USF</a>
                 <div className="dropdown-divider" />
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Executive Committee</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Secretariat</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Committees</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Constitution</Link>
-                <Link to={paths.home} className="dropdown-item custom-nav-link">Regulations</Link>
+                <a href={`${paths.about}#executive`} className="dropdown-item custom-nav-link">Executive Committee</a>
+                <a href={`${paths.about}#secretariat`} className="dropdown-item custom-nav-link">Secretariat</a>
+                <a href={`${paths.about}#committees`} className="dropdown-item custom-nav-link">Committees</a>
+                <a href={`${paths.about}#constitution`} className="dropdown-item custom-nav-link">Constitution</a>
+                <a href={`${paths.about}#regulations`} className="dropdown-item custom-nav-link">Regulations</a>
               </div>
             </li>
             <li className="nav-item">
-              <Link to={paths.home} className="nav-link custom-nav-link btn--shockwave">Contact</Link>
+              <a
+                href={paths.contact}
+                className={`nav-link custom-nav-link btn--shockwave ${this.setActive(paths.contact)}`}
+              >
+                Contact
+              </a>
             </li>
           </ul>
         </div>

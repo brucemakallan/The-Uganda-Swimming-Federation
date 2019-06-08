@@ -9,6 +9,11 @@ import Dashboard from '../../components/Dasboard';
 import paths, { pageSections, endpoints } from '../../utils';
 import getAllProducts from '../../actions/productsActions';
 import history from '../../utils/history';
+import Disciplines from '../Disciplines';
+import About from '../About';
+import Results from '../Results';
+import Contacts from '../Contacts';
+import Members from '../Members';
 
 
 class App extends Component {
@@ -30,6 +35,11 @@ class App extends Component {
           <ToastContainer />
           <Switch>
             <Route path={paths.home} exact component={Homepage} />
+            <Route path={paths.discipline} component={Disciplines} />
+            <Route path={paths.about} component={About} />
+            <Route path={paths.results} component={Results} />
+            <Route path={paths.contact} component={Contacts} />
+            <Route path={paths.members} component={Members} />
             <Route path={paths.dashboard.home} component={Dashboard} />
           </Switch>
         </React.Fragment>

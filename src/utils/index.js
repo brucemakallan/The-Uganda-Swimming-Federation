@@ -16,6 +16,11 @@ const paths = {
     details: '/dashboard/details',
     admin: '/dashboard/admin',
   },
+  discipline: '/discipline',
+  about: '/about',
+  results: '/results',
+  contact: '/contact',
+  members: '/members',
   create: '/create',
   edit: '/edit',
 };
@@ -51,6 +56,7 @@ const carousel = 'Carousel';
 const article = 'Article';
 const results = 'Latest Results';
 const about = 'About';
+const aboutPage = 'About Page';
 const event = 'Event';
 const imageGallery = 'Image Gallery';
 const videoGallery = 'Video Gallery';
@@ -63,6 +69,10 @@ const keyAffiliates = 'Key Affiliates';
 const CANAZone3 = 'CANA Zone 3';
 const footer = 'Footer';
 const paraSwimming = 'Para-swimming';
+const disciplinePage = 'Discipline Page';
+const resultsPage = 'Results Page';
+const contactsPage = 'Contacts Page';
+const membersPage = 'Members Page';
 
 export const pageSections = {
   article,
@@ -74,6 +84,11 @@ export const pageSections = {
   applicationProcedures,
   keyAffiliates,
   CANAZone3,
+  disciplinePage,
+  aboutPage,
+  resultsPage,
+  contactsPage,
+  membersPage,
 };
 
 export const entityTypes = [ // articles and other dynamic website sections
@@ -93,6 +108,11 @@ export const entityTypes = [ // articles and other dynamic website sections
   CANAZone3,
   footer,
   paraSwimming,
+  disciplinePage,
+  aboutPage,
+  resultsPage,
+  contactsPage,
+  membersPage,
 ];
 
 const fileIcons = {
