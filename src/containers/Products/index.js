@@ -67,7 +67,7 @@ Products.propTypes = {
 };
 
 const mapStateToProps = ({ productsReducer }) => ({
-  products: productsReducer.products.reverse(),
+  products: productsReducer.products,
 });
 const mapDispatchToProps = {
   getAllProductsDispatch: getAllProducts,
