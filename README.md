@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/brucemakallan/The-Uganda-Swimming-Federation.svg?branch=develop)](https://travis-ci.org/brucemakallan/The-Uganda-Swimming-Federation)
+
 # The Uganda Swimming Federation - USF
 
 [www.ugandaswimming.org](http://www.ugandaswimming.org)
