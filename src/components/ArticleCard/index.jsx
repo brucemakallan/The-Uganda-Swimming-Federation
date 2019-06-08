@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './articleCard.scss';
-import YouTube from 'react-youtube';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -14,6 +13,7 @@ import {
   epocToDate, LONG_DATE_FORMAT, DATE, DAY, MONTH, YEAR,
   selectFileIcon,
 } from '../../utils';
+import renderYoutubeVideo from '../../utils/renderYoutubePlayer';
 
 library.add(
   faCalendarAlt,
@@ -39,23 +39,6 @@ class ArticleCard extends Component {
     )
   )
 
-  renderYoutubeVideo = (height, width, youtubeId) => {
-    const options = {
-      height: String(height),
-      width: String(width),
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 0,
-      },
-    };
-    return (
-      <YouTube
-        videoId={youtubeId}
-        opts={options}
-        onReady={this._onReady}
-      />
-    );
-  }
-
   render() {
     const { article } = this.props;
 
@@ -73,12 +56,12 @@ class ArticleCard extends Component {
             {article.videos.length === 1
               ? (
                 <div className="article-video-item responsive-flex-child full">
-                  {this.renderYoutubeVideo('450', '100%', article.videos[0].source)}
+                  {renderYoutubeVideo('450', '100%', article.videos[0].source)}
                 </div>
               )
               : article.videos.map(video => (
                 <div key={video.source} className="article-video-item responsive-flex-child half">
-                  {this.renderYoutubeVideo('200', '100%', video.source)}
+                  {renderYoutubeVideo('200', '100%', video.source)}
                 </div>
               ))}
           </div>

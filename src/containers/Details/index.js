@@ -6,11 +6,11 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import date from 'date-and-time';
-import YouTube from 'react-youtube';
 import ReactMarkdown from 'react-markdown';
 import paths, { selectFileIcon } from '../../utils';
 import './products.scss';
 import Carousel from '../../components/Carousel';
+import renderYoutubeVideo from '../../utils/renderYoutubePlayer';
 
 library.add(faArrowLeft, faExclamationTriangle);
 
@@ -19,23 +19,6 @@ class Details extends Component {
     const { history } = this.props;
     history.goBack();
   }
-
-  renderYoutubeVideo = (height, width, youtubeId) => {
-    const options = {
-      height: String(height),
-      width: String(width),
-      playerVars: { // https://developers.google.com/youtube/player_parameters
-        autoplay: 0,
-      },
-    };
-    return (
-      <YouTube
-        videoId={youtubeId}
-        opts={options}
-        onReady={this._onReady}
-      />
-    );
-  };
 
   renderListOfVideos = (label, list) => (
     list && list.length > 0 && (
@@ -48,7 +31,7 @@ class Details extends Component {
                 {Object.keys(obj).map(objKey => (
                   <React.Fragment key={objKey}>
                     <div className="video-attribute">{`${objKey.toUpperCase()}: ${obj[objKey]}`}</div>
-                    {(obj.source === obj[objKey]) && this.renderYoutubeVideo('200', '100%', obj.source)}
+                    {(obj.source === obj[objKey]) && renderYoutubeVideo('200', '100%', obj.source)}
                   </React.Fragment>
                 ))}
               </div>
@@ -187,7 +170,7 @@ class Details extends Component {
                       detail.label, detail.value, detail.isArrayOfObjects, detail.isVideos
                     )
                   )}
-                  {dates.map(date => this.renderDateTime(date.label, date.value))}
+                  {dates.map(dateInput => this.renderDateTime(dateInput.label, dateInput.value))}
                 </div>
               </div>
             </div>
