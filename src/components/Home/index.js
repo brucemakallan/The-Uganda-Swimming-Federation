@@ -10,17 +10,13 @@ import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
 import RecentEventCards from '../EventCard';
-import { selectFileIcon, localFiles } from '../../utils';
+import { selectFileIcon, concreteSubtleBackground } from '../../utils';
 
 const ARTICLES_PER_PAGE = 4;
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
 });
-
-const concreteSubtleBackground = {
-  backgroundImage: `url(${localFiles.concrete})`,
-};
 
 const renderCardWithLinks = list => (
   list && list[0] && list[0].files && list[0].files.length > 0 && list[0].heading1

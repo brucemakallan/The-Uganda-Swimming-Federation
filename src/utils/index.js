@@ -52,6 +52,10 @@ export const localFiles = {
   concrete: './concrete.png'
 };
 
+export const concreteSubtleBackground = {
+  backgroundImage: `url(${localFiles.concrete})`,
+};
+
 const carousel = 'Carousel';
 const article = 'Article';
 const results = 'Latest Results';
@@ -68,7 +72,6 @@ const applicationProcedures = 'Application Procedures';
 const keyAffiliates = 'Key Affiliates';
 const CANAZone3 = 'CANA Zone 3';
 const footer = 'Footer';
-const paraSwimming = 'Para-swimming';
 const disciplinePage = 'Discipline Page';
 const resultsPage = 'Results Page';
 const contactsPage = 'Contacts Page';
@@ -91,6 +94,24 @@ export const pageSections = {
   membersPage,
 };
 
+export const disciplineSections = {
+  swimming: 'Swimming',
+  waterPolo: 'Water Polo',
+  masters: 'Masters',
+  paraSwimming: 'Para-swimming',
+  openWater: 'Open-water Swimming',
+};
+
+export const aboutSections = {
+  about: 'About USF',
+  history: 'History of USF',
+  executive: 'Executive Committee',
+  secretariat: 'Secretariat',
+  committees: 'Committees',
+  constitution: 'Constitution',
+  regulations: 'Regulations',
+};
+
 export const entityTypes = [ // articles and other dynamic website sections
   article,
   event,
@@ -107,7 +128,6 @@ export const entityTypes = [ // articles and other dynamic website sections
   keyAffiliates,
   CANAZone3,
   footer,
-  paraSwimming,
   disciplinePage,
   aboutPage,
   resultsPage,

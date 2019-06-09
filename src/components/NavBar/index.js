@@ -4,7 +4,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import paths, { localFiles } from '../../utils';
+import paths, { localFiles, disciplineSections, aboutSections } from '../../utils';
 import './navbar.scss';
 
 library.add(faSearch);
@@ -71,15 +71,15 @@ class NavBar extends Component {
               Disciplines
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a href={`${paths.discipline}#swimming`} className="dropdown-item custom-nav-link">Swimming</a>
-                <a href={`${paths.discipline}#water-polo`} className="dropdown-item custom-nav-link">Water Polo</a>
-                <a href={`${paths.discipline}#masters`} className="dropdown-item custom-nav-link">Masters</a>
-                <a href={`${paths.discipline}#para-swimming`} className="dropdown-item custom-nav-link">
-                  Para-swimming
-                </a>
-                <a href={`${paths.discipline}#open-water`} className="dropdown-item custom-nav-link">
-                  Open-water Swimming
-                </a>
+                {Object.values(disciplineSections).map(subSection => (
+                  <a
+                    key={subSection}
+                    href={`${paths.discipline}#${_.snakeCase(subSection)}`}
+                    className="dropdown-item custom-nav-link"
+                  >
+                    {subSection}
+                  </a>
+                ))}
               </div>
             </li>
             <li className="nav-item dropdown">
@@ -121,14 +121,15 @@ class NavBar extends Component {
                 About
               </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a href={paths.about} className={`dropdown-item custom-nav-link ${paths.about}`}>About USF</a>
-                <a href={`${paths.about}#history`} className="dropdown-item custom-nav-link">History of USF</a>
-                <div className="dropdown-divider" />
-                <a href={`${paths.about}#executive`} className="dropdown-item custom-nav-link">Executive Committee</a>
-                <a href={`${paths.about}#secretariat`} className="dropdown-item custom-nav-link">Secretariat</a>
-                <a href={`${paths.about}#committees`} className="dropdown-item custom-nav-link">Committees</a>
-                <a href={`${paths.about}#constitution`} className="dropdown-item custom-nav-link">Constitution</a>
-                <a href={`${paths.about}#regulations`} className="dropdown-item custom-nav-link">Regulations</a>
+                {Object.values(aboutSections).map(subSection => (
+                  <a
+                    key={subSection}
+                    href={`${paths.about}#${_.snakeCase(subSection)}`}
+                    className="dropdown-item custom-nav-link"
+                  >
+                    {subSection}
+                  </a>
+                ))}
               </div>
             </li>
             <li className="nav-item">
@@ -142,20 +143,22 @@ class NavBar extends Component {
           </ul>
         </div>
 
-        {partners && partners.images && partners.images.length > 0 && (
-          <div className="nav-sponsors">
-            <div className="heading">Official USF Partners</div>
-            <div id="nav-carousel" className="carousel slide" data-ride="carousel">
-              <div className="carousel-inner">
-                {partners.images.map((imageUrl, index) => (
-                  <div key={imageUrl} className={`carousel-item${index === 0 ? ' active' : ''}`}>
-                    <img src={imageUrl} className="d-block" alt="carousel-item" />
-                  </div>
-                ))}
+        <div className="nav-sponsors">
+          {partners && partners.images && partners.images.length > 0 && (
+            <React.Fragment>
+              <div className="heading">Official USF Partners</div>
+              <div id="nav-carousel" className="carousel slide" data-ride="carousel">
+                <div className="carousel-inner">
+                  {partners.images.map((imageUrl, index) => (
+                    <div key={imageUrl} className={`carousel-item${index === 0 ? ' active' : ''}`}>
+                      <img src={imageUrl} className="d-block" alt="carousel-item" />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
-        )}
+            </React.Fragment>
+          )}
+        </div>
       </nav>
     );
   }

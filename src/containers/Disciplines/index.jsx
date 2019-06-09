@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import getAllProducts from '../../actions/productsActions';
-import { pageSections, endpoints } from '../../utils';
+import {
+  pageSections, endpoints, disciplineSections, concreteSubtleBackground,
+} from '../../utils';
+import ContentCard from '../../components/ContentCard';
 
 
 class Discipline extends Component {
@@ -11,13 +15,30 @@ class Discipline extends Component {
     getAllProductsDispatch(endpoints.productsGetAll);
   }
 
+  renderSubSection = (heading, parent) => {
+    const list = parent.filter(discipline => discipline.tags.map(tag => tag.text).includes(heading));
+    return (
+      (list && list.length > 0)
+        ? (
+          <div key={heading} className="sub-section" id={_.snakeCase(heading)}>
+            {<h1>{heading}</h1>}
+            {list.map(content => <ContentCard key={content._id} content={content} />)}
+          </div>
+        )
+        : ''
+    );
+  }
+
   render() {
     const { products } = this.props;
     const disciplines = products.filter(section => section.category === pageSections.disciplinePage);
-    console.log(disciplines);
 
     return (
-      <div style={{ position: 'absolute', top: '299px' }}>Discipline</div>
+      <div className="disciplines-page mainContent" style={concreteSubtleBackground}>
+        <div className="large-padding">
+          {Object.values(disciplineSections).map(subSection => this.renderSubSection(subSection, disciplines))}
+        </div>
+      </div>
     );
   }
 }
