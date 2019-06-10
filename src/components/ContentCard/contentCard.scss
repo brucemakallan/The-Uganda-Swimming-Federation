@@ -34,5 +34,11 @@
 @media screen and (max-width: 800px) {
   .content-card {
     padding: 20px 0;
+
+    .content-image {
+      .carousel-item {
+        height: auto;
+      }
+    }
   }
 }
