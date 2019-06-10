@@ -1,0 +1,57 @@
+@import '../../utils/colors.scss';
+
+.members-page {
+  padding-top: 50px;
+  font-size: 1.2rem;
+
+  .sub-section-heading {
+    text-align: center;
+    color: $deepGrey;
+    display: block;
+    width: 100%;
+    height: fit-content;
+
+    hr {
+      width: 50px;
+      height: 2px;
+      background-color: $deepGrey;
+    }
+  }
+
+  .category-heading {
+    margin: 10px 0 20px 0;
+  }
+
+  ol {
+    counter-reset: my-awesome-counter;
+    list-style: none;
+    padding-left: 50px;
+  }
+  ol li {
+    margin: 0 0 1rem 0;
+    counter-increment: my-awesome-counter;
+    position: relative;
+  }
+  ol li::before {
+    content: counter(my-awesome-counter);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    position: absolute;
+    --size: 32px;
+    left: calc(-1 * var(--size) - 10px);
+    line-height: var(--size);
+    width: var(--size);
+    height: var(--size);
+    top: 0;
+    background: $primary500;
+    border-radius: 50%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .members-page {
+    padding-top: 0;
+  }
+}
