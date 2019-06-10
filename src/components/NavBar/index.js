@@ -4,8 +4,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import paths, { localFiles, disciplineSections, aboutSections } from '../../utils';
 import './navbar.scss';
+import paths, { localFiles, disciplineSections, aboutSections } from '../../utils';
+
 
 library.add(faSearch);
 

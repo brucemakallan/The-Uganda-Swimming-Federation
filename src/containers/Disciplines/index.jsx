@@ -7,11 +7,12 @@ import {
   pageSections, endpoints, disciplineSections, concreteSubtleBackground,
 } from '../../utils';
 import ContentCard from '../../components/ContentCard';
+import './index.scss';
 
 
 class Discipline extends Component {
-  componentWillMount() {
-    const { getAllProductsDispatch } = this.props;
+  componentDidMount() {
+    const { getAllProductsDispatch, history: { location: { hash } } } = this.props;
     getAllProductsDispatch(endpoints.productsGetAll);
   }
 
@@ -20,10 +21,17 @@ class Discipline extends Component {
     return (
       (list && list.length > 0)
         ? (
-          <div key={heading} className="sub-section" id={_.snakeCase(heading)}>
-            {<h1>{heading}</h1>}
-            {list.map(content => <ContentCard key={content._id} content={content} />)}
-          </div>
+          <React.Fragment key={heading}>
+            <div className="sub-section" id={_.snakeCase(heading)}>
+              {
+                <h1 className="sub-section-heading">
+                  {heading}
+                  <hr />
+                </h1>
+              }
+              {list.map(content => <ContentCard key={content._id} content={content} />)}
+            </div>
+          </React.Fragment>
         )
         : ''
     );
@@ -36,6 +44,7 @@ class Discipline extends Component {
     return (
       <div className="disciplines-page mainContent" style={concreteSubtleBackground}>
         <div className="large-padding">
+          {/* <button type="button" onClick={() => }>ddd</button> */}
           {Object.values(disciplineSections).map(subSection => this.renderSubSection(subSection, disciplines))}
         </div>
       </div>
