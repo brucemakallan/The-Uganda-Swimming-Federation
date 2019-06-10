@@ -4,6 +4,7 @@ import './contentCard.scss';
 import ReactMarkdown from 'react-markdown';
 import ScrollAnimation from 'react-animate-on-scroll';
 import Carousel from '../Carousel';
+import { selectFileIcon } from '../../utils';
 
 
 const ContentCard = ({ content }) => (
@@ -22,15 +23,35 @@ const ContentCard = ({ content }) => (
         </div>
       )}
 
-      <div className="content-body">
-        <ScrollAnimation animateIn="has-animation animation-rtl animate-in" animateOnce>
-          <div className="animated-child">
-            {content.body && content.body.length > 1 && (
+
+      <ScrollAnimation animateIn="has-animation animation-rtl animate-in" animateOnce>
+        <div className="animated-child">
+          {content.body && content.body.length > 1 && (
+            <div className="content-body">
               <ReactMarkdown source={content.body} />
-            )}
-          </div>
-        </ScrollAnimation>
-      </div>
+            </div>
+          )}
+
+          {content.files && content.files.length > 0 && (
+            <div className="content-files">
+              <div className="heading">Attachments / Downloads</div>
+              <div className="content-files-links">
+                {content.files.map(file => (
+                  <div key={file.source}>
+                    <a href={file.source} target="_blank" rel="noopener noreferrer" className="border-animation">
+                      <div className="border-animation__inner">
+                        <span className="mr-2">{selectFileIcon(file.source)}</span>
+                        {file.title.trim()}
+                        {(file.description && file.description.length > 0) && ` - ${file.description}`}
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </ScrollAnimation>
     </div>
   </div>
 );
