@@ -12,7 +12,7 @@ import './index.scss';
 
 class Discipline extends Component {
   componentDidMount() {
-    const { getAllProductsDispatch, history: { location: { hash } } } = this.props;
+    const { getAllProductsDispatch } = this.props;
     getAllProductsDispatch(endpoints.productsGetAll);
   }
 
@@ -44,7 +44,6 @@ class Discipline extends Component {
     return (
       <div className="disciplines-page mainContent" style={concreteSubtleBackground}>
         <div className="large-padding">
-          {/* <button type="button" onClick={() => }>ddd</button> */}
           {Object.values(disciplineSections).map(subSection => this.renderSubSection(subSection, disciplines))}
         </div>
       </div>
