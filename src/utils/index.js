@@ -194,4 +194,9 @@ export const removeUnsupportedProperties = (passedEntity, unsupportedProperties)
   return entity;
 };
 
+export const scrollToTarget = (element, offset = 0) => {
+  const elementTop = element.getBoundingClientRect().top;
+  window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
+};
+
 export default paths;

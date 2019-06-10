@@ -4,25 +4,40 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import getAllProducts from '../../actions/productsActions';
 import {
-  pageSections, endpoints, disciplineSections, concreteSubtleBackground,
+  pageSections,
+  endpoints,
+  disciplineSections,
+  concreteSubtleBackground,
+  scrollToTarget,
 } from '../../utils';
 import ContentCard from '../../components/ContentCard';
 import './index.scss';
 
 
 class Discipline extends Component {
-  componentDidMount() {
-    const { getAllProductsDispatch } = this.props;
-    getAllProductsDispatch(endpoints.productsGetAll);
+  constructor(props) {
+    super(props);
+    this.ref = React.createRef();
   }
 
-  renderSubSection = (heading, parent) => {
+  async componentDidMount() {
+    const { getAllProductsDispatch } = this.props;
+    await getAllProductsDispatch(endpoints.productsGetAll);
+    if (this.ref.current) {
+      const offset = 170;
+      scrollToTarget(this.ref.current, offset);
+    }
+  }
+
+  renderSubSection = (heading, parent, hash) => {
     const list = parent.filter(discipline => discipline.tags.map(tag => tag.text).includes(heading));
+    const id = _.snakeCase(heading);
     return (
       (list && list.length > 0)
         ? (
           <React.Fragment key={heading}>
-            <div className="sub-section" id={_.snakeCase(heading)}>
+            <div className="pre-section" id={id} ref={hash.replace('#', '') === id ? this.ref : null} />
+            <div className="sub-section">
               {
                 <h1 className="sub-section-heading">
                   {heading}
@@ -38,13 +53,13 @@ class Discipline extends Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { products, history: { location: { hash } } } = this.props;
     const disciplines = products.filter(section => section.category === pageSections.disciplinePage);
 
     return (
       <div className="disciplines-page mainContent" style={concreteSubtleBackground}>
         <div className="large-padding">
-          {Object.values(disciplineSections).map(subSection => this.renderSubSection(subSection, disciplines))}
+          {Object.values(disciplineSections).map(subSection => this.renderSubSection(subSection, disciplines, hash))}
         </div>
       </div>
     );
@@ -54,6 +69,7 @@ class Discipline extends Component {
 Discipline.propTypes = {
   getAllProductsDispatch: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  history: PropTypes.shape({}).isRequired,
 };
 
 const mapStateToProps = ({ productsReducer }) => ({
