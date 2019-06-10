@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getAllProducts from '../../actions/productsActions';
-import { pageSections, endpoints } from '../../utils';
+import { pageSections, endpoints, freshCoatOfPaint } from '../../utils';
 
 
 class Contacts extends Component {
@@ -14,11 +14,9 @@ class Contacts extends Component {
   render() {
     const { products } = this.props;
     const contactsList = products.filter(section => section.category === pageSections.contactsPage);
-    console.log(contactsList);
+    // console.log(contactsList);
 
-    return (
-      <div style={{ position: 'absolute', top: '299px' }}>Contacts</div>
-    );
+    return freshCoatOfPaint();
   }
 }
 

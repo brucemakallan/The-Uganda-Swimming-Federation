@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import getAllProducts from '../../actions/productsActions';
-import { pageSections, endpoints } from '../../utils';
+import { pageSections, endpoints, freshCoatOfPaint } from '../../utils';
 
 
 class Results extends Component {
@@ -14,11 +14,9 @@ class Results extends Component {
   render() {
     const { products } = this.props;
     const results = products.filter(section => section.category === pageSections.resultsPage);
-    console.log(results);
+    // console.log(results);
 
-    return (
-      <div style={{ position: 'absolute', top: '299px' }}>Results</div>
-    );
+    return freshCoatOfPaint();
   }
 }
 

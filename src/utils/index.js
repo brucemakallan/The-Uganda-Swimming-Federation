@@ -199,4 +199,11 @@ export const scrollToTarget = (element, offset = 0) => {
   window.scrollTo({ top: elementTop - offset, behavior: 'smooth' });
 };
 
+export const freshCoatOfPaint = () => (
+  <div className="fresh-paint">
+    <span role="img" aria-label="emogi">🤫</span>
+    <h1>We&apos;re still getting a fresh coat of paint on</h1>
+  </div>
+);
+
 export default paths;
