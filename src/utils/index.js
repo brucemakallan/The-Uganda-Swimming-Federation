@@ -73,7 +73,6 @@ const keyAffiliates = 'Key Affiliates';
 const CANAZone3 = 'CANA Zone 3';
 const footer = 'Footer';
 const disciplinePage = 'Discipline Page';
-const resultsPage = 'Results Page';
 const contactsPage = 'Contacts Page';
 const membersPage = 'Members Page';
 
@@ -89,7 +88,6 @@ export const pageSections = {
   CANAZone3,
   disciplinePage,
   aboutPage,
-  resultsPage,
   contactsPage,
   membersPage,
 };
@@ -130,7 +128,6 @@ export const entityTypes = [ // articles and other dynamic website sections
   footer,
   disciplinePage,
   aboutPage,
-  resultsPage,
   contactsPage,
   membersPage,
 ];

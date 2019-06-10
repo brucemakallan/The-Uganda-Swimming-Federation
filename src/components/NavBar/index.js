@@ -10,7 +10,7 @@ import paths, { localFiles, disciplineSections, aboutSections } from '../../util
 
 library.add(faSearch);
 
-const startYear = 2014;
+const startYear = 2017;
 const currentYear = new Date().getFullYear();
 
 class NavBar extends Component {

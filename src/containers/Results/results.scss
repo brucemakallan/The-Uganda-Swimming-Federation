@@ -1,0 +1,25 @@
+@import '../../utils/colors.scss';
+
+.results-page {
+  padding-top: 50px;
+
+  .sub-section-heading {
+    text-align: center;
+    color: $deepGrey;
+    display: block;
+    width: 100%;
+    height: fit-content;
+
+    hr {
+      width: 50px;
+      height: 2px;
+      background-color: $deepGrey;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .results-page {
+    padding-top: 0;
+  }
+}
