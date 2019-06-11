@@ -2,6 +2,7 @@
 @import '../../utils/borderAnimation.scss';
 
 .mainContent {
+  min-height: 100vh;
   padding-top: $navbar-height;
 
   .section-padding {

@@ -1,0 +1,36 @@
+@import '../../index.scss';
+
+.sub-section-heading {
+  margin-top: 50px;
+  text-align: center;
+  color: $deepGrey;
+
+  hr {
+    width: 50px;
+    height: 2px;
+    background-color: $deepGrey;
+  }
+}
+.contacts-page {
+  .contact-details {
+    padding: 25px;
+
+    h6 {
+      font-weight: bold;
+    }
+    li {
+      list-style: none;
+    }
+  }
+  .contact-form {
+    padding: 25px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .contacts-page {
+    .contact-details, .contact-form {
+      padding: 30px 0;
+    }
+  }
+}
