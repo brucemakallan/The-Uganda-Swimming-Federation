@@ -16,6 +16,7 @@ const FeaturedVideos = ({ articles }) => {
         <div key={featuredVideo.source} className="responsive-flex-child third p-2">
           <div className="featured-video-item">
             {renderYoutubeVideo('200', '100%', featuredVideo.source)}
+            <div className="triangle" />
             <div className="video-details">
               {featuredVideo.title
                   && <div className="video-title ellipsis">{featuredVideo.title}</div>}
