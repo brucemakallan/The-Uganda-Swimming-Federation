@@ -36,8 +36,7 @@ class Discipline extends Component {
       (list && list.length > 0)
         ? (
           <React.Fragment key={heading}>
-            <div className="pre-section" id={id} ref={hash.replace('#', '') === id ? this.ref : null} />
-            <div className="sub-section">
+            <div className="sub-section" id={id} ref={hash.replace('#', '') === id ? this.ref : null}>
               {
                 <h1 className="sub-section-heading">
                   {heading}

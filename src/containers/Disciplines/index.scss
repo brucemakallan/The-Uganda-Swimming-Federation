@@ -1,22 +1,6 @@
 @import '../../index.scss';
 @import '../../utils/colors.scss';
 
-.pre-section {
-  padding-top: 50px;
-}
-.sub-section {
-  .sub-section-heading {
-    text-align: center;
-    color: $deepGrey;
-
-    hr {
-      width: 50px;
-      height: 2px;
-      background-color: $deepGrey;
-    }
-  }
-}
-
 @media screen and (max-width: 800px) {
   // .sub-section {
 

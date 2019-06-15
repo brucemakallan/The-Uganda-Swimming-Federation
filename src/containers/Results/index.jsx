@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import getAllProducts from '../../actions/productsActions';
-import { endpoints, YEAR, epocToDate } from '../../utils';
+import {
+  endpoints, YEAR, epocToDate, concreteSubtleBackground,
+} from '../../utils';
 import ArticleCard from '../../components/ArticleCard';
 import '../../components/Home/home.scss';
 import './results.scss';
@@ -51,7 +53,7 @@ class Results extends Component {
 
     return (
       <div className="mainContent">
-        <div className="results-page">
+        <div className="results-page" style={concreteSubtleBackground}>
           <div className="articles large-padding responsive-flex">
             <h1 className="sub-section-heading">
               {`${urlYear} Results`}

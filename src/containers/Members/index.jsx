@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import getAllProducts from '../../actions/productsActions';
-import { pageSections, endpoints } from '../../utils';
+import { pageSections, endpoints, concreteSubtleBackground } from '../../utils';
 import './members.scss';
 
 
@@ -19,7 +19,7 @@ class Members extends Component {
 
     return (
       <div className="mainContent">
-        <div className="members-page">
+        <div className="members-page" style={concreteSubtleBackground}>
           <div className="large-padding responsive-flex">
             <h1 className="sub-section-heading">
               USF Members

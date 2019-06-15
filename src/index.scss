@@ -202,6 +202,20 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 50px;
   }
 }
+.sub-section-heading {
+  text-align: center;
+  color: $deepGrey;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  margin-top: 30px;
+
+  hr {
+    width: 50px;
+    height: 2px;
+    background-color: $deepGrey;
+  }
+}
 
 @mixin triangle {
   -webkit-clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
@@ -285,6 +299,9 @@ h1, h2, h3, h4, h5, h6 {
     .previous, .next, .active {
       display: list-item;
     }
+  }
+  .sub-section-heading {
+    margin-top: 0;
   }
 }
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import getAllProducts from '../../actions/productsActions';
-import { pageSections, endpoints } from '../../utils';
+import { pageSections, endpoints, concreteSubtleBackground } from '../../utils';
 import './contacts.scss';
 
 
@@ -40,7 +40,7 @@ class Contacts extends Component {
       (contactsArticles && contactsArticles.length > 0)
         ? (
           <div className="mainContent">
-            <div className="large-padding">
+            <div className="large-padding" style={concreteSubtleBackground}>
               <h1 className="sub-section-heading">
                 Contacts
                 <hr />

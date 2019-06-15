@@ -1,22 +1,7 @@
 @import '../../utils/colors.scss';
 
 .members-page {
-  padding-top: 50px;
   font-size: 1.2rem;
-
-  .sub-section-heading {
-    text-align: center;
-    color: $deepGrey;
-    display: block;
-    width: 100%;
-    height: fit-content;
-
-    hr {
-      width: 50px;
-      height: 2px;
-      background-color: $deepGrey;
-    }
-  }
 
   .category-heading {
     margin: 10px 0 20px 0;
