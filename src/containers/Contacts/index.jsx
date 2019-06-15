@@ -46,12 +46,13 @@ class Contacts extends Component {
                 <hr />
               </h1>
               <div className="contacts-page responsive-flex inner-padding">
-                <div className="contact-details responsive-flex-child full">
+                <div className="contact-details responsive-flex-child half">
                   <div className="material-card w-100">
                     <ReactMarkdown source={contactsArticles[0].body} />
                   </div>
                 </div>
-                {/* <div className="contact-form responsive-flex-child half">
+
+                <div className="contact-form responsive-flex-child half">
                   <div className="material-card w-100">
                     <form className="contacttForm" id="adminLoginForm" onSubmit={this.onSubmit}>
                       {formFields.map(field => this.renderFormGroup(field.id, field.placeholder))}
@@ -61,7 +62,7 @@ class Contacts extends Component {
                           name="message"
                           id="message"
                           placeholder="Message"
-                          rows="5"
+                          rows="6"
                           onChange={this.onChange}
                           required
                         />
@@ -69,7 +70,7 @@ class Contacts extends Component {
                       <button type="submit" className="btn btn-primary">Send Email</button>
                     </form>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
