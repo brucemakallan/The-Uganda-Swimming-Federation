@@ -29,11 +29,11 @@ class Contacts extends Component {
     await getAllProductsDispatch(endpoints.productsGetAll);
   }
 
-  renderFormGroup = (id, placeholder) => (
+  renderFormGroup = (id, type, placeholder) => (
     <div key={id} className="form-group">
       <input
-        type="text"
-        className="form-control"
+        type={type || 'text'}
+        className="form-control custom-input"
         id={id}
         name={id}
         placeholder={placeholder}
@@ -67,7 +67,7 @@ class Contacts extends Component {
     const contactsArticles = products.filter(article => article.category === pageSections.contactsPage);
     const formFields = [
       { id: 'name', placeholder: 'Full Name' },
-      { id: 'email', placeholder: 'Email' },
+      { id: 'email', type: 'email', placeholder: 'Email' },
       { id: 'subject', placeholder: 'Subject' },
     ];
 
@@ -108,7 +108,7 @@ class Contacts extends Component {
                   <div className="contact-form responsive-flex-child half">
                     <div className="material-card w-100 h-100">
                       <form className="contacttForm" id="adminLoginForm" onSubmit={this.handleSubmit}>
-                        {formFields.map(field => this.renderFormGroup(field.id, field.placeholder))}
+                        {formFields.map(field => this.renderFormGroup(field.id, field.type, field.placeholder))}
                         <div className="form-group">
                           <textarea
                             className="form-control"

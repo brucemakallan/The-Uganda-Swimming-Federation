@@ -221,6 +221,13 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
   clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
 }
+@mixin no-outline {
+  outline: 0;
+  -webkit-appearance:none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
 
 
 .effect-button {
