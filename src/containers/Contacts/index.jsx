@@ -124,6 +124,22 @@ class Contacts extends Component {
                       </form>
                     </div>
                   </div>
+
+                  <div className="google-embedded-map responsive-flex child full">
+                    <div className="material-card w-100">
+                      <iframe
+                        title="Google Map"
+                        width="100%"
+                        height="500"
+                        id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=uganda%20olympic%20committee&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        frameBorder="0"
+                        scrolling="no"
+                        marginHeight="0"
+                        marginWidth="0"
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
