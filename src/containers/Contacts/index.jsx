@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import getAllProducts from '../../actions/productsActions';
 import PageLoader from '../PageLoader';
-import { pageSections, endpoints, concreteSubtleBackground } from '../../utils';
+import {
+  pageSections,
+  endpoints,
+  concreteSubtleBackground,
+  localFiles,
+} from '../../utils';
 import './contacts.scss';
 import sendEmail from '../../actions/emailActions';
 
@@ -77,30 +82,47 @@ class Contacts extends Component {
                 Contacts
                 <hr />
               </h1>
-              <div className="contacts-page responsive-flex inner-padding">
-                <div className="contact-details responsive-flex-child half">
-                  <div className="material-card w-100">
-                    <ReactMarkdown source={contactsArticles[0].body} />
+              <div className="contacts-page">
+                <div className="responsive-flex inner-padding">
+                  <div className="responsive-flex-child full">
+                    <div className="social-icons">
+                      <a href="https://twitter.com/UgandaSwimming" target="_blank" rel="noopener noreferrer">
+                        <img src={localFiles.twitter} alt="Twitter" />
+                      </a>
+                      <a
+                        href="https://www.facebook.com/UgandaSwimmingFederation/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={localFiles.facebook} alt="Facebook" />
+                      </a>
+                    </div>
                   </div>
-                </div>
 
-                <div className="contact-form responsive-flex-child half">
-                  <div className="material-card w-100">
-                    <form className="contacttForm" id="adminLoginForm" onSubmit={this.handleSubmit}>
-                      {formFields.map(field => this.renderFormGroup(field.id, field.placeholder))}
-                      <div className="form-group">
-                        <textarea
-                          className="form-control"
-                          name="message"
-                          id="message"
-                          placeholder="Message"
-                          rows="6"
-                          onChange={this.handleOnChange}
-                          required
-                        />
-                      </div>
-                      <button type="submit" className="btn btn-primary">Send Email</button>
-                    </form>
+                  <div className="contact-details responsive-flex-child half">
+                    <div className="material-card w-100">
+                      <ReactMarkdown source={contactsArticles[0].body} />
+                    </div>
+                  </div>
+
+                  <div className="contact-form responsive-flex-child half">
+                    <div className="material-card w-100 h-100">
+                      <form className="contacttForm" id="adminLoginForm" onSubmit={this.handleSubmit}>
+                        {formFields.map(field => this.renderFormGroup(field.id, field.placeholder))}
+                        <div className="form-group">
+                          <textarea
+                            className="form-control"
+                            name="message"
+                            id="message"
+                            placeholder="Message"
+                            rows="7"
+                            onChange={this.handleOnChange}
+                            required
+                          />
+                        </div>
+                        <button type="submit" className="btn btn-primary">Send Email</button>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>

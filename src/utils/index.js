@@ -50,7 +50,9 @@ export const serverResponses = {
 
 export const localFiles = {
   logo: './usf-logo.jpg',
-  concrete: './concrete.png'
+  concrete: './concrete.png',
+  twitter: './twitter.png',
+  facebook: './facebook.png',
 };
 
 export const concreteSubtleBackground = {

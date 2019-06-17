@@ -1,6 +1,19 @@
 @import '../../index.scss';
 
 .contacts-page {
+  .responsive-flex {
+    align-items: stretch;
+  }
+  .social-icons {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 50px;
+      height: 50px;
+      margin: 10px;
+    }
+  }
   .contact-details {
     padding: 25px;
 
@@ -23,6 +36,7 @@
 @media screen and (max-width: 800px) {
   .contacts-page {
     .contact-details {
+      margin-top: 40px;
       padding: 0;
       text-align: center;
 
