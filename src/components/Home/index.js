@@ -176,7 +176,11 @@ class Home extends Component {
         && (
           <section className="about" style={addBackgroundImage(about[0].images[0])}>
             <div className="inner-padding about-info">
-              <ReactMarkdown source={about[0].body} />
+              <div className="about-info-body-out">
+                <div className="about-info-body-in">
+                  <ReactMarkdown source={about[0].body} />
+                </div>
+              </div>
             </div>
           </section>
         )}
