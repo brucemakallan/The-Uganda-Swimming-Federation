@@ -3,6 +3,7 @@ import './home.scss';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import ReactPaginate from 'react-paginate';
+import ScrollAnimation from 'react-animate-on-scroll';
 import { Timeline } from 'react-twitter-widgets';
 import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
@@ -174,31 +175,37 @@ class Home extends Component {
         && about[0].images && about[0].images.length > 0
         && about[0].body && about[0].body.length > 0
         && (
-          <section className="about" style={addBackgroundImage(about[0].images[0])}>
-            <div className="inner-padding about-info">
-              <div className="about-info-body-out">
-                <div className="about-info-body-in">
-                  <ReactMarkdown source={about[0].body} />
+          <ScrollAnimation animateIn="animateFadeIn" animateOnce>
+            <section className="about" style={addBackgroundImage(about[0].images[0])}>
+              <div className="inner-padding about-info">
+                <div className="about-info-body-out">
+                  <div className="about-info-body-in">
+                    <ReactMarkdown source={about[0].body} />
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </ScrollAnimation>
         )}
 
         {articles && articles.length > 0 && (
           <React.Fragment>
-            <section className="photos section-padding">
-              <div className="inner-padding">
-                <h3>Featured Photos</h3>
-                <FeaturedPhotos articles={articles} />
-              </div>
-            </section>
-            <section className="videos section-padding">
-              <div className="inner-padding">
-                <h3>Featured Videos</h3>
-                <FeaturedVideos articles={articles} />
-              </div>
-            </section>
+            <ScrollAnimation animateIn="animateFadeIn" animateOnce>
+              <section className="photos section-padding">
+                <div className="inner-padding">
+                  <h3>Featured Photos</h3>
+                  <FeaturedPhotos articles={articles} />
+                </div>
+              </section>
+            </ScrollAnimation>
+            <ScrollAnimation animateIn="animateFadeIn" animateOnce>
+              <section className="videos section-padding">
+                <div className="inner-padding">
+                  <h3>Featured Videos</h3>
+                  <FeaturedVideos articles={articles} />
+                </div>
+              </section>
+            </ScrollAnimation>
           </React.Fragment>
         )}
 

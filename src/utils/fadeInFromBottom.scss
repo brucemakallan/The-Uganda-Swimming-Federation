@@ -1,0 +1,11 @@
+@keyframes fadeInFromBottom {
+  0% {
+    transform: rotate(0) translateY(300px);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0) translateY(0px);
+    opacity: 1;
+  }
+}
+// animation: fadeInFromBottom 0.8s forwards 0s linear;
