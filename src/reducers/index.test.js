@@ -1,6 +1,7 @@
 import { initialState as loaderState } from './loaderReducer';
 import { initialState as productsState } from './productsReducer';
 import { initialState as adminState } from './adminReducer';
+import { initialState as emailState } from './emailReducer';
 
 import combinedReducers from '.';
 
@@ -11,6 +12,7 @@ describe('Loader Reducers', () => {
         loaderReducer: loaderState,
         productsReducer: productsState,
         adminReducer: adminState,
+        emailReducer: emailState,
       });
   });
 });

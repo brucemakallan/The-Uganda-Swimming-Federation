@@ -35,6 +35,7 @@ export const endpoints = {
   productsPut: id => `${API_URL}protected/articles/${id}`,
   productsDelete: id => `${API_URL}protected/articles/${id}`,
   adminLogin: `${API_URL}admin`,
+  sendEmail: `${API_URL}email`,
 };
 
 export const messages = {

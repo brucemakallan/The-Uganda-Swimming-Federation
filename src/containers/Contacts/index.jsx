@@ -3,11 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import getAllProducts from '../../actions/productsActions';
+import PageLoader from '../PageLoader';
 import { pageSections, endpoints, concreteSubtleBackground } from '../../utils';
 import './contacts.scss';
+import sendEmail from '../../actions/emailActions';
 
 
 class Contacts extends Component {
+  state = {
+    email: {
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    },
+  }
+
   async componentWillMount() {
     const { getAllProductsDispatch } = this.props;
     await getAllProductsDispatch(endpoints.productsGetAll);
@@ -21,17 +32,36 @@ class Contacts extends Component {
         id={id}
         name={id}
         placeholder={placeholder}
-        onChange={this.onChange}
+        onChange={this.handleOnChange}
         required
       />
     </div>
   )
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { email } = this.state;
+    const { sendEmailDispatch } = this.props;
+    sendEmailDispatch(endpoints.sendEmail, email);
+  }
+
+  handleOnChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    const { email } = this.state;
+    this.setState({
+      email: {
+        ...email,
+        [name]: value,
+      }
+    });
+  }
+
   render() {
     const { products } = this.props;
     const contactsArticles = products.filter(article => article.category === pageSections.contactsPage);
     const formFields = [
-      { id: 'fullName', placeholder: 'Full Name' },
+      { id: 'name', placeholder: 'Full Name' },
       { id: 'email', placeholder: 'Email' },
       { id: 'subject', placeholder: 'Subject' },
     ];
@@ -40,6 +70,8 @@ class Contacts extends Component {
       (contactsArticles && contactsArticles.length > 0)
         ? (
           <div className="mainContent">
+            <PageLoader />
+
             <div className="large-padding" style={concreteSubtleBackground}>
               <h1 className="sub-section-heading">
                 Contacts
@@ -54,7 +86,7 @@ class Contacts extends Component {
 
                 <div className="contact-form responsive-flex-child half">
                   <div className="material-card w-100">
-                    <form className="contacttForm" id="adminLoginForm" onSubmit={this.onSubmit}>
+                    <form className="contacttForm" id="adminLoginForm" onSubmit={this.handleSubmit}>
                       {formFields.map(field => this.renderFormGroup(field.id, field.placeholder))}
                       <div className="form-group">
                         <textarea
@@ -63,7 +95,7 @@ class Contacts extends Component {
                           id="message"
                           placeholder="Message"
                           rows="6"
-                          onChange={this.onChange}
+                          onChange={this.handleOnChange}
                           required
                         />
                       </div>
@@ -82,6 +114,7 @@ class Contacts extends Component {
 Contacts.propTypes = {
   getAllProductsDispatch: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  sendEmailDispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ productsReducer }) => ({
@@ -89,5 +122,6 @@ const mapStateToProps = ({ productsReducer }) => ({
 });
 const mapDispatchToProps = {
   getAllProductsDispatch: getAllProducts,
+  sendEmailDispatch: sendEmail,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
