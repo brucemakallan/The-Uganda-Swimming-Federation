@@ -163,7 +163,7 @@ class Home extends Component {
             ? (
               <div className="left responsive-flex-child inner-padding">
                 <div className="article-search">
-                  <form className="articlesSearchForm">
+                  <form className="articlesSearchForm" onSubmit={e => e.preventDefault()}>
                     <div className="form-group">
                       <input
                         type="search"
