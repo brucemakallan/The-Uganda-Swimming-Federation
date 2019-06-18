@@ -11,7 +11,12 @@ import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
 import RecentEventCards from '../EventCard';
-import { selectFileIcon, concreteSubtleBackground } from '../../utils';
+import {
+  selectFileIcon,
+  concreteSubtleBackground,
+  YEAR,
+  epocToDate,
+} from '../../utils';
 
 const ARTICLES_PER_PAGE = 4;
 
@@ -97,6 +102,7 @@ class Home extends Component {
       applicationProcedures,
       affiliates,
       canaZone3,
+      majorSponsors,
     } = this.props;
     const { pagination: { start, end } } = this.state;
     const paginatedArticles = articles.slice(start, end);
@@ -210,8 +216,17 @@ class Home extends Component {
         )}
 
         <section className="footer dark">
-          <div className="section-padding text-center">
-            Currently Undergoing Upgrades
+          <div className="section-padding copyright">
+            <span>
+              &copy;&nbsp;
+              {epocToDate(new Date().valueOf(), YEAR)}
+              &nbsp;
+              The Uganda Swimming Federation.
+              &nbsp;
+            </span>
+            <span className="dev">
+              <a href="https://iviidev.info" target="_blank" rel="noopener noreferrer">Dev</a>
+            </span>
           </div>
         </section>
       </div>
@@ -228,6 +243,7 @@ Home.propTypes = {
   applicationProcedures: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   affiliates: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   canaZone3: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  majorSponsors: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;

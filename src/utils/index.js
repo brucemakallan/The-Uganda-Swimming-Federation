@@ -93,6 +93,7 @@ export const pageSections = {
   aboutPage,
   contactsPage,
   membersPage,
+  majorSponsors,
 };
 
 export const disciplineSections = {

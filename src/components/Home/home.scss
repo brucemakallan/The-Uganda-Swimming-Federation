@@ -197,6 +197,19 @@
       }
     }
   }
+
+  .footer {
+    .copyright {
+      text-align: center;
+
+      a {
+        color: #aaaaaa;
+      }
+      .dev {
+        float: right;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -256,6 +269,14 @@
           .about-info-body-in {
             padding: 10px;
           }
+        }
+      }
+    }
+
+    .footer {
+      .copyright {
+        .dev {
+          float: none;
         }
       }
     }
