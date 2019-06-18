@@ -8,9 +8,9 @@ import getAllProducts from '../../actions/productsActions';
 
 
 export class Home extends Component {
-  componentWillMount() {
+  async componentWillMount() {
     const { getAllProductsDispatch } = this.props;
-    getAllProductsDispatch(endpoints.productsGetAll);
+    await getAllProductsDispatch(endpoints.productsGetAll);
   }
 
   getPageSectionElements = (allSections, sectionType) => (

@@ -11,10 +11,10 @@ class FeaturedPhotos extends Component {
     return (
       <div className="photo-grid">
         {columns.map((col, index) => (
-          <div key={index} className={col}>
+          <div key={String(index)} className={col}>
             {rows.map((row, i) => (
-              <div key={i} className={row}>
-                <img src={photos.shift()} alt="article" />
+              <div key={String(i)} className={row}>
+                <img src={photos.pop()} alt="article" />
               </div>
             ))}
           </div>
@@ -28,6 +28,7 @@ class FeaturedPhotos extends Component {
     const photos = [];
     articles.map(article => photos.push(...article.images));
     const numFeaturedPhotos = 8;
+    photos.sort(() => 0.5 - Math.random()); // randomise the photos
     const featuredPhotos = photos.length > numFeaturedPhotos ? photos.slice(-numFeaturedPhotos) : photos;
 
     return (
