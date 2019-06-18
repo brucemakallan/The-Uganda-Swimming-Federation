@@ -8,10 +8,10 @@ import {
   pageSections,
   endpoints,
   concreteSubtleBackground,
-  localFiles,
 } from '../../utils';
 import './contacts.scss';
 import sendEmail from '../../actions/emailActions';
+import SocialMediaIcons from '../../components/SocialMediaIcons';
 
 
 class Contacts extends Component {
@@ -85,25 +85,7 @@ class Contacts extends Component {
               <div className="contacts-page">
                 <div className="responsive-flex inner-padding">
                   <div className="responsive-flex-child full">
-                    <div className="social-icons">
-                      <a href="https://twitter.com/UgandaSwimming" target="_blank" rel="noopener noreferrer">
-                        <img src={localFiles.twitter} alt="Twitter" />
-                      </a>
-                      <a
-                        href="https://www.facebook.com/UgandaSwimmingFederation/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={localFiles.facebook} alt="Facebook" />
-                      </a>
-                      <a
-                        href="https://www.instagram.com/ugandaswimming/?hl=en"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src={localFiles.instagram} alt="Instagram" />
-                      </a>
-                    </div>
+                    <SocialMediaIcons />
                   </div>
 
                   <div className="contact-details responsive-flex-child half">

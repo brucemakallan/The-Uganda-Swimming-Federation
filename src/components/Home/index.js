@@ -18,6 +18,7 @@ import {
   epocToDate,
 } from '../../utils';
 import MajorSponsors from '../MajorSponsors';
+import SocialMediaIcons from '../SocialMediaIcons';
 
 const ARTICLES_PER_PAGE = 4;
 
@@ -223,6 +224,10 @@ class Home extends Component {
             </div>
           </section>
         )}
+
+        <section className="mb-4">
+          <SocialMediaIcons />
+        </section>
 
         <section className="footer dark">
           <div className="section-padding copyright">
