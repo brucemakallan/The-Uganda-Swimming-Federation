@@ -1,0 +1,32 @@
+@import '../../utils/colors.scss';
+@import '../../index.scss';
+
+.major-spnsors {
+  h3 {
+    display: none;
+  }
+  .responsive-flex {
+    justify-content: center;
+  }
+  img {
+    @include shaddow;
+    height: 100px;
+    padding: 5px;
+    margin: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .major-spnsors {
+    h3 {
+      display: block;
+    }
+    img {
+      height: auto;
+      margin: 0;
+    }
+    img:not(:first-child) {
+      margin-top: 30px;
+    }
+  }
+}

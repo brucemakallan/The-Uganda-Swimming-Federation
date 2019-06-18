@@ -17,6 +17,7 @@ import {
   YEAR,
   epocToDate,
 } from '../../utils';
+import MajorSponsors from '../MajorSponsors';
 
 const ARTICLES_PER_PAGE = 4;
 
@@ -213,6 +214,14 @@ class Home extends Component {
               </section>
             </ScrollAnimation>
           </React.Fragment>
+        )}
+
+        {majorSponsors && majorSponsors.length > 0 && (
+          <section className="major-sponsors-section section-padding">
+            <div className="inner-padding">
+              <MajorSponsors majorSponsors={majorSponsors[0]} />
+            </div>
+          </section>
         )}
 
         <section className="footer dark">
