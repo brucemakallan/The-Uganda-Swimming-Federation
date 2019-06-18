@@ -234,6 +234,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  background-color: $primaryDark;
+  border-radius: 50%;
+  padding: 24px;
+  background-size: 60%;
+}
+
 @mixin triangle {
   -webkit-clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
   clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
