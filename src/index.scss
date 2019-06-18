@@ -217,6 +217,21 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.scroll-top {
+  position: absolute;
+  right: 0;
+  opacity: 0.7;
+  color: white;
+  background-color: $primary;
+  padding: 2px 15px;
+  font-size: 30px;
+  margin-top: -49px;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 @mixin triangle {
   -webkit-clip-path: polygon(50% 65%, 0% 100%, 100% 100%);
   clip-path: polygon(50% 65%, 0% 100%, 100% 100%);

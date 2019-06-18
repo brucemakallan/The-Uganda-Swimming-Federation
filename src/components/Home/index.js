@@ -5,6 +5,10 @@ import ReactMarkdown from 'react-markdown';
 import ReactPaginate from 'react-paginate';
 import ScrollAnimation from 'react-animate-on-scroll';
 import { Timeline } from 'react-twitter-widgets';
+import { animateScroll } from 'react-scroll';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import Carousel from '../Carousel';
 import ArticleCard from '../ArticleCard';
 import FeaturedVideos from '../FeaturedVideos';
@@ -21,6 +25,8 @@ import MajorSponsors from '../MajorSponsors';
 import SocialMediaIcons from '../SocialMediaIcons';
 
 const ARTICLES_PER_PAGE = 4;
+
+library.add(faArrowUp);
 
 const addBackgroundImage = url => ({
   backgroundImage: `url(${url})`,
@@ -228,6 +234,15 @@ class Home extends Component {
         <section className="mb-4">
           <SocialMediaIcons />
         </section>
+
+        <button
+          type="button"
+          className="iconButton scroll-top"
+          title="Scroll to Top"
+          onClick={() => animateScroll.scrollToTop()}
+        >
+          <FontAwesomeIcon icon="arrow-up" />
+        </button>
 
         <section className="footer dark">
           <div className="section-padding copyright">
