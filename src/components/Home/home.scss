@@ -165,7 +165,33 @@
         }
       }
     }
+
+    .article-search {
+      .articlesSearchForm {
+        padding: 0;
+
+        .search-control {
+          @include no-outline;
+          border: none;
+          border: 1px solid $primary;
+          border-radius: 0;
+          outline: 0px !important;
+          background: transparent;
+
+          &:focus {
+            background-color: white;
+          }
+        }
+      }
+      .results-summary {
+        padding: 5px;
+        background-color: $accentColor;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+    }
   }
+
   .about {
     display: flex;
     align-items: stretch;

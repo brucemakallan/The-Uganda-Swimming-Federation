@@ -208,4 +208,6 @@ export const freshCoatOfPaint = () => (
   </div>
 );
 
+export const parentContains = (parent, child) => parent && child && parent.toLowerCase().includes(child.toLowerCase());
+
 export default paths;

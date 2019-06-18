@@ -20,6 +20,7 @@ import {
   concreteSubtleBackground,
   YEAR,
   epocToDate,
+  parentContains,
 } from '../../utils';
 import MajorSponsors from '../MajorSponsors';
 import SocialMediaIcons from '../SocialMediaIcons';
@@ -87,6 +88,8 @@ class Home extends Component {
       start: 0,
       end: ARTICLES_PER_PAGE,
     },
+    searchQuery: '',
+    searchResults: [],
   }
 
   onPageChange = ({ selected }) => {
@@ -98,6 +101,33 @@ class Home extends Component {
         end,
       },
     });
+  }
+
+  handleOnChange = (e) => {
+    e.preventDefault();
+    const { value } = e.target;
+    this.setState({
+      searchQuery: value,
+    }, () => {
+      const { searchQuery } = this.state;
+      if (searchQuery.length > 2) {
+        this.handleSearch(searchQuery);
+      } else {
+        this.setState({
+          searchResults: [],
+        });
+      }
+    });
+  }
+
+  handleSearch = (query) => {
+    const { articles } = this.props;
+    const matchingArticles = articles.filter(
+      article => parentContains(article.heading1, query)
+        || parentContains(article.heading2, query)
+        || parentContains(article.body, query)
+    );
+    this.setState({ searchResults: matchingArticles });
   }
 
   render() {
@@ -112,8 +142,13 @@ class Home extends Component {
       canaZone3,
       majorSponsors,
     } = this.props;
-    const { pagination: { start, end } } = this.state;
-    const paginatedArticles = articles.slice(start, end);
+    const { pagination: { start, end }, searchResults, searchQuery } = this.state;
+    const paginatedArticles = (searchResults && searchResults.length > 0)
+      ? searchResults.slice(start, end)
+      : articles.slice(start, end);
+    const articlesToPaginate = (searchResults && searchResults.length > 0)
+      ? searchResults
+      : articles;
 
     return (
       <div className="mainContent">
@@ -127,13 +162,36 @@ class Home extends Component {
           {(paginatedArticles && paginatedArticles.length > 0)
             ? (
               <div className="left responsive-flex-child inner-padding">
+                <div className="article-search">
+                  <form className="articlesSearchForm">
+                    <div className="form-group">
+                      <input
+                        type="search"
+                        className="form-control search-control"
+                        id="search"
+                        name="search"
+                        placeholder="Search Articles"
+                        onChange={this.handleOnChange}
+                      />
+                    </div>
+                  </form>
+                  {(searchQuery.length > 2) && (
+                    <div className="results-summary">
+                      {
+                        searchResults.length === 1
+                          ? `${searchResults.length} Result for "${searchQuery}"`
+                          : `${searchResults.length} Results for "${searchQuery}"`
+                      }
+                    </div>
+                  )}
+                </div>
                 {paginatedArticles.map(article => <ArticleCard key={article._id} article={article} />)}
                 <ReactPaginate
                   previousLabel="PREVIOUS"
                   nextLabel="NEXT"
                   breakLabel="..."
                   breakClassName="break-me"
-                  pageCount={Math.ceil(articles.length / ARTICLES_PER_PAGE)}
+                  pageCount={Math.ceil(articlesToPaginate.length / ARTICLES_PER_PAGE)}
                   marginPagesDisplayed={2}
                   pageRangeDisplayed={5}
                   onPageChange={this.onPageChange}
