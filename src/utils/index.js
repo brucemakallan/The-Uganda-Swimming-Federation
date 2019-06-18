@@ -53,6 +53,7 @@ export const localFiles = {
   concrete: './concrete.png',
   twitter: './twitter.png',
   facebook: './facebook.png',
+  instagram: './instagram.png',
 };
 
 export const concreteSubtleBackground = {

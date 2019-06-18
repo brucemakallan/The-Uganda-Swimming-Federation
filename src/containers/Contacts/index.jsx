@@ -96,6 +96,13 @@ class Contacts extends Component {
                       >
                         <img src={localFiles.facebook} alt="Facebook" />
                       </a>
+                      <a
+                        href="https://www.instagram.com/ugandaswimming/?hl=en"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img src={localFiles.instagram} alt="Instagram" />
+                      </a>
                     </div>
                   </div>
 
