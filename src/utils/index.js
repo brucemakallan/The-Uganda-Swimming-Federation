@@ -23,6 +23,7 @@ const paths = {
   members: '/members',
   create: '/create',
   edit: '/edit',
+  swimmingCoaches: '/swimming-coaches',
 };
 
 // const API_URL = 'http://localhost:3001/api/';
@@ -79,6 +80,7 @@ const footer = 'Footer';
 const disciplinePage = 'Discipline Page';
 const contactsPage = 'Contacts Page';
 const membersPage = 'Members Page';
+const swimmingCoachesPage = 'Swimming Coaches Page';
 
 export const pageSections = {
   article,
@@ -95,6 +97,7 @@ export const pageSections = {
   contactsPage,
   membersPage,
   majorSponsors,
+  swimmingCoachesPage,
 };
 
 export const disciplineSections = {
@@ -135,6 +138,7 @@ export const entityTypes = [ // articles and other dynamic website sections
   aboutPage,
   contactsPage,
   membersPage,
+  swimmingCoachesPage,
 ];
 
 const fileIcons = {

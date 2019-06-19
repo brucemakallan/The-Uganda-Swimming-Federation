@@ -15,7 +15,7 @@ import FeaturedVideos from '../FeaturedVideos';
 import FeaturedPhotos from '../FeaturedPhotos';
 import PageLoader from '../../containers/PageLoader';
 import RecentEventCards from '../EventCard';
-import {
+import paths, {
   selectFileIcon,
   concreteSubtleBackground,
   YEAR,
@@ -28,7 +28,7 @@ import SocialMediaIcons from '../SocialMediaIcons';
 const ARTICLES_PER_PAGE = 4;
 
 const portalLinks = [
-  { link: '/swimming-coaches', value: 'Swimming Coaches' },
+  { link: paths.swimmingCoaches, value: 'Swimming Coaches' },
 ];
 
 library.add(faArrowUp);
