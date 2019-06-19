@@ -110,6 +110,20 @@
           height: 100%;
         }
       }
+
+      .custom-list {
+        padding-left: 40px;
+
+        li {
+          list-style-type: circle;
+          color: $primary;
+          font-size: 18px;
+
+          a {
+            font-size: 15px;
+          }
+        }
+      }
     }
 
     .event-times {

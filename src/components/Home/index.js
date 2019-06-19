@@ -27,6 +27,10 @@ import SocialMediaIcons from '../SocialMediaIcons';
 
 const ARTICLES_PER_PAGE = 4;
 
+const portalLinks = [
+  { link: '/swimming-coaches', value: 'Swimming Coaches' },
+];
+
 library.add(faArrowUp);
 
 const addBackgroundImage = url => ({
@@ -209,6 +213,18 @@ class Home extends Component {
 
           {events && events.length > 1 && (
             <div className="right responsive-flex-child inner-padding">
+              <div className="material-card">
+                <h6>PORTALS</h6>
+                <ul className="custom-list">
+                  {portalLinks.map(portalLink => (
+                    <li key={portalLink.link}>
+                      <a href={portalLink.link} className="border-animation">
+                        <div className="border-animation__inner">{portalLink.value}</div>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className="material-card">
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
                 <RecentEventCards events={events} />
