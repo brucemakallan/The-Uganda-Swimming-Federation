@@ -15,6 +15,7 @@ import Results from '../Results';
 import Contacts from '../Contacts';
 import Members from '../Members';
 import SwimmingCoaches from '../SwimmingCoaches';
+import NotFoundPage from '../../components/NotFoundPage';
 
 
 class App extends Component {
@@ -43,6 +44,7 @@ class App extends Component {
             <Route path={paths.members} component={Members} />
             <Route path={paths.swimmingCoaches} component={SwimmingCoaches} />
             <Route path={paths.dashboard.home} component={Dashboard} />
+            <Route component={NotFoundPage} />
           </Switch>
         </React.Fragment>
       </Router>
