@@ -10,12 +10,13 @@
   .article-image {
     .carousel-item {
       height: auto;
-      max-height: 600px;
-      overflow: hidden;
+      height: 600px;
     }
 
     img {
       width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 
