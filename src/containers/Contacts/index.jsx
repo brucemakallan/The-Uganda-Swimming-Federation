@@ -121,7 +121,7 @@ class Contacts extends Component {
                         width="100%"
                         height="500"
                         id="gmap_canvas"
-                        src="https://maps.google.com/maps?q=uganda%20olympic%20committee&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.748503932836!2d32.585754714827644!3d0.33895376408327565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbba60c51b6a7%3A0x2b5bb801a44dcf22!2s17%20Cooper%20Rd%2C%20Kampala!5e0!3m2!1sen!2sug!4v1568373519333!5m2!1sen!2sug"
                         frameBorder="0"
                         scrolling="no"
                         marginHeight="0"
