@@ -81,6 +81,7 @@ const disciplinePage = 'Discipline Page';
 const contactsPage = 'Contacts Page';
 const membersPage = 'Members Page';
 const swimmingCoachesPage = 'Swimming Coaches Page';
+const moreLinksSection = 'More Links';
 
 export const pageSections = {
   article,
@@ -98,6 +99,7 @@ export const pageSections = {
   membersPage,
   majorSponsors,
   swimmingCoachesPage,
+  moreLinksSection,
 };
 
 export const disciplineSections = {
@@ -139,6 +141,7 @@ export const entityTypes = [ // articles and other dynamic website sections
   contactsPage,
   membersPage,
   swimmingCoachesPage,
+  moreLinksSection,
 ];
 
 const fileIcons = {

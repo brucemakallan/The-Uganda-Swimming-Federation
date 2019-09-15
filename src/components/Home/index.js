@@ -145,6 +145,7 @@ class Home extends Component {
       affiliates,
       canaZone3,
       majorSponsors,
+      moreLinks,
     } = this.props;
     const { pagination: { start, end }, searchResults, searchQuery } = this.state;
     const paginatedArticles = (searchResults && searchResults.length > 0)
@@ -214,12 +215,19 @@ class Home extends Component {
           {events && events.length > 1 && (
             <div className="right responsive-flex-child inner-padding">
               <div className="material-card">
-                <h6>PORTALS</h6>
+                <h6>MORE</h6>
                 <ul className="custom-list">
                   {portalLinks.map(portalLink => (
                     <li key={portalLink.link}>
                       <a href={portalLink.link} className="border-animation">
                         <div className="border-animation__inner">{portalLink.value}</div>
+                      </a>
+                    </li>
+                  ))}
+                  {moreLinks && moreLinks.length > 0 && moreLinks.map((link, index) => (
+                    <li key={String(index)}>
+                      <a href={link.files[0].source} target="_blank" rel="noopener noreferrer" className="border-animation">
+                        <div className="border-animation__inner">{link.files[0].title}</div>
                       </a>
                     </li>
                   ))}
@@ -347,6 +355,7 @@ Home.propTypes = {
   affiliates: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   canaZone3: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   majorSponsors: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  moreLinks: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Home;
