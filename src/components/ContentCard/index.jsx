@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import ScrollAnimation from 'react-animate-on-scroll';
 import Carousel from '../Carousel';
 import { selectFileIcon } from '../../utils';
-
+import renderYoutubeVideo from '../../utils/renderYoutubePlayer';
 
 const ContentCard = ({ content }) => (
   <div className="content-card">
@@ -16,6 +16,22 @@ const ContentCard = ({ content }) => (
         {content.images && content.images.length > 1
         && <Carousel id={content._id} imageUrls={content.images} />}
       </div>
+
+      {content.videos && content.videos.length > 0 && (
+        <div className="article-videos responsive-flex">
+          {content.videos.length === 1
+            ? (
+              <div className="article-video-item responsive-flex-child full">
+                {renderYoutubeVideo('450', '100%', content.videos[0].source)}
+              </div>
+            )
+            : content.videos.map(video => (
+              <div key={video.source} className="article-video-item responsive-flex-child half">
+                {renderYoutubeVideo('200', '100%', video.source)}
+              </div>
+            ))}
+        </div>
+      )}
 
       {content.heading1 && (
         <div className="content-heading">
