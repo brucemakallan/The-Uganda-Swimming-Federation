@@ -1,0 +1,19 @@
+@import '../../index.scss';
+
+.antidoping {
+  min-height: 100vh;
+  padding-top: calc(#{$navbar-height} + 30px);
+
+  img {
+    width: 100%;        
+  }
+  .antidoping-content {
+    padding: 30px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  // .antidoping {
+
+  // }
+}

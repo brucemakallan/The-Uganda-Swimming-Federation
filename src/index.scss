@@ -141,6 +141,13 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.normal-page {
+  background-color: white;
+  margin: 30px auto;
+  max-width: 1000px;
+  -webkit-box-shadow: 5px 5px 15px -6px #000000; 
+  box-shadow: 5px 5px 15px -6px #000000;
+}
 .pagination {
   display: flex;
   justify-content: space-between;
