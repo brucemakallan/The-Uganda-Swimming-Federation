@@ -212,59 +212,63 @@ class Home extends Component {
               </span>
             )}
 
-          {events && events.length > 1 && (
-            <div className="right responsive-flex-child inner-padding">
-              <div className="material-card">
-                <h6>MORE</h6>
-                <ul className="custom-list">
-                  {portalLinks.map(portalLink => (
-                    <li key={portalLink.link}>
-                      <a href={portalLink.link} className="border-animation">
-                        <div className="border-animation__inner">{portalLink.value}</div>
-                      </a>
-                    </li>
-                  ))}
-                  {moreLinks && moreLinks.length > 0 && moreLinks.map((link, index) => (
-                    <li key={String(index)}>
-                      <a href={link.files[0].source} target="_blank" rel="noopener noreferrer" className="border-animation">
-                        <div className="border-animation__inner">{link.files[0].title}</div>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+          <div className="right responsive-flex-child inner-padding">
+            <div className="material-card">
+              <h6>MORE</h6>
+              <ul className="custom-list">
+                {portalLinks.map(portalLink => (
+                  <li key={portalLink.link}>
+                    <a href={portalLink.link} className="border-animation">
+                      <div className="border-animation__inner">{portalLink.value}</div>
+                    </a>
+                  </li>
+                ))}
+                {moreLinks && moreLinks.length > 0 && moreLinks.map((link, index) => (
+                  <li key={String(index)}>
+                    <a href={link.files[0].source} target="_blank" rel="noopener noreferrer" className="border-animation">
+                      <div className="border-animation__inner">{link.files[0].title}</div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {events && events.length > 1 && (
               <div className="material-card">
                 <h6>RECENT &amp; UPCOMING EVENTS</h6>
                 <RecentEventCards events={events} />
               </div>
-              {renderCardWithLinks(calendars)}
-              {renderCardWithLinks(applicationProcedures)}
-              {renderCardWithImages(affiliates)}
-              {canaZone3 && canaZone3[0] && (
-                <div className="material-card">
-                  <h6>{canaZone3[0].heading1}</h6>
-                  <img src={canaZone3[0].images[0]} alt="CANA logo" className="cana-zone-img" />
-                  <div className="cana-zone-body">{canaZone3[0].body}</div>
-                  <div className="cana-zone-link">
-                    <a href={canaZone3[0].heading2} target="_blank" rel="noopener noreferrer">Visit Website</a>
-                  </div>
+            )}
+
+            {renderCardWithLinks(calendars)}
+            {renderCardWithLinks(applicationProcedures)}
+            {renderCardWithImages(affiliates)}
+            {canaZone3 && canaZone3[0] && (
+              <div className="material-card">
+                <h6>{canaZone3[0].heading1}</h6>
+                <img src={canaZone3[0].images[0]} alt="CANA logo" className="cana-zone-img" />
+                <div className="cana-zone-body">{canaZone3[0].body}</div>
+                <div className="cana-zone-link">
+                  <a href={canaZone3[0].heading2} target="_blank" rel="noopener noreferrer">Visit Website</a>
                 </div>
-              )}
-              <div className="twitter-widget">
-                <Timeline
-                  dataSource={{
-                    sourceType: 'profile',
-                    screenName: 'UgandaSwimming'
-                  }}
-                  options={{
-                    username: 'UgandaSwimming',
-                    height: '100%'
-                  }}
-                  onLoad={() => {}}
-                />
               </div>
+            )}
+            <div className="twitter-widget">
+              <Timeline
+                dataSource={{
+                  sourceType: 'profile',
+                  screenName: 'UgandaSwimming'
+                }}
+                options={{
+                  username: 'UgandaSwimming',
+                  height: '100%'
+                }}
+                onLoad={() => {}}
+              />
             </div>
-          )}
+          </div>
+
         </section>
 
         {about && about.length > 0
