@@ -16,9 +16,11 @@ import Contacts from '../Contacts';
 import Members from '../Members';
 import SwimmingCoaches from '../SwimmingCoaches';
 import Antidoping from '../Antidoping';
+import Documents from '../Documents';
 import NotFoundPage from '../../components/NotFoundPage';
 
 
+// TODO: Upgrade entire project to use hooks and no redux
 class App extends Component {
   componentWillMount() {
     const { getAllProductsDispatch } = this.props;
@@ -45,6 +47,7 @@ class App extends Component {
             <Route path={paths.members} component={Members} />
             <Route path={paths.swimmingCoaches} component={SwimmingCoaches} />
             <Route path={paths.antidoping} component={Antidoping} />
+            <Route path={paths.documents} component={Documents} />
             <Route path={paths.dashboard.home} component={Dashboard} />
             <Route component={NotFoundPage} />
           </Switch>

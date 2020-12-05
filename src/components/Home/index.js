@@ -30,6 +30,7 @@ const ARTICLES_PER_PAGE = 4;
 const portalLinks = [
   { link: paths.antidoping, value: 'Anti-doping' },
   { link: paths.swimmingCoaches, value: 'Swimming Coaches' },
+  { link: paths.documents, value: 'Documents & Downloads' },
 ];
 
 library.add(faArrowUp);
