@@ -141,6 +141,14 @@ class NavBar extends Component {
                 Contact
               </a>
             </li>
+            <li className="nav-item">
+              <a
+                href={paths.covid}
+                className={`nav-link custom-nav-link btn--shockwave ${this.setActive(paths.covid)}`}
+              >
+                COVID
+              </a>
+            </li>
           </ul>
         </div>
 

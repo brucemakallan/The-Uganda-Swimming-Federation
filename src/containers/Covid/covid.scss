@@ -1,0 +1,24 @@
+.root {
+  min-height: 100vh;
+
+  .article-card {
+    .article-image {
+      .carousel-item {
+        height: 600px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 800px) {
+  // .root {
+
+  // }
+}
