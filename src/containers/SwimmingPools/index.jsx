@@ -24,7 +24,7 @@ class SwimmingPools extends Component {
             <hr />
           </h1>
           <div className="inner-padding">
-            {articles.map(article => (
+            {articles.reverse().map(article => (
               <div className="card-container" key={article._id}>
                 <ArticleCard article={article} />
               </div>

@@ -230,7 +230,7 @@ class ProductForm extends Component {
           className="btn btn-sm m-2 btn-outline-primary"
           onClick={() => addCloudinaryImage(value)}
         >
-        Upload Image
+          Upload Image
         </button>
       )}
     </React.Fragment>
