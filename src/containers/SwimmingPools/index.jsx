@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { concreteSubtleBackground, endpoints, pageSections } from '../../utils';
+
+import { endpoints, pageSections } from '../../utils';
 import './styles.scss';
 import getAllProducts from '../../actions/productsActions';
-import ArticleCard from '../../components/ArticleCard';
+import SearcheablePools from './SearcheablePools';
 
 class SwimmingPools extends Component {
   async componentWillMount() {
@@ -14,26 +15,9 @@ class SwimmingPools extends Component {
 
   render() {
     const { products } = this.props;
-    const articles = products.filter(article => article.category === pageSections.swimmingPools);
+    const allSwimmingPools = products.filter(article => article.category === pageSections.swimmingPools);
 
-    return (
-      <div className="mainContent">
-        <div className="root large-padding" style={concreteSubtleBackground}>
-          <h1 className="sub-section-heading">
-            Swimming Pools
-            <hr />
-          </h1>
-          <div className="inner-padding">
-            {articles.reverse().map(article => (
-              <div className="card-container" key={article._id}>
-                <ArticleCard article={article} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-    );
+    return <SearcheablePools allSwimmingPools={allSwimmingPools} />;
   }
 }
 

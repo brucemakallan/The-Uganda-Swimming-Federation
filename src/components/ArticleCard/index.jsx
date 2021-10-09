@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import './articleCard.scss';
@@ -40,7 +41,7 @@ class ArticleCard extends Component {
   )
 
   render() {
-    const { article } = this.props;
+    const { article, preventAnimation } = this.props;
 
     return (
       <div className="article-card material-card">
@@ -68,7 +69,11 @@ class ArticleCard extends Component {
         )}
 
         <div className="article-details">
-          <ScrollAnimation animateIn="has-animation animation-ltr animate-in" animateOnce>
+          <ScrollAnimation
+            animateIn={preventAnimation ? '' : 'has-animation animation-ltr animate-in'}
+            initiallyVisible={preventAnimation}
+            animateOnce
+          >
             <div className="article-details-top animated-child">
               {article.heading1 && (
                 <div className="article-heading">
@@ -86,7 +91,11 @@ class ArticleCard extends Component {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation animateIn="has-animation animation-rtl animate-in" animateOnce>
+          <ScrollAnimation
+            animateIn={preventAnimation ? '' : 'has-animation animation-rtl animate-in'}
+            initiallyVisible={preventAnimation}
+            animateOnce
+          >
             <div className="article-details-bottom animated-child">
               {((article.dateIn && article.dateIn.length > 0) || (article.dateOut && article.dateOut.length > 0))
             && (
