@@ -27,6 +27,7 @@ const paths = {
   antidoping: '/antidoping',
   documents: '/documents',
   covid: '/covid',
+  swimmingPools: '/swimming-pools',
 };
 
 // const API_URL = 'http://localhost:3001/api/';
@@ -88,6 +89,7 @@ const moreLinksSection = 'More Links';
 const antidoping = 'Anti-doping';
 const documents = 'Documents';
 const covid = 'COVID';
+const swimmingPools = 'Swimming Pools';
 
 export const pageSections = {
   article,
@@ -109,6 +111,7 @@ export const pageSections = {
   antidoping,
   documents,
   covid,
+  swimmingPools,
 };
 
 export const disciplineSections = {
@@ -154,6 +157,7 @@ export const entityTypes = [ // articles and other dynamic website sections
   antidoping,
   documents,
   covid,
+  swimmingPools,
 ];
 
 const fileIcons = {
