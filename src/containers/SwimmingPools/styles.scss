@@ -5,11 +5,12 @@
     display: flex;
     width: 100%;
     flex-flow: row wrap;
+    padding: 40px 0;
   }
 
   .card-container {
-    max-width: 250px;
-    margin: 0 20px 20px 0;
+    max-width: 231px;
+    margin: 0 20px 0 0;
   }
 
   .article-card {
