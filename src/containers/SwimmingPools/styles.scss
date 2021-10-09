@@ -1,7 +1,32 @@
 .root {
   min-height: 100vh;
 
+  .card-container {
+    max-width: 250px;
+  }
+
   .article-card {
+    .article-heading h1 {
+      font-family: "Montserrat", sans-serif !important;
+      font-size: 17px;
+    }
+    .article-details {
+      padding: 10px 15px;
+
+      .article-location {
+        font-size: 14px;
+      }
+      .article-body {
+        padding-top: 10px;
+
+        p {
+          margin: 0;
+        }
+      }
+      .article-date {
+        display: none;
+      }
+    }
     .article-image {
       .carousel-item {
         height: 600px;
@@ -14,7 +39,6 @@
       }
     }
   }
-
 }
 
 @media screen and (max-width: 800px) {
