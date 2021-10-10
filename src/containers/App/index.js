@@ -20,6 +20,7 @@ import Antidoping from '../Antidoping';
 import Documents from '../Documents';
 import NotFoundPage from '../../components/NotFoundPage';
 import SwimmingPools from '../SwimmingPools';
+import AuditedAccounts from '../AuditedAccounts';
 
 
 // TODO: Upgrade entire project to use hooks and no redux
@@ -50,6 +51,9 @@ class App extends Component {
             <Route path={paths.members} component={Members} />
             <Route path={paths.swimmingCoaches} component={SwimmingCoaches} />
             <Route path={paths.swimmingPools} component={SwimmingPools} />
+            <Route path={paths.auditedAccounts} component={AuditedAccounts} />
+            {/* <Route path={paths.annualReports} component={AnnualReports} /> */}
+            {/* <Route path={paths.swimForAllSwimForLife} component={SwimForAllSwimForLife} /> */}
             <Route path={paths.antidoping} component={Antidoping} />
             <Route path={paths.documents} component={Documents} />
             <Route path={paths.dashboard.home} component={Dashboard} />

@@ -31,6 +31,9 @@ const portalLinks = [
   { link: paths.antidoping, value: 'Anti-doping' },
   { link: paths.swimmingCoaches, value: 'Swimming Coaches' },
   { link: paths.swimmingPools, value: 'Swimming Pools' },
+  { link: paths.auditedAccounts, value: 'Audited Accounts' },
+  { link: paths.annualReports, value: 'Annual Reports' },
+  { link: paths.swimForAllSwimForLife, value: 'Swim for All, Swim for Life' },
   { link: paths.documents, value: 'Documents & Downloads' },
 ];
 

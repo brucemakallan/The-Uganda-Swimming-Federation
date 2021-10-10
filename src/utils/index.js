@@ -27,6 +27,9 @@ const paths = {
   antidoping: '/antidoping',
   documents: '/documents',
   covid: '/covid',
+  auditedAccounts: '/audited-accounts',
+  annualReports: '/annual-reports',
+  swimForAllSwimForLife: '/swim-for-life',
   swimmingPools: '/swimming-pools',
 };
 
@@ -89,6 +92,9 @@ const moreLinksSection = 'More Links';
 const antidoping = 'Anti-doping';
 const documents = 'Documents';
 const covid = 'COVID';
+const auditedAccounts = 'Audited Accounts';
+const annualReports = 'Annual Reports';
+const swimForAllSwimForLife = 'Swim for All, Swim for Life';
 const swimmingPools = 'Swimming Pools';
 
 export const pageSections = {
@@ -111,6 +117,9 @@ export const pageSections = {
   antidoping,
   documents,
   covid,
+  auditedAccounts,
+  annualReports,
+  swimForAllSwimForLife,
   swimmingPools,
 };
 
@@ -157,6 +166,9 @@ export const entityTypes = [ // articles and other dynamic website sections
   antidoping,
   documents,
   covid,
+  auditedAccounts,
+  annualReports,
+  swimForAllSwimForLife,
   swimmingPools,
 ];
 

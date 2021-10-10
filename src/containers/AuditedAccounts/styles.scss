@@ -1,0 +1,52 @@
+.root {
+  min-height: 100vh;
+
+  .inner-padding {
+    display: flex;
+    width: 100%;
+    flex-flow: row wrap;
+    padding: 40px 0;
+  }
+
+  .card-container {
+    width: 231px;
+    margin: 0 20px 0 0;
+  }
+
+  .article-card {
+    .article-heading h1 {
+      font-family: "Montserrat", sans-serif !important;
+      font-size: 17px;
+    }
+    .article-details {
+      padding: 10px 15px;
+
+      .article-location {
+        font-size: 14px;
+      }
+      .article-body {
+        padding-top: 10px;
+
+        p {
+          margin: 0;
+        }
+      }
+      .article-date {
+        display: none;
+      }
+    }
+    .article-image {
+      img {
+        width: 231px;
+        height: 153px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  // .root {
+
+  // }
+}
