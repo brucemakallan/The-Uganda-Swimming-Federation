@@ -10,6 +10,7 @@ import {
   SHORT_DATE_FORMAT,
   entityTypes,
 } from '../../utils';
+import UploadButton from '../UploadButton';
 
 library.add(faTrash, faCloudUploadAlt);
 
@@ -124,7 +125,7 @@ class ProductForm extends Component {
   );
 
   renderMultipleStringInput = (
-    many, value, fieldName, onArrayChange, removeRow, addRow, addCloudinaryRawFile, isFileInput,
+    many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity,
   ) => (
     <React.Fragment>
       {many && value && Array.isArray(value)
@@ -160,16 +161,11 @@ class ProductForm extends Component {
                       required
                     />
                     {isFileInput && (
-                      <button
-                        type="button"
-                        id="addRowBt"
-                        className="iconBorderedButton m-2"
-                        title="Upload file"
-                        onClick={() => addCloudinaryRawFile(index)}
-                      >
-                        <FontAwesomeIcon icon="cloud-upload-alt" className="icon green" />
-                        Upload File
-                      </button>
+                      <UploadButton
+                        article={entity.heading1}
+                        disabled={!entity.heading1}
+                        onUploadComplete={url => addFile(index, url)}
+                      />
                     )}
                   </div>
                   <button
@@ -200,7 +196,7 @@ class ProductForm extends Component {
     </React.Fragment>
   );
 
-  renderImagesInput = (images, value, removeRow, addCloudinaryImage) => (
+  renderImagesInput = (images, value, removeRow, entity, addImages) => (
     <React.Fragment>
       {images && value && value.length > 0 && (
         <div>
@@ -224,14 +220,11 @@ class ProductForm extends Component {
         </div>
       )}
       {images && (
-        <button
-          type="button"
-          id="addRowBt"
-          className="btn btn-sm m-2 btn-outline-primary"
-          onClick={() => addCloudinaryImage(value)}
-        >
-          Upload Image
-        </button>
+        <UploadButton
+          article={entity.heading1}
+          disabled={!entity.heading1}
+          onUploadComplete={url => addImages(value, url)}
+        />
       )}
     </React.Fragment>
   );
@@ -245,8 +238,8 @@ class ProductForm extends Component {
     onArrayChange,
     removeRow,
     addRow,
-    addCloudinaryImage,
-    addCloudinaryRawFile,
+    addImages,
+    addFile,
     entity,
     required,
     list,
@@ -265,11 +258,11 @@ class ProductForm extends Component {
   ) => (
     <div className="form-group" key={String(index)}>
       {this.renderLabel(label, required)}
-      {this.renderImagesInput(images, value, removeRow, addCloudinaryImage)}
+      {this.renderImagesInput(images, value, removeRow, entity, addImages)}
       {this.renderTagInput(isTagInput, value, tagSuggestions, onTagAdd, onTagDelete, onTagDrag)}
       {this.renderTextArea(isTextArea, fieldName, required, onChange, entity, value)}
       {this.renderMultipleStringInput(
-        many, value, fieldName, onArrayChange, removeRow, addRow, addCloudinaryRawFile, isFileInput
+        many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity
       )}
       {this.renderDropdownList(list, fieldName, required, onChange, entity, value)}
       {this.renderTextInput(isTextInput, isNumber, fieldName, required, onChange, entity, value)}
@@ -284,8 +277,8 @@ class ProductForm extends Component {
       onArrayChange,
       removeRow,
       addRow,
-      addCloudinaryImage,
-      addCloudinaryRawFile,
+      addImages,
+      addFile,
       onSubmit,
       entity,
       allEntities,
@@ -406,8 +399,8 @@ class ProductForm extends Component {
             onArrayChange,
             removeRow,
             addRow,
-            addCloudinaryImage,
-            addCloudinaryRawFile,
+            addImages,
+            addFile,
             entity,
             v.required,
             v.list,
@@ -446,8 +439,8 @@ ProductForm.propTypes = {
   onArrayChange: PropTypes.func.isRequired,
   removeRow: PropTypes.func.isRequired,
   addRow: PropTypes.func.isRequired,
-  addCloudinaryImage: PropTypes.func.isRequired,
-  addCloudinaryRawFile: PropTypes.func.isRequired,
+  addImages: PropTypes.func.isRequired,
+  addFile: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   entity: PropTypes.shape({}),
   allEntities: PropTypes.arrayOf(PropTypes.shape({})),

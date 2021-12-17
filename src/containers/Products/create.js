@@ -81,34 +81,20 @@ export class CreateProduct extends Component {
     });
   }
 
-  addCloudinaryImage = (array) => {
-    const cloudinaryWidget = window.cloudinary.createUploadWidget(cloudinaryWidgetOptions,
-      (error, result) => {
-        if (!error && result && result.info && result.event === 'success') {
-          const { secure_url } = result.info;
-          this.addRow(array, secure_url);
-        }
-      });
-    cloudinaryWidget.open();
+  addImages = (array, url) => {
+    this.addRow(array, url);
   }
 
-  addCloudinaryRawFile = (index) => {
+  addFile = (index, url) => {
     const { product, product: { files } } = this.state;
-    const cloudinaryWidget = window.cloudinary.createUploadWidget(cloudinaryWidgetOptions,
-      (error, result) => {
-        if (!error && result && result.info && result.event === 'success') {
-          const { secure_url } = result.info;
-          const updatedFiles = files;
-          updatedFiles[index].source = secure_url;
-          this.setState({
-            product: {
-              ...product,
-              files: updatedFiles,
-            },
-          });
-        }
-      });
-    cloudinaryWidget.open();
+    const updatedFiles = files;
+    updatedFiles[index].source = url;
+    this.setState({
+      product: {
+        ...product,
+        files: updatedFiles,
+      },
+    });
   }
 
   handleTagDelete = (i) => {
@@ -155,8 +141,8 @@ export class CreateProduct extends Component {
         onArrayChange={this.handleOnArrayChange}
         removeRow={this.removeRow}
         addRow={this.addRow}
-        addCloudinaryImage={this.addCloudinaryImage}
-        addCloudinaryRawFile={this.addCloudinaryRawFile}
+        addImages={this.addImages}
+        addFile={this.addFile}
         onSubmit={this.handleSubmit}
         entity={product}
         allEntities={products}

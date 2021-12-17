@@ -202,7 +202,7 @@ const fileIcons = {
 export const selectFileIcon = (filePath) => {
   let icon;
   Object.keys(fileIcons).map((key) => {
-    if (filePath && filePath.toLowerCase().endsWith(fileIcons[key].type)) {
+    if (filePath && filePath.toLowerCase().includes(fileIcons[key].type)) {
       icon = fileIcons[key].icon;
     }
     return icon;
