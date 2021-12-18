@@ -21,6 +21,7 @@ const UploadButton = ({
   article = 'uncategorized',
   onUploadComplete,
   disabled,
+  showDropArea,
 }) => {
   const [loading, setLoading] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
@@ -36,11 +37,11 @@ const UploadButton = ({
     setErrorMessage(error.message);
   };
 
-  const onSuccess = uploadTask => () => { // https://firebasestorage.googleapis.com/...
+  const onSuccess = (uploadTask, file) => () => { // https://firebasestorage.googleapis.com/...
     getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
       setErrorMessage('');
       console.log('File available at', downloadURL);
-      onUploadComplete(downloadURL);
+      onUploadComplete(downloadURL, file);
     });
   };
 
@@ -51,7 +52,7 @@ const UploadButton = ({
       const fileName = `${subfolder}/${kebabCase(article)}/${kebabCase(file.name)}`;
       const storageRef = ref(storage, fileName);
       const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on('state_changed', whileUploading, onError, onSuccess(uploadTask));
+      uploadTask.on('state_changed', whileUploading, onError, onSuccess(uploadTask, file));
     });
   };
 
@@ -69,6 +70,7 @@ const UploadButton = ({
               component="span"
               startIcon={<UploadIcon />}
               disabled={disabled}
+              sx={showDropArea ? styles.dropArea : styles.button}
             >
               {title}
             </LoadingButton>

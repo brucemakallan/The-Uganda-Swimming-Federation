@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { WithContext as ReactTags } from 'react-tag-input';
+import get from 'lodash/get';
 import {
   dateToEpoc,
   epocToDate,
@@ -125,7 +127,7 @@ class ProductForm extends Component {
   );
 
   renderMultipleStringInput = (
-    many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity,
+    many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity, addMultipleFiles,
   ) => (
     <React.Fragment>
       {many && value && Array.isArray(value)
@@ -184,14 +186,25 @@ class ProductForm extends Component {
         )
       }
       {many && (
-        <button
-          type="button"
-          id="addRowBt"
-          className="btn btn-sm m-2 btn-outline-primary"
-          onClick={() => addRow(value, { title: '', description: '', source: '' })}
-        >
-          Add Another
-        </button>
+        <>
+          {isFileInput && <div>{`${get(entity, 'files', []).length} file(s)`}</div>}
+          <button
+            type="button"
+            id="addRowBt"
+            className="btn btn-sm m-2 btn-outline-primary"
+            onClick={() => addRow(value, { title: '', description: '', source: '' })}
+          >
+            Add Another
+          </button>
+          {isFileInput && (
+            <UploadButton
+              title="Upload or Drop Multiple files"
+              article={entity.heading1}
+              disabled={!entity.heading1}
+              onUploadComplete={(url, file) => addMultipleFiles(url, file)}
+            />
+          )}
+        </>
       )}
     </React.Fragment>
   );
@@ -224,6 +237,7 @@ class ProductForm extends Component {
           article={entity.heading1}
           disabled={!entity.heading1}
           onUploadComplete={url => addImages(value, url)}
+          showDropArea
         />
       )}
     </React.Fragment>
@@ -255,6 +269,7 @@ class ProductForm extends Component {
     onTagDrag,
     isDateInput,
     isFileInput,
+    addMultipleFiles,
   ) => (
     <div className="form-group" key={String(index)}>
       {this.renderLabel(label, required)}
@@ -262,13 +277,21 @@ class ProductForm extends Component {
       {this.renderTagInput(isTagInput, value, tagSuggestions, onTagAdd, onTagDelete, onTagDrag)}
       {this.renderTextArea(isTextArea, fieldName, required, onChange, entity, value)}
       {this.renderMultipleStringInput(
-        many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity
+        many, value, fieldName, onArrayChange, removeRow, addRow, addFile, isFileInput, entity, addMultipleFiles,
       )}
       {this.renderDropdownList(list, fieldName, required, onChange, entity, value)}
       {this.renderTextInput(isTextInput, isNumber, fieldName, required, onChange, entity, value)}
       {this.renderDateInput(isDateInput, fieldName, required, onChange, entity, value)}
     </div>
   );
+
+  copyToClipboard = () => {
+    const { entity } = this.props;
+
+    if (entity && entity._id) {
+      navigator.clipboard.writeText(entity._id);
+    }
+  }
 
   render() {
     const {
@@ -287,6 +310,7 @@ class ProductForm extends Component {
       onTagAdd,
       onTagDelete,
       onTagDrag,
+      addMultipleFiles,
     } = this.props;
 
     const formFields = [
@@ -389,7 +413,28 @@ class ProductForm extends Component {
     return (
       <div>
         <h1>{title}</h1>
+
+        <div>
+          {entity && entity._id}
+          {' '}
+          <button type="button" className="btn btn-primary" onClick={this.copyToClipboard}>Copy</button>
+        </div>
+        <div>
+          Images:
+          {' '}
+          {get(entity, 'images[0]', '').includes('cloudinary') ? 'CLOUDINARY! 😢' : '✅'}
+        </div>
+        <div>
+          Files:
+          {' '}
+          {get(entity, 'files[0].source', '').includes('cloudinary') ? 'CLOUDINARY! 😢' : '✅'}
+        </div>
+
         <form className="inputForm" id="productForm" onSubmit={onSubmit}>
+          <div>
+            <button type="submit" className="btn btn-primary mr-3">Save</button>
+          </div>
+
           {formFields.map((v, index) => this.renderAllFormFields(
             index,
             v.label,
@@ -416,6 +461,7 @@ class ProductForm extends Component {
             onTagDrag,
             v.isDateInput,
             v.isFileInput,
+            addMultipleFiles,
           ))}
           <div className="mb-2">
             <span className="red" title="Required"> * </span>
@@ -441,6 +487,7 @@ ProductForm.propTypes = {
   addRow: PropTypes.func.isRequired,
   addImages: PropTypes.func.isRequired,
   addFile: PropTypes.func.isRequired,
+  addMultipleFiles: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   entity: PropTypes.shape({}),
   allEntities: PropTypes.arrayOf(PropTypes.shape({})),

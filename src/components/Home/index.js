@@ -35,6 +35,7 @@ const portalLinks = [
   { link: paths.annualReports, value: 'Annual Reports' },
   { link: paths.swimForAllSwimForLife, value: 'Swim for All, Swim for Life' },
   { link: paths.documents, value: 'Documents & Downloads' },
+  { link: paths.portal, value: 'The Uganda Swimming Federation Online Portal' },
 ];
 
 library.add(faArrowUp);

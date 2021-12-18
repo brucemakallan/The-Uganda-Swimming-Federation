@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import startCase from 'lodash/startCase';
+import get from 'lodash/get';
 import ProductForm from '../../components/Products/productForm';
 import { editProduct } from '../../actions/productsActions';
 import paths, { endpoints, entityTypes, removeUnsupportedProperties } from '../../utils';
-import cloudinaryWidgetOptions from '../../utils/cloudinary';
 
 export class EditProduct extends Component {
   state = {
@@ -110,6 +111,29 @@ export class EditProduct extends Component {
     });
   }
 
+  addMultipleFiles = (url, originalFile) => {
+    const { product, product: { files } } = this.state;
+
+    // TODO: remove the title cleanup
+    const title = get(originalFile, 'name', '')
+      .split('_')
+      .pop()
+      .split('.')
+      .shift();
+    const file = {
+      title: startCase(title),
+      description: '',
+      source: url,
+    };
+
+    this.setState({
+      product: {
+        ...product,
+        files: [...files, file],
+      },
+    });
+  };
+
   handleTagDelete = (i) => {
     const { product } = this.state;
     this.setState({
@@ -155,6 +179,7 @@ export class EditProduct extends Component {
         addRow={this.addRow}
         addImages={this.addImages}
         addFile={this.addFile}
+        addMultipleFiles={this.addMultipleFiles}
         onSubmit={this.handleSubmit}
         entity={product}
         allEntities={products}

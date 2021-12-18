@@ -7,6 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencilAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import get from 'lodash/get';
 import paths from '../../utils';
 
 library.add(faTrash, faPencilAlt, faEye);
@@ -18,6 +19,9 @@ const Products = ({ data, saveID }) => (
       <Link className="btn btn-primary btn-sm button-link" to={`${paths.dashboard.products}/create`}>Create</Link>
     </div>
     <ReactTable
+      // data={
+      //   data.filter(entity => (get(entity, 'images[0]', '').includes('cloudinary') || get(entity, 'files[0].source', '').includes('cloudinary')))
+      // }
       data={data}
       filterable
       defaultFilterMethod={
@@ -40,33 +44,42 @@ const Products = ({ data, saveID }) => (
           filterable: false,
           accessor: '_id',
           className: 'text-center',
-          Cell: ({ value }) => (
-            <div>
-              <Link
-                className="iconButton"
-                to={`${paths.dashboard.details}/${value}`}
-                title="View Details"
-              >
-                <FontAwesomeIcon icon="eye" className="icon green" />
-              </Link>
-              <Link
-                className="iconButton effect-button"
-                to={`${paths.dashboard.products}/edit/${value}`}
-                title="Edit"
-              >
-                <FontAwesomeIcon icon="pencil-alt" className="icon green" />
-              </Link>
-              <button
-                type="button"
-                id="deleteBt"
-                className="iconButton effect-button"
-                onClick={() => saveID(value)}
-                title="Delete"
-              >
-                <FontAwesomeIcon icon="trash" className="icon red" />
-              </button>
-            </div>
-          ),
+          Cell: ({ value }) => {
+            const entity = data.find(({ _id }) => value === _id);
+            const hasCloudinaryLinks = (get(entity, 'images[0]', '').includes('cloudinary')
+              || get(entity, 'files[0].source', '').includes('cloudinary'));
+
+            return (
+              <div>
+                <Link
+                  className="iconButton"
+                  to={`${paths.dashboard.details}/${value}`}
+                  title="View Details"
+                >
+                  <FontAwesomeIcon icon="eye" className="icon green" />
+                </Link>
+                <Link
+                  className="iconButton effect-button"
+                  to={`${paths.dashboard.products}/edit/${value}`}
+                  title="Edit"
+                >
+                  <FontAwesomeIcon icon="pencil-alt" className="icon green" />
+                  <span>
+                    {hasCloudinaryLinks ? '*' : ''}
+                  </span>
+                </Link>
+                <button
+                  type="button"
+                  id="deleteBt"
+                  className="iconButton effect-button"
+                  onClick={() => saveID(value)}
+                  title="Delete"
+                >
+                  <FontAwesomeIcon icon="trash" className="icon red" />
+                </button>
+              </div>
+            );
+          },
         },
       ]}
       defaultPageSize={10}
