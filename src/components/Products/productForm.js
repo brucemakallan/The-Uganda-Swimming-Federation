@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { WithContext as ReactTags } from 'react-tag-input';
 import get from 'lodash/get';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import IconButton from '@mui/material/IconButton';
 import {
   dateToEpoc,
   epocToDate,
@@ -417,7 +419,9 @@ class ProductForm extends Component {
         <div>
           {entity && entity._id}
           {' '}
-          <button type="button" className="btn btn-primary" onClick={this.copyToClipboard}>Copy</button>
+          <IconButton color="primary" component="span" onClick={this.copyToClipboard}>
+            <ContentCopyIcon />
+          </IconButton>
         </div>
         <div>
           Images:
@@ -432,7 +436,7 @@ class ProductForm extends Component {
 
         <form className="inputForm" id="productForm" onSubmit={onSubmit}>
           <div>
-            <button type="submit" className="btn btn-primary mr-3">Save</button>
+            <button type="submit" className="btn btn-primary mr-3">Save Article</button>
           </div>
 
           {formFields.map((v, index) => this.renderAllFormFields(
@@ -467,7 +471,7 @@ class ProductForm extends Component {
             <span className="red" title="Required"> * </span>
             <span>Required Fields</span>
           </div>
-          <button type="submit" className="btn btn-primary mr-3">Save</button>
+          <button type="submit" className="btn btn-primary mr-3">Save Article</button>
           {isNew && (
             <button type="button" onClick={event => onSubmit(event, true)} className="btn btn-primary">
               Save &amp; Create Another

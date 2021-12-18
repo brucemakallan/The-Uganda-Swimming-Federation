@@ -20,7 +20,9 @@ const Products = ({ data, saveID }) => (
     </div>
     <ReactTable
       // data={
-      //   data.filter(entity => (get(entity, 'images[0]', '').includes('cloudinary') || get(entity, 'files[0].source', '').includes('cloudinary')))
+      //   data
+      //     .filter(entity => (get(entity, 'images[0]', '').includes('cloudinary') || get(entity, 'files[0].source', '').includes('cloudinary')))
+      //     .slice(0, 150)
       // }
       data={data}
       filterable
