@@ -423,22 +423,8 @@ class ProductForm extends Component {
             <ContentCopyIcon />
           </IconButton>
         </div>
-        <div>
-          Images:
-          {' '}
-          {get(entity, 'images[0]', '').includes('cloudinary') ? 'CLOUDINARY! 😢' : '✅'}
-        </div>
-        <div>
-          Files:
-          {' '}
-          {get(entity, 'files[0].source', '').includes('cloudinary') ? 'CLOUDINARY! 😢' : '✅'}
-        </div>
 
         <form className="inputForm" id="productForm" onSubmit={onSubmit}>
-          <div>
-            <button type="submit" className="btn btn-primary mr-3">Save Article</button>
-          </div>
-
           {formFields.map((v, index) => this.renderAllFormFields(
             index,
             v.label,

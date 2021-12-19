@@ -1,15 +1,15 @@
 // FONTS
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css?family=Raleway:300');
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Lato:300');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Lato:300");
 
 // COLORS
-@import './utils/colors.scss';
+@import "./utils/colors.scss";
 
-$bodyFontFamily: 'Montserrat', sans-serif;
-$headingFontFamily: 'Raleway', sans-serif;
-$latoFontFamily: 'Lato', sans-serif;
+$bodyFontFamily: "Montserrat", sans-serif;
+$headingFontFamily: "Raleway", sans-serif;
+$latoFontFamily: "Lato", sans-serif;
 
 // GLOBAL CONSTANTS
 $navbar-height: 126px;
@@ -63,7 +63,12 @@ body {
   font-size: 15px;
   background-color: #eeeeee;
 }
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $headingFontFamily !important;
   color: $primaryDark;
 }
@@ -126,9 +131,9 @@ h1, h2, h3, h4, h5, h6 {
 .material-card {
   padding: 20px;
   border-radius: 0 0 5px 5px;
-  -webkit-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
-  -moz-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
-  box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
+  -webkit-box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
   background-color: white;
 
   .card-heading {
@@ -137,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 .ellipsis {
-  white-space: nowrap; 
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -145,7 +150,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
   margin: 30px auto;
   max-width: 1000px;
-  -webkit-box-shadow: 5px 5px 15px -6px #000000; 
+  -webkit-box-shadow: 5px 5px 15px -6px #000000;
   box-shadow: 5px 5px 15px -6px #000000;
 }
 .pagination {
@@ -154,7 +159,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 40px;
   margin-bottom: 0;
   align-items: flex-end;
-  
+
   .active {
     a {
       border: 1px solid black;
@@ -180,7 +185,7 @@ h1, h2, h3, h4, h5, h6 {
       padding: 7px 15px;
       color: black;
       font-weight: bold;
-      -webkit-user-select: none; /* Safari */        
+      -webkit-user-select: none; /* Safari */
       -moz-user-select: none; /* Firefox */
       -ms-user-select: none; /* IE10+/Edge */
       user-select: none; /* Standard */
@@ -193,12 +198,12 @@ h1, h2, h3, h4, h5, h6 {
 .fresh-paint {
   height: 100vh;
   width: 100vw;
-  background-image: url('https://res.cloudinary.com/theugandaswimmingfederation/image/upload/v1560163087/painting_lpxqho.jpg');
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/the-uganda-swimm-1560254557785.appspot.com/o/painting_lpxqho.jpg?alt=media&token=43f80aca-fa71-478a-9e8c-409f17cfd3bc");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: 'absolute';
-  top: '126px';
+  position: "absolute";
+  top: "126px";
   display: flex;
   justify-content: center;
   align-items: center;
@@ -241,7 +246,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.carousel-control-next-icon, .carousel-control-prev-icon {
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
   background-color: $primaryDark;
   border-radius: 50%;
   padding: 24px;
@@ -254,22 +260,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 @mixin no-outline {
   outline: 0;
-  -webkit-appearance:none;
+  -webkit-appearance: none;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
 }
 @mixin shaddow {
-  -webkit-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
-  -moz-box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
-  box-shadow: 6px 7px 20px 0px rgba(0,0,0,0.14);
+  -webkit-box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 6px 7px 20px 0px rgba(0, 0, 0, 0.14);
 }
-
 
 .effect-button {
   //start click effect
   &:before {
-    content: '';
+    content: "";
     background-color: aliceblue;
     border-radius: 50%;
     display: block;
@@ -312,7 +317,12 @@ h1, h2, h3, h4, h5, h6 {
   .page-header {
     flex-direction: column;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     text-align: center;
   }
   .button-link {
@@ -324,7 +334,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .responsive-flex {
     flex-flow: column wrap;
-    
+
     img {
       width: 100%;
     }
@@ -339,7 +349,9 @@ h1, h2, h3, h4, h5, h6 {
     li {
       display: none;
     }
-    .previous, .next, .active {
+    .previous,
+    .next,
+    .active {
       display: list-item;
     }
   }
@@ -372,9 +384,17 @@ h1, h2, h3, h4, h5, h6 {
   // animation: increaseSize 0.4s forwards 0s linear;
 }
 @keyframes glow {
-  0% { box-shadow: 0 0 -10px $logoBlue; }
-  40% { box-shadow: 0 0 20px $logoBlue; }
-  60% { box-shadow: 0 0 20px $logoBlue; }
-  100% { box-shadow: 0 0 -10px $logoBlue; }
+  0% {
+    box-shadow: 0 0 -10px $logoBlue;
+  }
+  40% {
+    box-shadow: 0 0 20px $logoBlue;
+  }
+  60% {
+    box-shadow: 0 0 20px $logoBlue;
+  }
+  100% {
+    box-shadow: 0 0 -10px $logoBlue;
+  }
   // animation: glow 0.3s forwards 0s linear;
 }

@@ -19,11 +19,6 @@ const Products = ({ data, saveID }) => (
       <Link className="btn btn-primary btn-sm button-link" to={`${paths.dashboard.products}/create`}>Create</Link>
     </div>
     <ReactTable
-      // data={
-      //   data
-      //     .filter(entity => (get(entity, 'images[0]', '').includes('cloudinary') || get(entity, 'files[0].source', '').includes('cloudinary')))
-      //     .slice(0, 150)
-      // }
       data={data}
       filterable
       defaultFilterMethod={
@@ -48,8 +43,8 @@ const Products = ({ data, saveID }) => (
           className: 'text-center',
           Cell: ({ value }) => {
             const entity = data.find(({ _id }) => value === _id);
-            const hasCloudinaryLinks = (get(entity, 'images[0]', '').includes('cloudinary')
-              || get(entity, 'files[0].source', '').includes('cloudinary'));
+            const hasCloudinaryLinks = (get(entity, 'images[0]', '').includes('res.cloudinary')
+              || get(entity, 'files[0].source', '').includes('res.cloudinary'));
 
             return (
               <div>
