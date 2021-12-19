@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { get, startCase } from 'lodash';
 import getAllProducts, { editProduct } from '../../actions/productsActions';
 import { endpoints, removeUnsupportedProperties } from '../../utils';
-import allLinks from './allLinks';
+// import allLinks from './allLinks';
 
 class Experimental extends Component {
   async componentWillMount() {
@@ -15,41 +15,41 @@ class Experimental extends Component {
     await getAllProductsDispatch(endpoints.productsGetAll);
   }
 
-  getImagesForArticle = article => allLinks.filter(link => link.includes(`${article._id}_image`))
+  // getImagesForArticle = article => allLinks.filter(link => link.includes(`${article._id}_image`))
 
-  getFilesForArticle = (article) => {
-    // ... 319_5fc010970e27db000433a339_file_letter-to-n-fs.pdf? ...
-    const files = allLinks
-      .filter(link => link.includes(`${article._id}_file`))
-      .map((source) => {
-        const title = source.split('?')
-          .shift()
-          .split('_')
-          .pop()
-          .split('.')
-          .shift();
+  // getFilesForArticle = (article) => {
+  //   // ... 319_5fc010970e27db000433a339_file_letter-to-n-fs.pdf? ...
+  //   const files = allLinks
+  //     .filter(link => link.includes(`${article._id}_file`))
+  //     .map((source) => {
+  //       const title = source.split('?')
+  //         .shift()
+  //         .split('_')
+  //         .pop()
+  //         .split('.')
+  //         .shift();
 
-        return {
-          title: startCase(title),
-          description: '',
-          source,
-        };
-      });
+  //       return {
+  //         title: startCase(title),
+  //         description: '',
+  //         source,
+  //       };
+  //     });
 
-    return files;
-  }
+  //   return files;
+  // }
 
   updateArticle = article => () => {
-    const edited = {
-      ...article,
-      files: this.getFilesForArticle(article),
-      images: this.getImagesForArticle(article),
-    };
+    // const edited = {
+    //   ...article,
+    //   files: this.getFilesForArticle(article),
+    //   images: this.getImagesForArticle(article),
+    // };
 
-    const { editProductDispatch } = this.props;
-    const unsupportedProperties = ['_id', 'dateCreated', '__v'];
-    const cleaned = removeUnsupportedProperties({ ...edited }, unsupportedProperties);
-    editProductDispatch(endpoints.productsPut(article._id), cleaned, { push: () => {} });
+    // const { editProductDispatch } = this.props;
+    // const unsupportedProperties = ['_id', 'dateCreated', '__v'];
+    // const cleaned = removeUnsupportedProperties({ ...edited }, unsupportedProperties);
+    // editProductDispatch(endpoints.productsPut(article._id), cleaned, { push: () => {} });
   }
 
   render() {

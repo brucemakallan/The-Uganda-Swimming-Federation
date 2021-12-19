@@ -16,6 +16,9 @@ const AccordionList = ({ list }) => (
         </AccordionSummary>
         <AccordionDetails>
           <Typography>{description}</Typography>
+          <a href={source} target="_blank" rel="noopener noreferrer">
+            Link to File
+          </a>
           <PdfViewer pdfFile={source} />
         </AccordionDetails>
       </Accordion>
