@@ -5,7 +5,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PdfViewer from '../../PdfViewer';
+// import PdfViewer from '../../PdfViewer';
 
 const AccordionList = ({ list }) => (
   <div>
@@ -17,9 +17,9 @@ const AccordionList = ({ list }) => (
         <AccordionDetails>
           <Typography>{description}</Typography>
           <a href={source} target="_blank" rel="noopener noreferrer">
-            Link to File
+            View File
           </a>
-          <PdfViewer pdfFile={source} />
+          {/* <PdfViewer pdfFile={source} /> */}
         </AccordionDetails>
       </Accordion>
     ))}
