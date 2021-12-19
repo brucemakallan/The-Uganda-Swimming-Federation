@@ -24,7 +24,9 @@ class Covid extends Component {
             <hr />
           </h1>
           <div className="inner-padding">
-            {articles.map(article => <ArticleCard key={article._id} article={article} />)}
+            <div>
+              {articles.map(article => <ArticleCard key={article._id} article={article} />)}
+            </div>
           </div>
         </div>
       </div>
