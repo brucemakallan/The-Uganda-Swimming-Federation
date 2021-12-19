@@ -32,6 +32,7 @@ const paths = {
   swimForAllSwimForLife: '/swim-for-life',
   swimmingPools: '/swimming-pools',
   portal: 'https://usf.go.ug/',
+  experimental: '/experimental',
 };
 
 // const API_URL = 'http://localhost:3001/api/';

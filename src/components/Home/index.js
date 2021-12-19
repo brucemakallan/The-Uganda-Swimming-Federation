@@ -346,9 +346,9 @@ class Home extends Component {
               The Uganda Swimming Federation.
               &nbsp;
             </span>
-            <span className="dev">
+            {/* <span className="dev">
               <a href="https://iviidev.info" target="_blank" rel="noopener noreferrer">Dev</a>
-            </span>
+            </span> */}
           </div>
         </section>
       </div>
